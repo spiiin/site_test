@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Spiiin&#39;s blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://spiiin.github.io/"/>
+  <updated>2020-08-04T19:35:50.734Z</updated>
+  <id>http://spiiin.github.io/</id>
+  
+  <author>
+    <name>spiiin</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Карта прохождения игр</title>
+    <link href="http://spiiin.github.io/blog/1563/"/>
+    <id>http://spiiin.github.io/blog/1563/</id>
+    <published>2020-08-04T19:11:37.000Z</published>
+    <updated>2020-08-04T19:35:50.734Z</updated>
+    
+    <content type="html"><![CDATA[<p>Список игр на прохождение<br><a id="more"></a></p><h2 id="Current-list"><a href="#Current-list" class="headerlink" title="Current list"></a>Current list</h2><p><code>Gta 5</code> - 30%<br><code>Age of Mythologies</code> - 50%<br><code>Warhammer 40k: Mechanicus</code> - 33%<br><code>The Witcher 2</code> - 5%<br><code>Legend of Zelda: BotW</code>: - 3%<br><code>Captain Toad</code> - 90%</p><h2 id="Coop"><a href="#Coop" class="headerlink" title="Coop"></a>Coop</h2><p><code>The Stratchers</code> - 10%<br><code>Trine 4</code> - 30%<br><code>Minecraft</code> - 5%</p><h2 id="Todo"><a href="#Todo" class="headerlink" title="Todo"></a>Todo</h2><p><code>Yoshi&#39;s Crafted World</code><br><code>The Forest</code></p><h2 id="Completed"><a href="#Completed" class="headerlink" title="Completed"></a>Completed</h2><p><code>Mario+Rabbids</code></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Список игр на прохождение&lt;br&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Привет, Hexo</title>
+    <link href="http://spiiin.github.io/blog/47121/"/>
+    <id>http://spiiin.github.io/blog/47121/</id>
+    <published>2020-07-18T14:14:53.000Z</published>
+    <updated>2020-08-04T19:38:43.530Z</updated>
+    
+    <content type="html"><![CDATA[<p>После нескольких дней возни в очередной попытке собрать на <code>jekyll</code> статический блог, решил забить на него и попробовать использовать для блога <a href="https://hexo.io/" target="_blank" rel="noopener">hexo</a>. Получилось сильно проще и приятнее.</p><p>Во-первых, <code>hexo</code> запускается легче, и темы работают сходу. И, что удобно для блога программисту, подсветка синтаксиса кода интегрирована в движок лучше, из чего следует, что темы скорее всего будут совместимы с ней (у <code>jekyll</code> подобрать работающую пару “тема+плагин подсветки синтаксиса” оказалось очень непросто, то съезжала нумерация длинных строк, то весь блок с кодом выглядел коряво, то были проблемы с корректным отображения цвета строк или фона)</p><a id="more"></a><p>Единственное, для корректной работы тем, иногда опытным путём, необходимо выяснить, какие плагины необходимо доустановить из <a href="https://hexo.io/plugins/" target="_blank" rel="noopener">списка</a>.</p><h2 id="Темы"><a href="#Темы" class="headerlink" title="Темы"></a>Темы</h2><p>Далее, выбор <a href="https://hexo.io/themes/" target="_blank" rel="noopener">тем</a>. Достаточно много качественных и приятных глазу, из тёмных и минималистичных интересными показались:</p><ul><li><a href="https://github.com/howardliu-cn/hexo-theme-clean-dark" target="_blank" rel="noopener">clean-dark</a><ul><li><a href="https://www.howardliu.cn/" target="_blank" rel="noopener">Пример</a></li><li>Оригинальная <a href="http://pavelmakhov.com/jekyll-clean-dark" target="_blank" rel="noopener">тема для jekyll</a>, которая была взята в качестве основы для этой темы</li></ul></li><li><a href="https://github.com/maochunguang/black-blue" target="_blank" rel="noopener">black-blue</a><ul><li><a href="http://maochunguang.github.io/" target="_blank" rel="noopener">Пример</a></li></ul></li><li><a href="https://github.com/tzvetkov75/solar-theme-hexo/" target="_blank" rel="noopener">solar</a><ul><li><a href="https://tzvetkov75.github.io/demo_blog/public/" target="_blank" rel="noopener">Пример</a>.</li><li>Тема на основе <a href="https://probberechts.github.io/hexo-theme-cactus/cactus-dark/public/" target="_blank" rel="noopener">cactus</a></li></ul></li><li><a href="https://github.com/lyndonoc/hexo-theme-pandollo" target="_blank" rel="noopener">pandollo</a><ul><li><a href="https://lyndonoc.github.io/" target="_blank" rel="noopener">Пример</a></li></ul></li></ul><h2 id="Настройка-темы"><a href="#Настройка-темы" class="headerlink" title="Настройка темы"></a>Настройка темы</h2><p>Минимальная настройка темы включает правку файла <code>config.yml</code>, какие именно настройки поддерживаются, обычно написано на сайте темы.</p><p>Дополнительно, на примере темы <code>pandolo</code> - можно донастроить стиль, разобравшись с правкой файлов в папке <code>themes/pandollo/source/scss</code>.</p><p>Дальше нужно выполнить команду:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sass --style&#x3D;compressed .&#x2F;main.scss ..&#x2F;css&#x2F;main.css</span><br></pre></td></tr></table></figure></p><p>Для того, чтобы сгенерировать упакованную версию файла стилей, которую будет использовать блог.</p><p>После небольших правок получилась примерно такая “лисья” тема:<br><img src="/blog/47121/hexo-fox.png" alt="hexo-fox"></p><h2 id="Настройка-плагинов"><a href="#Настройка-плагинов" class="headerlink" title="Настройка плагинов"></a>Настройка плагинов</h2><p>Для выбранной темы пригодятся следующие плагины:<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"dependencies": &#123;</span><br><span class="line">  ...</span><br><span class="line">  "hexo-asset-link": "^2.0.1",</span><br><span class="line">  "hexo-generator-fragments": "^1.0.0",</span><br><span class="line">  "hexo-renderer-kramed": "^0.1.4",</span><br><span class="line">  "hexo-renderer-jade": "^0.5.0",</span><br><span class="line">  "hexo-abbrlink": "^2.2.1",</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><a href="https://github.com/liolok/hexo-asset-link" target="_blank" rel="noopener">hexo-asset-link</a> - позволяет использовать в постах ссылку на ассет в виде относительного пути: <code>POST_NAME/asset_name.png</code> (также нужно включить в <code>config.yml</code> опцию: <code>post_asset_folder: true</code>, чтобы hexo создавал отдельную папку для ассетов к каждому посту).</p><p><a href="https://github.com/mamboer/hexo-generator-fragments" target="_blank" rel="noopener">hexo-generator-fragments</a> - необходим для темы - генерирует preview для постов для главной страницы, позволяет использоватьв в постах тег <code>&lt;!-- more --&gt;</code> чтобы отмечать краткую короткую preview-версию поста.</p><p><a href="https://github.com/sun11/hexo-renderer-kramed" target="_blank" rel="noopener">hexo-renderer-kramed</a> - плагины, содержащие в названии renderer, позволяют hexo генерировать посты из разных форматов файла. Данный плагин используется для рендера из файлов <code>*.md</code> в формате <code>github flavored markdown</code>, который используется на серверах <code>github</code>.<br>В комплекте с <code>hexo</code> уже идёт плагин, который рендерит markdown-файлы, поэтому чтобы использовать альтернативный, предварительно нужно его удалить:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure></p><p><a href="https://github.com/hexojs/hexo-renderer-jade" target="_blank" rel="noopener">hexo-renderer-jade</a> - необходимый для темы плагин, позволяющий рендерить pug-файлы (собственно, сама тема описана в этом формате).</p><p><a href="https://github.com/Rozbo/hexo-abbrlink" target="_blank" rel="noopener">hexo-abbrlink</a> - генерирует для каждого поста идентификатор. Для генерации имён постов необходимо в <code>config.yml</code> добавить строку:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">permalink: posts&#x2F;:abbrlink&#x2F;</span><br></pre></td></tr></table></figure><br>Для того, чтобы указать ссылку на пост, нужно использовать тег:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% post_link filename [title] [escape] %&#125;</span><br></pre></td></tr></table></figure></p><h2 id="Написание-постов"><a href="#Написание-постов" class="headerlink" title="Написание постов"></a>Написание постов</h2><p>После установки и настройки темы можно попробовать добавить пост:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new post hello-hexo.md</span><br></pre></td></tr></table></figure><br>Вместо md можно попробовать использовать другие форматы, для которых установлены render-плагины. В качестве редактора постов я бы посоветовал использовать (Visual Studio Code)[<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">https://code.visualstudio.com/</a>], вместе с плагином <a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/" target="_blank" rel="noopener">Markdown Enchanced Preview</a>.</p><p>Чтобы проверить, как выглядит пост, нужно запустить команду:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo serve</span><br></pre></td></tr></table></figure><br>и открыть в браузере страницу <code>http://http://127.0.0.1:4000/</code> (hexo отслеживает изменения исходников и сразу обновляет открытую страницу).</p><p>Сгенерировать статический сайт можно так:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure></p><p>Весь сгенерированный сайт будет содержаться в папке <code>public</code>, её можно заливать на хостинг руками или воспользоваться плагинами для автоматизации этих процессов.</p><h2 id="Итог"><a href="#Итог" class="headerlink" title="Итог"></a>Итог</h2><p>В кажущейся простой задаче “отрендерить markdown-статью в html”, cкрыт выбор целого стека способов решения (генераторы сайтов со своими языками, рендеры разных форматов и диалектов разметки, языки описания стилей и шаблонов сайта, темы, плагины, подсветка кода, системы развёртывания сайта).</p><p>В <code>hexo</code> эти вещи более-менее целостно сшиты вместе в единую систему, которой можно начать пользоваться достаточно быстро.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;После нескольких дней возни в очередной попытке собрать на &lt;code&gt;jekyll&lt;/code&gt; статический блог, решил забить на него и попробовать использовать для блога &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hexo&lt;/a&gt;. Получилось сильно проще и приятнее.&lt;/p&gt;
+&lt;p&gt;Во-первых, &lt;code&gt;hexo&lt;/code&gt; запускается легче, и темы работают сходу. И, что удобно для блога программисту, подсветка синтаксиса кода интегрирована в движок лучше, из чего следует, что темы скорее всего будут совместимы с ней (у &lt;code&gt;jekyll&lt;/code&gt; подобрать работающую пару “тема+плагин подсветки синтаксиса” оказалось очень непросто, то съезжала нумерация длинных строк, то весь блок с кодом выглядел коряво, то были проблемы с корректным отображения цвета строк или фона)&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="hexo" scheme="http://spiiin.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Коллекция постов в ЖЖ</title>
+    <link href="http://spiiin.github.io/blog/35153/"/>
+    <id>http://spiiin.github.io/blog/35153/</id>
+    <published>2020-07-10T12:45:28.000Z</published>
+    <updated>2020-08-04T19:27:29.052Z</updated>
+    
+    <content type="html"><![CDATA[<p>Коллекция ссылок на посты в ЖЖ<br><a id="more"></a></p><ul><li><a href="https://spiiin.livejournal.com/104515.html" target="_blank" rel="noopener">Устройство уровней NES-игр с блоками 16 тайлов + 1 байт палитры</a></li><li><a href="https://spiiin.livejournal.com/104049.html" target="_blank" rel="noopener">Duck Tales 2 lua script showing hidden diamonds</a></li></ul><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Коллекция ссылок на посты в ЖЖ&lt;br&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://spiiin.github.io/blog/16107/"/>
+    <id>http://spiiin.github.io/blog/16107/</id>
+    <published>2020-07-01T12:45:28.000Z</published>
+    <updated>2020-08-04T19:27:51.493Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hello, world!<br><a id="more"></a></p><p>Немного тестов разметки</p><h1 id="Заголовок"><a href="#Заголовок" class="headerlink" title="Заголовок"></a>Заголовок</h1><h2 id="Подраздел"><a href="#Подраздел" class="headerlink" title="Подраздел"></a>Подраздел</h2><figure class="highlight nim"><table><tr><td class="code"><pre><span class="line">echo <span class="string">"code without line numbers"</span></span><br></pre></td></tr></table></figure><figure class="highlight cpp"><figcaption><span>hello.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Code"</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"with"</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"line"</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"numbers"</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; end;</span><br></pre></td></tr></table></figure><div class='spoiler collapsed'>    <div class='spoiler-title'>        gist    </div>    <div class='spoiler-content'>        <script src="//gist.github.com/44721f2e5a70294fa390218ad92385e4.js?file=james_bond_nim.nim"></script>    </div></div><blockquote><p>“Citate from me”</p><footer><strong>spiiin</strong></footer></blockquote><ul><li>список1</li><li>список2<ul><li>список21</li><li>список22<ul><li><em>список221</em></li></ul></li></ul></li><li>список3</li></ul><p><strong><code>code-bold</code></strong> <code>code</code></p><div class="table-container"><table><thead><tr><th>Tables</th><th style="text-align:center">Are</th><th style="text-align:right">Cool</th></tr></thead><tbody><tr><td>col 3 is</td><td style="text-align:center"><em>right-aligned</em></td><td style="text-align:right">$1600</td></tr><tr><td>col 2 is</td><td style="text-align:center">centered</td><td style="text-align:right">$12</td></tr><tr><td>zebra stripes</td><td style="text-align:center">are neat</td><td style="text-align:right">$1</td></tr></tbody></table></div><p>Backticks escape: `are` these!</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hello, world!&lt;br&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="hexo" scheme="http://spiiin.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>About [0x1BC2]</title>
+    <link href="http://spiiin.github.io/blog/1/"/>
+    <id>http://spiiin.github.io/blog/1/</id>
+    <published>1998-12-31T21:00:00.000Z</published>
+    <updated>2020-08-04T21:39:50.852Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is the blog and personal page of <code>Aleksandr Boyko</code>.<br>Mostly about programming stuff</p><p>I’ve worked at <code>Gaijin Entertaiment</code> on PC and mobile games, engine and related tools. Mostly worked as general developer on mobile games.<br>Now I am working at <code>MyTona</code> in Saint Peterburg as lead developer. I really enjoy to make games and play it.</p><p>Also, my hobbies are: </p><ul><li>Travelling</li><li>Juggling</li><li>Old console games</li></ul><p>You can contact me:<br><code>sanya.boyko at gmail.com</code><br><a href="https://github.com/spiiin" target="_blank" rel="noopener">https://github.com/spiiin</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;This is the blog and personal page of &lt;code&gt;Aleksandr Boyko&lt;/code&gt;.&lt;br&gt;Mostly about programming stuff&lt;/p&gt;
+&lt;p&gt;I’ve worked at &lt;code&gt;Gaijin 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
