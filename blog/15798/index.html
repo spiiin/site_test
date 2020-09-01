@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spiiin's blog | Уровень программирования: Middle</title><meta name="description" content="&lt;p&gt;Несколько очень часто встречающих у программистов-новичков ошибок&lt;br&gt;"><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif&amp;display=swap"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="http://spiiin.github.io/atom.xml" title="Spiiin's blog"><script>(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-00000000-0', 'auto');
+ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Spiiin's blog" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/"><img class="header-image" src="/images/favicon.png" width="36" height="36">Spiiin's blog</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/blog/1" target="_self">ABOUT</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h3 class="article__title">Уровень программирования: Middle</h3><div class="article__date metadata"><div class="post-info">2020/08/12</div></div><div class="article__tags metadata">Tags:
+<a class="article__tags__link metadata" href="/tags/code/">code</a></div><div class="article__body"><p>Несколько очень часто встречающих у программистов-новичков ошибок<br><a id="more"></a></p>
+<p>…</p>
+<p><strong>1. Использование примитивов вместо высокоуровневых абстракций</strong></p>
+<p>Новички часто пишут код “с нуля”, забывая о возможностях используемых фреймворков или библиотек. Фактически это просто неумение работать со сложными типами и игнорирование возможностей системы типов используемого языка.</p>
+<blockquote>
+<p>Каждый раз, когда необходимо завести переменную типа <code>int</code> - подумайте, действительно ли нужен просто целочисленный тип, или же с помощью типа можно сказать ещё что-то полезное о переменной</p>
+</blockquote>
+<p><strong>2. Реализация всей логики в одной функции</strong></p>
+<p>Если какой-то кусок кода можно вынести в именованную функцию (даже если она не будет переиспользоваться), стоит так сделать. Функции проще объединять в классы или модули, чем “голый” код и разрастающиеся безымянные функции. Это нужно, чтобы уменьшить вероятность копи-пасты кода (точнее даже, умеьшения количества необходимых для изменения логики мест в коде).</p>
+<blockquote>
+<p>Можно ли описать одним небольшим предложением, что делает функция? Что делает класс? Что описано в файле/namespace/модуле?</p>
+</blockquote>
+<p><strong>3. Игнорирование инкапсуляции</strong></p>
+<p>Инкапсуляция часто ошибочно трактуется новичками как необходимость делать все данные класса закрытыми. На практике лучше понимать и использовать её как средство сделать объект неломаемым пользователем. Т.е. если изменение переменных не может привести к тому, что класс будет находиться в невалидном состоянии - то и не надо их прятать. Если же для корректной работы с объектом у него нужно вызвать 5 разных методов в строго определенном порядке (а в других случаях программа падает), значит, нет у него никакой инкапсуляции. Пользователь объекта не должен помнить о том, что нельзя делать с объектов, чтобы не сломать его внутреннюю логику - сам объект должен быть неломаемым для пользователя.</p>
+<blockquote>
+<p>Таким образом в некоторых языках отказываются “ломающихся” абстракций и возможностей (<code>goto</code>, отказ от указателей, отказ от ручного освобождения памяти, отказ от мутабельности).</p>
+</blockquote>
+<p><strong>4. Персональный стиль</strong></p>
+<p>По большей части, все программы пишутся несколькими людьми, так что вместо того, что писать в строго выработанном правильном стиле, стоит учиться подстраиваться под стиль уже написанного кода. Код на некоторых языках имеет стандартные правила написания, но даже с учётом этого необходимо помнить, что программа могла писаться, когда в ходу были другие правила, или же по каким-либо другим причинам использовать другой подход. Стоит писать так, чтобы стиль всей программы был одинаковый - так у читающего код будет меньше вопросов, почему в разных местах программы используются разные варианты (и какой стиль выбрать при изменении кода).</p>
+<blockquote>
+<p>Прежде чем писать код, прочитайте уже написанный</p>
+</blockquote>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script></div></article><div class="pagination"><a class="pagination__link pagination__next" href="/blog/1563/">Back</a></div></main><footer class="footer metadata"><p class="footer__text">© 2020 spiiin</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
