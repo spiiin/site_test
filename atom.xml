@@ -226,44 +226,251 @@
   </entry>
   
   <entry>
-    <title>Squirrel tips - 3</title>
-    <link href="http://spiiin.github.io/blog/43997/"/>
-    <id>http://spiiin.github.io/blog/43997/</id>
-    <published>2009-09-16T05:27:00.000Z</published>
-    <updated>2020-09-15T16:41:22.757Z</updated>
+    <title>Храброе львиное сердце</title>
+    <link href="http://spiiin.github.io/blog/12483/"/>
+    <id>http://spiiin.github.io/blog/12483/</id>
+    <published>2010-12-03T14:27:00.000Z</published>
+    <updated>2020-09-15T19:35:49.755Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="http://pics.livejournal.com/spiiin/pic/0000hy29" alt=""><br><code>Squirrel</code> простой, как 5 копеек, язык. Но документации по нему очень мало. Официальный <a href="http://squirrel-lang.org/doc/squirrel2.html" target="_blank" rel="noopener">мануал</a>, и полупустые <a href="http://wiki.squirrel-lang.org/default.aspx/SquirrelWiki/SquirrelWiki.html" target="_blank" rel="noopener">вики</a> и <a href="http://squirrel-lang.org/forums/default.aspx" target="_blank" rel="noopener">форум</a> - все, что удалось найти (ну и исходный текст, если его считать за документацию). Поэтому я себе и пишу такие типсы о том, что не указано явно в доках.  </p><p>Есть вот в нем такой “спецэффект”, в принципе, логичный, но о котором следует помнить - если в классе имеется слот-значение, то инициализировать его можно прямо в теле класса, а не в конструкторе, все экземпляры получат копию этого слота. А если так сделать со слотом-ссылкой, то все экземпляры получат по копии этой ссылки, указывающей на один и тот же созданный объект. Поэтому слоты-ссылки стоит инициализировать в конструкторе. На примере:  </p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  val = <span class="string">"hello"</span>              <span class="comment">//числа, строковые константы и члены перечислений - значения</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">a1 &lt;- A()</span><br><span class="line">a2 &lt;- A()</span><br><span class="line">a2.val = <span class="string">" world!"</span>            <span class="comment">//a2.val изменилось, a1.val не изменилось</span></span><br><span class="line">print (a1.val + a2.val);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  wrong = &#123;val = <span class="string">"hello"</span>&#125;            <span class="comment">// ссылочный тип, если создать здесь экземпляр таблицы, она будет "шариться" всеми экземплярами</span></span><br><span class="line">  right = <span class="literal">null</span>                       <span class="comment">// не спешим создавать таблицу</span></span><br><span class="line">  <span class="keyword">constructor</span>()</span><br><span class="line">  &#123;</span><br><span class="line">    right = &#123;val = <span class="string">"hello"</span>&#125;          <span class="comment">// создаем свою копию таблицы для каждого экземпляра класса</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">b1 &lt;- B()</span><br><span class="line">b2 &lt;- B()</span><br><span class="line">print (b1.wrong == b2.wrong)         <span class="comment">//true,  ссылки указывают на одну и ту же таблицу</span></span><br><span class="line">print (b1.right == b2.right)         <span class="comment">//false, у каждого объекта своя таблица</span></span><br><span class="line"> </span><br><span class="line">b2.wrong.val = <span class="string">" world!"</span>             <span class="comment">//b1.wrong.val ссылается сюда же... </span></span><br><span class="line">b2.right.val = <span class="string">" world!"</span></span><br><span class="line">print (b1.wrong.val + b2.wrong.val)  <span class="comment">//не вышло :(</span></span><br><span class="line">print (b1.right.val + b2.right.val)  <span class="comment">//ура!</span></span><br></pre></td></tr></table></figure><p>Ну и еще штука, основанная на разнице между значениями и ссылками. Свободные переменные, переданные в функцию, вычисляются в момент определения функции. Т.е. если передать переменную-значение, то создастся ее копия и связи с исходной переменной не будет:  </p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">a &lt;- <span class="number">10</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) : (<span class="params">a</span>) </span>&#123; print(a) &#125; a = <span class="number">5</span> f(); <span class="comment">//выведет 10</span></span><br></pre></td></tr></table></figure><p>Если все же нужно передать значение в функцию, можно завернуть его в класс или таблицу и воспользоваться одним из двух способов связи - передать таблицу как свободную переменную (как было описано выше) или привязать ее как окружение для функции. Второй способ основан на том, что функция когда встречает неизвестное ей имя переменной, она ищет его в таблице this. Эту таблицу можно заменить на свою, используя функцию bindenv. Разница между двумя способами заключается в том, что в первом случае ссылка на таблицу копируется в скрытую переменную, а во втором используется слабая ссылка на таблицу. Это означает, что во втором случае когда исходная таблица будет удалена, функция перестанет работать! На примере:  </p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">t &lt;- &#123; a = <span class="string">"vaaar!"</span> &#125;                           <span class="comment">//кладем нужную переменную в таблицу</span></span><br><span class="line"> </span><br><span class="line">f1  &lt;- <span class="function"><span class="keyword">function</span> (<span class="params"></span>) : (<span class="params">t</span>)  </span>&#123; print (t.a) &#125;   </span><br><span class="line">f2  &lt;- <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; print(a) &#125;.bindenv(t)      <span class="comment">//эта строка эквивалентна такой записи : function f2 ()  &#123; print (a) &#125;</span></span><br><span class="line">                                                <span class="comment">//                                       f2 = f2.binenv(t)</span></span><br><span class="line"> </span><br><span class="line">f1()                                            <span class="comment">//vaaar!</span></span><br><span class="line">f2()                                            <span class="comment">//vaaar!</span></span><br><span class="line">t.a = <span class="string">"nyaaa!"</span>                                  <span class="comment">//теперь попробуем так</span></span><br><span class="line">f1()                                            <span class="comment">//nyaaa!</span></span><br><span class="line">f2()                                            <span class="comment">//nyaaa!</span></span><br><span class="line"><span class="keyword">delete</span> t                                        <span class="comment">//и вот так</span></span><br><span class="line">f1()                                            <span class="comment">//nyaaa!</span></span><br><span class="line">f2()                                            <span class="comment">//упс, сломалось, t больше не существует и f2 теперь ищет переменную a в глобальном пространстве имен</span></span><br></pre></td></tr></table></figure><p>В <code>Squirrel</code>‘е для таблицы можно указать родителя, в котором будут искаться слоты, если их нету в самой таблице. Такой родитель будет называется делегатом. За счет этого таблицы становятся похожи на классы. Отличия состоят только в том, что таблицы нельзя инстанциировать, в них нельзя не будут работать метаметоды (но в таблицах-делегатах будут) и для них можно сменить делегата-родителя в любой момент. Еще я сильно пытался сделать что-то похожее на множественное наследование, которого в языке нету.  </p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123; a = <span class="number">1</span> &#125;                             <span class="comment">//классический способ определения для классов</span></span><br><span class="line">a &lt;- &#123;a = <span class="number">1</span>&#125;                                  <span class="comment">//и таблиц</span></span><br><span class="line"> </span><br><span class="line">B &lt;- <span class="class"><span class="keyword">class</span> </span>&#123; b = <span class="number">2</span>&#125;                           <span class="comment">//синтаксический сахарок</span></span><br><span class="line">b &lt;- &#123; b = <span class="number">2</span> &#125;</span><br><span class="line"> </span><br><span class="line">C &lt;- <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">B</span> </span>&#123; c = <span class="number">3</span> &#125;                <span class="comment">//наследование</span></span><br><span class="line">с &lt;- delegate b : &#123; c = <span class="number">3</span> &#125;                   <span class="comment">//и делегирование</span></span><br><span class="line"> </span><br><span class="line">d &lt;- delegate a : delegate b :</span><br><span class="line">  delegate c : &#123;d = <span class="number">4</span>&#125;                        <span class="comment">//интерпретатор пропускает и такое, но настоящим делегатом будет только первый из списка, это видимо ошибка парсера</span></span><br><span class="line">E &lt;- <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">class</span> </span>&#123;e1 = <span class="number">10</span>&#125;  &#123;e2 = <span class="number">11</span>&#125; <span class="comment">//а вот подставить определение класса в том месте, где требуется его имя можно </span></span><br><span class="line">e &lt;- delegate delegate delegate </span><br><span class="line">     &#123;z = <span class="number">3</span> &#125; : a  : &#123;x = <span class="number">1</span>&#125;  : &#123;&#125;            <span class="comment">//и определить таблицу тоже - цепочки делегатов выглядят прикольно =(^_^)=</span></span><br></pre></td></tr></table></figure><p>Можно, собственно вообще вместо наследования просто перекидывать в класс нужные слоты от какого-нибудь объекта, в том числе и задаваемого на лету, “<a href="http://ru.wikipedia.org/wiki/Mixin" target="_blank" rel="noopener">подмешивая</a>“ его свойства:  </p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span> (<span class="params">clas, mix</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  foreach (slot,val <span class="keyword">in</span> mix)</span><br><span class="line">    clas[slot] &lt;- val</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line">mixin (A , &#123;f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) <span class="title">print</span> (<span class="params"><span class="string">"hello"</span></span>) &#125; )</span></span><br><span class="line"><span class="function"><span class="title">A</span>.<span class="title">f</span>(<span class="params"></span>);   //<span class="title">print</span> "<span class="title">hello</span>"</span></span><br></pre></td></tr></table></figure><p>Если еще отслеживать список имен добавленных методов, можно даже “отмешать” свойства обратно, единственное ограничение - делать это можно только до первого создания экземпляра класса, зато таблицы можно модифицировать как душе угодно.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<p>Наша игра <a href="http://gaijin.ru/ru/games/braveheart/" target="_blank" rel="noopener">Braveheart</a> уже продаётся в <a href="http://itunes.apple.com/us/app/braveheart/id401885524?mt=8#" target="_blank" rel="noopener">AppStore</a>.<br><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/WUWBul6zN7s" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><br>Чему я безумно рад.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;img src=&quot;http://pics.livejournal.com/spiiin/pic/0000hy29&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;code&gt;Squirrel&lt;/code&gt; простой, как 5 копеек, язык. Но документации 
+        &lt;p&gt;Наша игра &lt;a href=&quot;http://gaijin.ru/ru/games/braveheart/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Braveheart&lt;/a&gt; уже продаётся в &lt;a href=&quot;http://i
       
     
     </summary>
     
     
     
-      <category term="squirell" scheme="http://spiiin.github.io/tags/squirell/"/>
+      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
+    
+      <category term="log" scheme="http://spiiin.github.io/tags/log/"/>
+    
+      <category term="dev" scheme="http://spiiin.github.io/tags/dev/"/>
     
   </entry>
   
   <entry>
-    <title>Battletoads - Nightmare</title>
-    <link href="http://spiiin.github.io/blog/5060/"/>
-    <id>http://spiiin.github.io/blog/5060/</id>
-    <published>2009-09-03T19:46:00.000Z</published>
-    <updated>2020-09-15T18:18:52.969Z</updated>
+    <title>Заточка инструментов</title>
+    <link href="http://spiiin.github.io/blog/26119/"/>
+    <id>http://spiiin.github.io/blog/26119/</id>
+    <published>2010-12-03T08:31:00.000Z</published>
+    <updated>2020-09-15T19:36:18.588Z</updated>
     
-    <content type="html"><![CDATA[<p>Чего-то я приболел… И не спится чего-то.<br>В больную голову лезут больные идеи. </p><p>Вот, например, японцы оказались <a href="http://community.livejournal.com/ru_oldgames/144383.html" target="_blank" rel="noopener">обделены</a> ловушками в Battletoads.</p><p>Решил поправить положение.<br>Взял <a href="http://winmerge.org/" target="_blank" rel="noopener">WinMerge</a> и дизассемблер <a href="http://www.zophar.net/utilities/nesdev/6502d-disassembler.html" target="_blank" rel="noopener">6502d</a>, начал сравнивать японскую версию с английской и с русским переводом от <a href="http://magicteam.net/index.htm" target="_blank" rel="noopener">Magic Team</a>, чтобы видно было, где отличия в графике, а где - в коде. </p><p>Но почему-то версии отличаются слишком сильно. Пришлось сменить инструменты и взять <a href="http://www.artmoney.ru/rus.htm" target="_blank" rel="noopener">ArtMoney</a> и искать значение, отвечающее за скорость в гонках, тупым отсевом адресов типа “уменьшилось/увеличилось”. Зато найденный адрес используется как коэффициент скорости во всех гонках, так что одним махом можно усложнить пол-игры.</p><p>Мои экперименты с гонками на 3-м этапе:<br><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/JheDS1MF_DU" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div></p><p>Интересны моменты, когда жаба начинает падать в непрорисовавшийся провал и касается трамплина только в самый последний момент.</p><p>Еще в одном эпизоде наш болид должны обгонять какие-то чудики на ракетах и сбрасывать препятствия, но на такой скорости они просто не успевают угнаться за жабой =)</p><p>Когда вылечусь и если будет немного свободного времени, попробую еще поискать интересные адреса.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<p>Объединение файлов в “проект”, часто используемое в IDE, очень удобно для простого управления набором файлов и быстрого переключения между наборами. Не хватает такой возможности в других программах общего назначения, которыми постоянно пользуюсь.  </p><ul><li>В Firefox для целей упорядочивания вкладок можно использовать плагин <a href="https://addons.mozilla.org/en-US/firefox/addon/5890/" target="_blank" rel="noopener">Tree Style Tab</a>, чтобы выстраивать мышкой иерархии открытых страниц, но нет нормального сохранения набора.  </li><li>Notepad++ умеет сохранять и загружать группу документов (в меню File-&gt;Save session/ Load session), но не умеет разделять набор открытых файлов на подгруппы.  </li><li>Для Total Commander’а похожих плагинов не знаю, поэтому тупо держу две копии, с разными наборами вкладок, панелей и закладок (ctrl+d которые).  </li><li>Для квипа и скайпа тоже не предусмотрены отдельные настройки для разных групп контактов, но можно держать несколько аккаунтов для разных целей (общение с друзьями/общение по работе/“нужные” люди).</li></ul><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Чего-то я приболел… И не спится чего-то.&lt;br&gt;В больную голову лезут больные идеи. &lt;/p&gt;
-&lt;p&gt;Вот, например, японцы оказались &lt;a href=&quot;http://
+        &lt;p&gt;Объединение файлов в “проект”, часто используемое в IDE, очень удобно для простого управления набором файлов и быстрого переключения межд
+      
+    
+    </summary>
+    
+    
+    
+      <category term="dev" scheme="http://spiiin.github.io/tags/dev/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>windows command multiline</title>
+    <link href="http://spiiin.github.io/blog/26294/"/>
+    <id>http://spiiin.github.io/blog/26294/</id>
+    <published>2010-11-01T08:03:00.000Z</published>
+    <updated>2020-09-15T19:33:35.218Z</updated>
+    
+    <content type="html"><![CDATA[<p>В коммандных файлах windows можно делать списки из нескольких строк с помощью символа “^”: </p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">set m&#x3D;^</span><br><span class="line">1 ^</span><br><span class="line">2 ^</span><br><span class="line">3</span><br><span class="line">for %%f in (%m%) do ^</span><br><span class="line">echo %%f</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;В коммандных файлах windows можно делать списки из нескольких строк с помощью символа “^”: &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+      
+    
+    </summary>
+    
+    
+    
+      <category term="codespell" scheme="http://spiiin.github.io/tags/codespell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Проблема абстракций</title>
+    <link href="http://spiiin.github.io/blog/64509/"/>
+    <id>http://spiiin.github.io/blog/64509/</id>
+    <published>2010-10-26T09:06:00.000Z</published>
+    <updated>2020-09-15T19:14:24.829Z</updated>
+    
+    <content type="html"><![CDATA[<p>В том, что по-хорошему всегда нужно знать, что под ними лежит. Иначе они протекут.  </p><p>Хорошая привычка перед борьбой с багами рефакторить код.<br>Todo:  </p><ul><li>Убрать over-использование таблиц в скриптах, там где можно обойтись массивами, индексация сильно дешевле (Если в языке есть несколько коллекций, надо знать особенности каждой (и показать незнающим :) ).  </li><li>Если есть возможность использования абстракции с целью уменьшить число вероятных ошибок, ей нельзя пренебрегать. (спрятать циклы с переменными в локальные функции и заменить на перебор через foreach).  </li><li>Поменьше переменных состояния. Лучше пересчитать что-то в функции лишний раз без сохранения значения, чем напороться на баг, когда кто-то в другом файле захочет напрямую записать в поле, которое задумывалось, чтобы сохранить значение подсчитанного выражения для использования в соседней функции. В скриптах – <a href="http://users.livejournal.com/_winnie/254903.html" target="_blank" rel="noopener">сильно лучше</a>, одна выборка из хеш-таблицы (а обращение к переменной по имени там тоже выборка) может быть медленнее перерассчета длинного арифметического выражения.</li></ul><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;В том, что по-хорошему всегда нужно знать, что под ними лежит. Иначе они протекут.  &lt;/p&gt;
+&lt;p&gt;Хорошая привычка перед борьбой с багами рефак
+      
+    
+    </summary>
+    
+    
+    
+      <category term="squirell, dev" scheme="http://spiiin.github.io/tags/squirell-dev/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Кусочек</title>
+    <link href="http://spiiin.github.io/blog/55208/"/>
+    <id>http://spiiin.github.io/blog/55208/</id>
+    <published>2010-10-24T19:56:00.000Z</published>
+    <updated>2020-09-15T19:14:24.826Z</updated>
+    
+    <content type="html"><![CDATA[<p>Бывает такое состояние, если долго не спишь или почти-почти засыпаешь, когда внимание перестает концентрироваться на чем-то одном и замечаешь сразу все одновременно. В таком состоянии можно услышать что-то новое в песне, которую слышал уже двадцать раз или заметить на фотографиях детали, которых никогда не замечал. Сегодня сидел так на горе в Чуфут-Кале рядом с няшкой, грелся на солнышке и слушал, как мужик внизу играет на флейте. Если есть в жизни кусочки, из которых собирается счастье, то они находятся именно вот так.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Бывает такое состояние, если долго не спишь или почти-почти засыпаешь, когда внимание перестает концентрироваться на чем-то одном и замеч
+      
+    
+    </summary>
+    
+    
+    
+      <category term="log" scheme="http://spiiin.github.io/tags/log/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ZeroHour++</title>
+    <link href="http://spiiin.github.io/blog/45458/"/>
+    <id>http://spiiin.github.io/blog/45458/</id>
+    <published>2010-09-21T15:36:00.000Z</published>
+    <updated>2020-09-15T19:43:00.507Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>C++ Entertaiment general</strong> <img src="http://pics.livejournal.com/spiiin/pic/0000tfw2" alt="toxin truck"></p><p><strong>Грузовики с токсинами.</strong>Взрывающиеся грузовики Entertainment-генерала нагружены ящиками с тяжелым биологическим оружием, таким как Boost и Qt, способными заразить многие мегабайты территории. <img src="http://pics.livejournal.com/spiiin/pic/0000ww7r" alt="antrax-gamma"></p><p>  <strong>Антракс-гамма</strong>   На высоких уровнях войска генерала могут использовать такое опасное оружие, как исключения, которые наносят непоправимый урон окружающей среде. <img src="http://pics.livejournal.com/spiiin/pic/0000xtsa" alt="mutations"></p><p><strong>Мутации.</strong> Cолдаты генерала вооружены химическими парадигмами и шаблонами. Союзные войска защищены специальными костюмами, но попытки войск соперника разобраться в коде этого генерала иногда могут привести к необратимым мутациям мозга. <img src="http://pics.livejournal.com/spiiin/pic/0000yeb0" alt="C++ Gamedev General"></p><hr><p><strong>С++ Gamedev General</strong> <img src="http://pics.livejournal.com/spiiin/pic/0000zsb0" alt="fanatics"></p><p> <strong>Фанатики.</strong> </p><p> Фанатики. Gamedev-генерал обладает самыми яростными фанатиками, уверяющими, что их код самый быстрый. Они могут легко использовать функции длинной в несколько сотен строк, неподдерживаемые никакими войсками других генералов. Фанатик, посаженный в угнанную технику, получает способность “ассемблерные вставки”, которая значительно повышает скорость кода и опасность фанатика на форумах, но делает его еще более опасным для союзных войск.</p><p> <img src="http://pics.livejournal.com/spiiin/pic/00010k4k" alt="bikes"></p><p> <strong>Легкие мотоциклы.</strong> </p><p> Техники не содержат виртуальных функций, поэтому являются самыми легкими и быстрыми машинами. Но даже этого Gamedev-генералу мало и поэтому его инженеры модифицируют двигатели непереносимыми функциями и используют приемы, именуемые другими инженерами “байтоёбством”. Это позволяет техникам развивать невероятную скорость, с которой они несутся к противнику и часто взрываются прямо в его стане.</p><p> <img src="http://pics.livejournal.com/spiiin/pic/00011cfq" alt="bomb"></p><p> <strong>Камикадзе.</strong></p><p>Экземпляры войск и строений Gamedev-генерала иногда содержат заряды утекающей памяти, поэтому при уничтожении юнита этого генерала может произойти страшный взрыв.</p><p><img src="http://pics.livejournal.com/spiiin/pic/00012akc" alt="script"></p><hr><p><strong>С++ Script General</strong> <img src="http://pics.livejournal.com/spiiin/pic/00013gd2" alt="mask"></p><p><strong>Маскировка кода.</strong> </p><p>Скриптовый генерал имеет опыт войны на аутсорс-фронте, он командовал войсками php и lua, с которыми приобрел опыт быстрого построения замаскированных зданий в самых неожиданных местах. Соперники часто вынуждены очень долго искать замаскированные похожие друг на друга строения, некоторые из которых являются пустышками, а другие - ловушками. Также может легко замаскировать тип аргумента функции под строковый.</p><p><img src="http://pics.livejournal.com/spiiin/pic/00014x4g" alt="fake"></p><p><strong>Ложные структуры.</strong></p><p> Чтобы дезориентировать врага, script-генерал может использовать цепочку вызовов функций. Например, скрипт вызывает нативной код, который вызывает еще один скриптовый метод, делегирующий вызов другому классу. Генеральские умения могут увеличивать глубину вложенности переадресаций.</p><p><img src="http://pics.livejournal.com/spiiin/pic/000159c5" alt="bum"></p><p> <strong>Внезапность.</strong> </p><p> На высоких уровнях генерал получает возможность использовать полезные умения, которые рассчитаны на элемент неожиданности и направлены против неподготовленного противника. Так, генерал без колебаний использует функции как объекты первого класса, может попытаться обхитрить соперника хвостовой рекурсией или неожиданно вообще начать писать на другом, неизвестном противнику языке. </p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;C++ Entertaiment general&lt;/strong&gt; &lt;img src=&quot;http://pics.livejournal.com/spiiin/pic/0000tfw2&quot; alt=&quot;toxin truck&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Гр
+      
+    
+    </summary>
+    
+    
+    
+      <category term="fun" scheme="http://spiiin.github.io/tags/fun/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Не хотет!</title>
+    <link href="http://spiiin.github.io/blog/58502/"/>
+    <id>http://spiiin.github.io/blog/58502/</id>
+    <published>2010-09-02T14:35:00.000Z</published>
+    <updated>2020-09-15T19:14:24.821Z</updated>
+    
+    <content type="html"><![CDATA[<p>Правила относительно желаний, которые помогают упростить жизнь. </p><ol><li>Если чего-то не хочется - это не нужно. 2. Если есть сомнения, хочется или нет - скорее всего тоже не нужно. 3. Если кажется, что чего-то хочется, но ты ничего не делаешь, что получить это - это не нужно. 4. Если чего-то хочется, но возможности получить нет, надо что-то менять. Или возможности или желания. 5. Если чего-то не хочется, но сделать нужно, то стоит сделать это так, чтобы было весело. 6. Если чего-то хочется, нужно сделать все, чтобы достигнуть цели. 7. И прекратить тратить деньги и время на то, что не нужно!</li></ol><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Правила относительно желаний, которые помогают упростить жизнь. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Если чего-то не хочется - это не нужно. 2. Если есть сомнен
+      
+    
+    </summary>
+    
+    
+    
+      <category term="log" scheme="http://spiiin.github.io/tags/log/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PyBrewery</title>
+    <link href="http://spiiin.github.io/blog/31473/"/>
+    <id>http://spiiin.github.io/blog/31473/</id>
+    <published>2010-05-19T14:12:00.000Z</published>
+    <updated>2020-09-15T19:14:24.818Z</updated>
+    
+    <content type="html"><![CDATA[<p>Либа для контроля за пивоварней на питоне.<br><a href="http://code.google.com/p/pybrewery/" target="_blank" rel="noopener">http://code.google.com/p/pybrewery/</a>  </p><p><img src="http://pybrewery.googlecode.com/svn/pyrobot.brewery/trunk/docs/images/IMG_2699_small.jpg" alt=""></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Либа для контроля за пивоварней на питоне.&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/pybrewery/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://code.go
+      
+    
+    </summary>
+    
+    
+    
+      <category term="python" scheme="http://spiiin.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fairy tale</title>
+    <link href="http://spiiin.github.io/blog/30718/"/>
+    <id>http://spiiin.github.io/blog/30718/</id>
+    <published>2010-04-21T22:15:00.000Z</published>
+    <updated>2020-09-15T19:14:24.816Z</updated>
+    
+    <content type="html"><![CDATA[<p>На лавочке сидел человек с ноутбуком. Из его наушников слышалась музыка из какой-то старой 8-битной игры. На экране ноутбука отображалось синее окно, разделенное на 2 части.  </p><p> В левой части располагался код программы, написанный на каком-то си-подобном языке. Сама запущенная среда разработки, очевидно, работала из-под эмулятора. Кроме основного интерфейса на экране были элементы, нарисованные поверх всего остального и отображающие различные числа из памяти, в которую был загружен компилятор.  </p><p> Сейчас во всех этих дополнительных окнах были лишь нули, но как только программист запустил процесс компиляции программы, все изменилось. Числа в окнах стали меняться с огромной скоростью, а в правой части экрана начал отрисовываться граф. Он разрастался, причудливо выбрасывая новые отростки в разные стороны, иногда разворачивался так, чтобы похожие элементы разных цветов, форм и размеров становились ближе друг к другу, узлы соединений распутывались, сложные связи в виде длинных линий заменялись на более простые.   </p><p>Внезапно процесс замедлился, мелькающие числа стали различимыми, а изменения графа практически прекратились. Программист внимательно смотрел на создаваемую компилятором по инструкциям картину, отражающую рождение написанной им программы. Иногда он касался элемента графа пальцем и не давал ему двигаться, иногда “отрезал” подграфы, перемешивал их в отдельном окне и соединял блоки вместе в нижней части экрана, где располагалась “лаборатория” элементов. Из этой лаборатории он брал элементы и прикреплял их обратно так, что граф приобретал невероятную, фантастическую красоту.   </p><p>Одновременно с изменениями программиста код в левой части экрана тоже менялся. Изменения в тексте были незначительными, со временем лишь немного уменьшался его размер, граф же становился все более изящным. В итоге рисунок программы стал похож на какой-то неуловимый для глаза фрактал, а на экране загорелась надпись “Compilation complete. 0 errors, 0 warnings”. Программист сохранил результат, выключил ноутбук, закурил сигарету куда-то пошёл. Он был счастлив.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;На лавочке сидел человек с ноутбуком. Из его наушников слышалась музыка из какой-то старой 8-битной игры. На экране ноутбука отображалось
+      
+    
+    </summary>
+    
+    
+    
+      <category term="tales" scheme="http://spiiin.github.io/tags/tales/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>6502 asm, lua и немного магии</title>
+    <link href="http://spiiin.github.io/blog/56249/"/>
+    <id>http://spiiin.github.io/blog/56249/</id>
+    <published>2010-04-19T10:27:00.000Z</published>
+    <updated>2020-09-15T19:34:40.557Z</updated>
+    
+    <content type="html"><![CDATA[<style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/-jbFjhBYCjg" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><p>Драг-энд-дроп в том самом первом Марио  </p><p>В видеорелейтед есть еще nes-чудеса:<br><a href="http://www.youtube.com/watch?v=1XNTjVScm_8" target="_blank" rel="noopener">Super Mario Bros. 3 с рисованием преград мышью</a><br><a href="http://www.youtube.com/watch?v=1-Hc1UQPnX8" target="_blank" rel="noopener">Megaman, выпускающей смертельные лучи из глаз</a><br><a href="http://www.youtube.com/watch?v=LT1eiLiMWkk" target="_blank" rel="noopener">Тетрис с возможностью игры онлайн</a><br><a href="http://www.youtube.com/watch?v=58JinErWQJY" target="_blank" rel="noopener">Брейдулятор для возврата во времени в любой игре</a> и<br><a href="http://www.youtube.com/watch?v=ZH43t1C3RWg" target="_blank" rel="noopener">Genetic programmed bot, рубящийся в “Марио”</a>  </p><p>Архив со скриптами валяется на сайте эмулятора <a href="http://fceux.com/web/home.html" target="_blank" rel="noopener">FCEUX</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;style&gt;.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+
       
     
     </summary>
@@ -273,213 +480,57 @@
       <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
     
       <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Battletoads - Piece of cake</title>
-    <link href="http://spiiin.github.io/blog/54554/"/>
-    <id>http://spiiin.github.io/blog/54554/</id>
-    <published>2009-08-16T13:45:00.000Z</published>
-    <updated>2020-09-15T18:16:21.788Z</updated>
-    
-    <content type="html"><![CDATA[<p>Проходил на эмуляторе Battletoads и обнаружил, что в японской версии сложность намного ниже, чем в американской и европейской.<br>Например, последний эпизод 3-го уровня.<br>Японская версия -<br><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/WJwCC6KKd2A" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div></p><p>То же место в американской -<br><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/8W1MEMZqh4M" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div></p><p>Прошел ее без варпов специально, чтобы посмотреть, что еще изменили. Упростили вообще все! Японцы так и не увидели быстрых змеек на 6-м уровне, шипов в самых неподходящих местах на 9-м, на которые обязательно напарываешься, убегая от колеса, которое тоже тормозит. Подсознательно вспоминаешь, что вот тут должна быть ловушка, а - нет ее.</p><p>И главное:<br><a href="http://pics.livejournal.com/spiiin/pic/0000f6cp/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0000f6cp/s320x240" alt=""></a></p><p>Шар на 11-м уровне не заставляет игрока в бешенстве ломать джойстик на части. Японцы многое потеряли!</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Проходил на эмуляторе Battletoads и обнаружил, что в японской версии сложность намного ниже, чем в американской и европейской.&lt;br&gt;Наприме
-      
-    
-    </summary>
-    
-    
-    
-      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
     
       <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
     
   </entry>
   
   <entry>
-    <title>Squirrel tips - 2</title>
-    <link href="http://spiiin.github.io/blog/16779/"/>
-    <id>http://spiiin.github.io/blog/16779/</id>
-    <published>2009-07-31T15:56:00.000Z</published>
-    <updated>2020-09-15T16:37:28.183Z</updated>
+    <title>Бывают либы как либы...</title>
+    <link href="http://spiiin.github.io/blog/11703/"/>
+    <id>http://spiiin.github.io/blog/11703/</id>
+    <published>2010-03-29T21:38:00.000Z</published>
+    <updated>2020-09-15T19:23:54.762Z</updated>
     
-    <content type="html"><![CDATA[<p>Еще пара заметок про язык squirrel и грабли в нем</p><p>Оператор <code>in</code> проверяет, есть ли ключ в таблице, но не проверяет вхождение элемента в массив<br>т.е. так нельзя:</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">1</span> <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) doSomethink();</span><br></pre></td></tr></table></figure><p>Но можно так:  </p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">1</span> <span class="keyword">in</span> &#123;[<span class="number">1</span>]=<span class="literal">null</span>,[<span class="number">2</span>]=<span class="literal">null</span>,[<span class="number">3</span>]=<span class="literal">null</span>]) doSomethink();</span><br></pre></td></tr></table></figure><p>При создании функций с последующей их передачей в другие функции следует помнить, что Squirell будет искать переменные в текущей области видимости (там, куда мы передадим фукнцию).<br>Например:</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">a</span> </span>&#123; val = <span class="number">1</span> &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">a</span> </span>&#123; val = <span class="number">1</span> &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>::<span class="title">f</span>(<span class="params">fun</span>) </span>&#123; fun() &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>::<span class="title">f</span>(<span class="params">fun</span>) </span>&#123; fun() &#125;</span><br><span class="line">vA &lt;- a()</span><br><span class="line">vB &lt;- b()</span><br><span class="line"> </span><br><span class="line">val &lt;<span class="number">-3</span></span><br><span class="line"> </span><br><span class="line">vA.f(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; val = <span class="number">0</span> &#125;)</span><br><span class="line">print(val)     <span class="comment">//3 - осталось неизменным, изменилось Va.val</span></span><br><span class="line">vB.f(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; val = <span class="number">0</span> &#125;)</span><br><span class="line">print(val)     <span class="comment">//0 - изменилось</span></span><br></pre></td></tr></table></figure><p>Т.е. при функция может повести себя по разному, в зависимости от того, куда ее передать.<br>Если же мы хотим передать в функцию метод объекта, изменяющий сам объект, то необходимо передать сам объект в замыкании функции:  </p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Do</span></span></span><br><span class="line"><span class="class">  </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">call</span>(<span class="params">fun</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       fun()</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">  </span>&#123; </span><br><span class="line">     val=<span class="number">0</span> </span><br><span class="line">     <span class="keyword">constructor</span>()</span><br><span class="line">     &#123;</span><br><span class="line">       local th = <span class="keyword">this</span>                     <span class="comment">//получить ссылку на себя</span></span><br><span class="line">       Do.call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>):(<span class="params">th</span>) </span>&#123;th.val++&#125;) <span class="comment">//и передать вместе с функцией</span></span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<p>.. а бывают такие, знакомиться с которыми лучше сразу с раздела <code>Troubleshooting</code>. </p><p>Геймдизайнер прислал описание интересного бага – игра падает, если сменить дислокацию. То есть, если физически перейти с айфоном с одного места в другое.</p><p>Один из программистов вспомнил, что когда он ходил в соседний офис, игра тоже один раз упала. Сначала подумал, что в код закралась какая-то глупая незамеченная ошибка – недавно реализовали много мелких фич в движке. Оказалось – нет, действительно, если играть, положив девайс перед собой, то все будет нормально, а если ходить с ним по офису туда-сюда, то игра рано или поздно падает, не оставляя в логах никакой полезной информации, кроме того, что произошло разыменование нулевого указателя. </p><p>При том, что игру уже давно пора было релизить, ситуация вызвала не улыбку, а истерический смех. Где-то полтора дня потратил на изучение поведения приложения с отключением добавленных фич, изучение добавленной игровой логики, исследование поведения игры при запущенных профилирующих инструментах XCode и построение фантастических теорий, как акселерометр может ронять игру. А потом - наткнулся на объяснение феномена в FAQ по интеграции использованной нами библиотеки <code>Crystal</code>, так и озаглавленное - <em>crash when rotating device</em>. Не вдаваясь в детальное описание возникующей ситуации, библиотека сама пытается отслеживать изменение ориентации устройства для того, чтобы рисоваться “лицом” к пользователю.</p><p>Падения лечатся простой установкой свойства класса либы <code>CrystalSettingShouldAutorotateWorkaround в @&quot;Yes&quot;</code>. Почему не поставить для параметра это значение по дефолту, если разработчикам известно, что может возникнуть такая ошибка – загадка.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Еще пара заметок про язык squirrel и грабли в нем&lt;/p&gt;
-&lt;p&gt;Оператор &lt;code&gt;in&lt;/code&gt; проверяет, есть ли ключ в таблице, но не проверяет вхож
+        &lt;p&gt;.. а бывают такие, знакомиться с которыми лучше сразу с раздела &lt;code&gt;Troubleshooting&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Геймдизайнер прислал описание интер
       
     
     </summary>
     
     
     
-      <category term="squirell" scheme="http://spiiin.github.io/tags/squirell/"/>
+      <category term="iphone" scheme="http://spiiin.github.io/tags/iphone/"/>
     
   </entry>
   
   <entry>
-    <title>IT-фольклор</title>
-    <link href="http://spiiin.github.io/blog/9979/"/>
-    <id>http://spiiin.github.io/blog/9979/</id>
-    <published>2009-07-22T19:33:00.000Z</published>
-    <updated>2020-09-15T18:14:19.997Z</updated>
+    <title>Fuck yeah</title>
+    <link href="http://spiiin.github.io/blog/24358/"/>
+    <id>http://spiiin.github.io/blog/24358/</id>
+    <published>2010-03-28T20:48:00.000Z</published>
+    <updated>2020-09-15T19:14:24.808Z</updated>
     
-    <content type="html"><![CDATA[<p>Старые рассказы на компьютерную тематику</p><hr><ul><li><a href="http://zhurnal.lib.ru/b/brigadir_j_a/test.shtml" target="_blank" rel="noopener">Ю. Бригадир. Дневник тестировщика</a>   </li><li><a href="http://wasm.ru/article.php?article=onebyte" target="_blank" rel="noopener">Д. Галушенко. История одного байта</a>  </li><li><a href="http://pelevin.nov.ru/pov/pe-princ/1.html" target="_blank" rel="noopener">В. Пелевин. Принц госплана</a> .</li><li><a href="http://itblogs.ru/blogs/the7ofdiamonds/" target="_blank" rel="noopener">the7ofdiamonds. Учитель ГоуТу</a>  </li><li><a href="http://www.exler.ru/novels/wife.htm" target="_blank" rel="noopener">А. Экслер. Записки невесты программиста</a>  </li></ul><hr><p><a href="http://zhurnal.lib.ru/b/brigadir_j_a/test.shtml" target="_blank" rel="noopener">Ю. Бригадир. Дневник тестировщика</a></p><p> О пиратах. Суровая правда жизни российских флибустьеров. Есть вторая часть - “Хроники тестировщика”.<br>В обеих много описаний пьянок и матов, вот пример диалога героев, напившихся и избитых в драке:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Со стороны Японии наступал рассвет. Огурцов-Стоянский опять лег на спину и курил, глядя в серое небо с  </span><br><span class="line">гаснущими звездами. &quot;В общем, -думал он, - статика уже всех заебала. У нас все одно хэтэмээл. То есть -  </span><br><span class="line">поддержка ебаной флэш-технологии по полной программе. Только надо регистрировать в системе, чтобы шла   </span><br><span class="line">автоматом&quot;...  </span><br><span class="line">Докурив, Огурцов-Стоянский поднялся, достал из сирени Бочарика и спросил его прямо и, на его взгляд,  </span><br><span class="line">совершенно логично:  </span><br><span class="line"> - Ты флэш-ролики делал?  </span><br><span class="line">Напоите любого гражданского, не дайте ему спать всю ночь, под утро отхуярьте и погасите его бестолковкой  </span><br><span class="line">стандартный 500-ватный уличный фонарь. Вряд ли после этого вы вообще добьетесь членораздельной речи. Но  </span><br><span class="line">двухмерные дизайнеры, работающие сразу на три-четыре пиратские конторы сделаны совсем из другого теста.  </span><br><span class="line">Поэтому Бочарик потрогал невероятной величины шишку на голове и ответил:  </span><br><span class="line">- В Макромедии Флэш. В шестерке. Пойдет?</span><br></pre></td></tr></table></figure><p> <a href="http://wasm.ru/article.php?article=onebyte" target="_blank" rel="noopener">Д. Галушенко. История одного байта</a><br> О кристальщике. И его попытке найти в памяти место для еще одной команды.<br>А в конце - чистое восьмибитное счастье. Кусочек монолога главного героя с собой:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ты же сам знаешь, каково это!? Ну?! Ты ведь тоже не для денег это делаешь! Есть только одна вещь,которую я   </span><br><span class="line">никогда и никому не говорил. Я когда делаю - лечу.. И не ври мне, что не знаешь что это!  </span><br><span class="line">Все знают это! Только предпочитают не помнить или не верить! Тебе тоже знакомо это! Это как в детских снах.  </span><br><span class="line"> Помнишь? Мы взмываем высоко, высоко и несемся, визжа от переполняющего восторга! А под нами проносятся леса,  </span><br><span class="line">горы и моря! Ты думаешь, это был сон!? Нет! И я давно понял это! Только сказать боялся. Стыдился, дурак! Но  </span><br><span class="line">теперь мне все равно! Это душа наша летит! По настоящему! А разум говорит, что мы спим. Понимаешь? А почему,  </span><br><span class="line">когда мы взрослеем, перестаем летать? А!? Почему?! Почему нам перестает сниться этот сон? Не знаешь? А я   </span><br><span class="line">знаю! Потому, что душа наша тяжелеет, потому, что ценности, деньги, условности этого общества захватывают над  </span><br><span class="line">нами власть и душа наша больше не в силах поднять этот груз! Как же! Мы ж прям, распластываемся, что б стать  </span><br><span class="line">ковриком, о который вытрут ноги! О, какие веские причины, такие аргументированные объяснения, почему это было  </span><br><span class="line">необходимо именно так прогнуться, и как мы это ради кого-то это делаем.</span><br></pre></td></tr></table></figure></p><p> <a href="http://pelevin.nov.ru/pov/pe-princ/1.html" target="_blank" rel="noopener">В. Пелевин. Принц госплана</a> .<br>О геймерах. Про то, как Саша Лапин, инженер Госплана, играет. Даже не просто играет, а живет игрой.<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Собственно говоря, чтобы добиться в игре успеха, надо забыть, что нажимаешь на кнопки, и стать этой фигуркой  </span><br><span class="line">самому - только тогда у нее появится степень проворства, необходимая, чтобы фехтовать, проскакивать через  </span><br><span class="line">щелкающие в узких каменных коридорах разрезалки пополам, перепрыгивать дыры в полу и бежать по срывающимся вниз  </span><br><span class="line">плитам, каждая из которых способна выдержать вес тела только секунду, хотя никакого веса у фигурки нет, как нет   </span><br><span class="line">его, если вдуматься, и у срывающихся плит, как бы убедителен ни казался издаваемый ими при падении стук.</span><br></pre></td></tr></table></figure></p><p> <a href="http://itblogs.ru/blogs/the7ofdiamonds/" target="_blank" rel="noopener">the7ofdiamonds. Учитель ГоуТу</a><br>Притчи о программистах. Цитировать можно, собственно, почти все, но выберу ту, на которую когда-то давно от  ссылку получил:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- А это что у тебя такое?*, - зевая, осведомился мастер.  </span><br><span class="line">- Ну как же! Вы же сами видите: вот тут я ..., а потом я ..., а потом я считаю среднее отклонение от получившегося.</span><br><span class="line">- А где проверка на деление на ноль?</span><br><span class="line">- Учитель, зачем она здесь? я не буду вызывать эту функцию для пустых множеств.</span><br><span class="line">Физиономию мастера Гоу Ту перекосила ехидненькая гримаска. Фроу Кэтч отработанным движением выдернул свой блокнот:  </span><br><span class="line">именно с такими добрыми-добрыми глазами его учитель изрекал наиболее омерзительные истины.  </span><br><span class="line">- Если не ставишь защиту от дурака, то сам и оказываешься тем дураком, от которого была необходима защита.</span><br><span class="line">Учитель быстро вышел из комнаты (&quot;чай пить небось пошёл&quot;, злобно подумал Фроу Кэтч), а его ученик засунул блокнотик</span><br><span class="line">в карман и набарабанил в начало функции:  </span><br><span class="line">&#x2F;&#x2F;A kto vyzyvet eto s n&#x3D;&#x3D;0, tot sam durak</span><br></pre></td></tr></table></figure></p><p><a href="http://www.exler.ru/novels/wife.htm" target="_blank" rel="noopener">А. Экслер. Записки невесты программиста</a><br>Рассказ для девушек программистов.<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Только хотели сесть за стол, как вдруг Сергей увидел в гостиной отцовский компьютер.  </span><br><span class="line">- Твой комп? – спрашивает.  </span><br><span class="line">- Это отцовский. Он его включать не разрешает. Потом, там все равно запаролено.  </span><br><span class="line">Сергей пробурчал что-то про какого-то Митника, не спрашивая включил компьютер и забарабанил по клавишам.  </span><br><span class="line">- У тебя отец, - опять спрашивает Сергей, - под мастдаем работает?  </span><br><span class="line">- Неа. Он под министерством обороны.  </span><br><span class="line">- Оно и видно, - саркастично говорит Сергей. – Граница на замке. Пароль из слова &quot;password&quot; – это круто.  </span><br><span class="line">Передай своему папаше, что он хоть бы ради приличия пароль сделал посложнее.  </span><br><span class="line">- Он сначала нашу фамилию в качестве пароля поставил, - объясняю я. – Но ему в отделе защиты информации   </span><br><span class="line">объяснили, что такой пароль легко подобрать.</span><br></pre></td></tr></table></figure></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<p>За последние три дня успел исправить последний (пока?) баг в игре, поиграть в шахматы, выехать на велосипеде за город, пофотографировать на найденный дома в груде хлама <a href="http://www.zenit.istra.ru/mans/zorki-6/zorki-6.html" target="_blank" rel="noopener">“Зоркий-6”</a> и перечитать <a href="http://lib.ru/SIMAK/goblins.txt" target="_blank" rel="noopener" title="отличная смесь из юмористического фэнтези и элементов научной и космической фантастики">“Заповедник гоблинов”</a> Клиффорда Саймака.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Старые рассказы на компьютерную тематику&lt;/p&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://zhurnal.lib.ru/b/brigadir_j_a/test.shtml&quot; target=&quot;_blank&quot; rel=
+        &lt;p&gt;За последние три дня успел исправить последний (пока?) баг в игре, поиграть в шахматы, выехать на велосипеде за город, пофотографировать 
       
     
     </summary>
     
     
     
-      <category term="books" scheme="http://spiiin.github.io/tags/books/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Squirell Language</title>
-    <link href="http://spiiin.github.io/blog/19863/"/>
-    <id>http://spiiin.github.io/blog/19863/</id>
-    <published>2009-07-10T16:36:00.000Z</published>
-    <updated>2020-09-15T15:47:36.639Z</updated>
-    
-    <content type="html"><![CDATA[<p>Несколько дней назад начал разбираться с языком Squirell.</p><p>Ощущения от использования (в качестве средства написания игровой логики по сравнению с C++):</p><p><strong>1</strong> Удобно, что можно запихать в параметр функции безымянную функцию или сделать из таких функций массив, да еще и “замкнуть” на них внешние переменные. Переменные для замыкания нужно указывать явно (как param1 в примере). Например, так можно выбрать в игре случайную базу игрока, в которую можно добавить пушку типа <code>param1</code>:</p><figure class="highlight nim"><table><tr><td class="code"><pre><span class="line">local cp = getCheckPointFromPred(</span><br><span class="line">function(checkpoint):(param1) &#123; <span class="keyword">return</span> checkpoint.m_ConflictSide == <span class="type">SIDE_Player</span> &amp;&amp; checkpoint.canAddCannon(param1)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>Внутри <code>getCheckpointFromPred</code> с помощью цикла <code>foreach</code> (встроенных функций вроде <code>filter</code> и <code>reduce</code> не нашел) перебираются все базы. и проверяются на соответствие предикату.</p><p><strong>2</strong> Глобальные переменные объявляются и инициализируются с помощью оперотора “&lt;-“, а локальные - с помощью слова local и “=”, таким образом интерпретатор отлавливает ошибки, связанные с тем, что программист опечатался в имени переменной:</p><figure class="highlight nim"><table><tr><td class="code"><pre><span class="line"><span class="type">Var1</span> &lt;- <span class="string">"Some value"</span></span><br><span class="line">local <span class="type">Var2</span> = <span class="string">"Other value"</span></span><br><span class="line"><span class="type">Var3</span> = <span class="string">"Error value"</span> //здесь ошибка, если переменная <span class="type">Var3</span> не была объявлена где-то раньше.</span><br></pre></td></tr></table></figure><p><strong>3</strong> Поначалу напрягало отлавливание синтаксических ошибок, так как место ошибки даже примерно не узнать. но потом понял, где я обычно допускаю ошибки и стал их очень быстро находить - если Squirell ругается на остутствие “,” - значит, надо искать в таблицах между парами ключ-значение, если не хватает “)” - скорее всего ее забыли после сложного условия в <code>if</code>‘е или <code>while</code>‘е, ну а “;” не хватает обычно в <code>for</code>‘e.</p><p><strong>4</strong> Порадовала возможность отладить код “на лету”, без перекомпиляции или даже без перезапуска приложения иногда получается. Ну, понятно, это фишка любого скриптового языка.</p><p><strong>5</strong> Еще для игрового кода очень удобной по сравнению с С++ (да, там с помощью шаблонов можно похоже сделать) показалась возможность утиной типизации. То есть, если функция ожидает объект определенного класса (то есть, зовет функции этого класса), в нее можно запихать объект другого класса, который будет иметь те функции или члены, которые надеется увидеть в нем вызывающая функция.</p><p><strong>6</strong> Использование сишного синтаксиса приводит к возникновению сишных ошибок. Например, в одной проверке вместо сравнения на равенство сделал присваивание. И после этой проверки вертолеты ВНЕЗАПНО перестали приземляться в аэропорты, так как принимали их за танковые базы.</p><p>Вообще, имхо, главное удобство от вынесения игровой логики в скрипты - не надо перекомпилировать программу, чтобы поиграться с параметрами, влиящими только на геймплей. Остальное - приятные плюшки</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Несколько дней назад начал разбираться с языком Squirell.&lt;/p&gt;
-&lt;p&gt;Ощущения от использования (в качестве средства написания игровой логики 
-      
-    
-    </summary>
-    
-    
-    
-      <category term="squirell" scheme="http://spiiin.github.io/tags/squirell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Тяжелое детство, восьмибитные игрушки</title>
-    <link href="http://spiiin.github.io/blog/20340/"/>
-    <id>http://spiiin.github.io/blog/20340/</id>
-    <published>2009-06-21T19:11:00.000Z</published>
-    <updated>2020-09-15T18:02:45.854Z</updated>
-    
-    <content type="html"><![CDATA[<p>Нашел на винте скачанные когда-то доки и тулзы к приставке <a href="http://ru.wikipedia.org/wiki/NES" target="_blank" rel="noopener">Nintendo Entertaiment System</a>  aka Денди.<br>Среди них был и ассемблер. Захотелось чего-нибудь написать попробовать на нем. </p><p>Ссылки на документацию -<br><a href="http://dendy.migera.ru/nes/index.php" target="_blank" rel="noopener">http://dendy.migera.ru/nes/index.php</a> - Книжка с описанием архитектуры<br><a href="http://tv-games.narod.ru/library/nes.htm" target="_blank" rel="noopener">http://dendy.migera.ru/nes/index.php</a>  - Много документации на русском и английском<br><a href="http://nesdev.parodius.com" target="_blank" rel="noopener">http://nesdev.parodius.com</a> - Основной сайт для тех, кто хочет программировать под NES. </p><p>Много материалов на английском языке и тулзов для разработки.<br>После непродолжительного чтения мануалов удалось слепить вот что:<br><a href="http://pics.livejournal.com/spiiin/pic/0000aypq/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0000aypq/s320x240" alt=""></a> </p><p>Потом надоело, решил поискать что-то более высокоуровневое.<br>Гугл в основном выдает ссылки на форумы, где новички спрашивают, как писать игры, а олдфаги говорят, что им еще рано что-то писать, раз у них возникают такие вопросы или отправляют их на <a href="http://nesdev.parodius.com" target="_blank" rel="noopener">http://nesdev.parodius.com</a>. </p><p>Сначала я искал исходники движков от каких-нибудь игр, но оказалось, что их там нету :( (или я плохо искал).<br>Единственный способ написать что-то на движке игры - реверсить ее и потом записать в РОМ свой код и данные (для спрайтов есть тулзы, код скорее всего придется вбивать в бинарном виде).</p><p>Кстати, хакеры уже неплохо изучили самые популярные игрушки, вроде <a href="http://tasvideos.org/1891S.html" target="_blank" rel="noopener">Super Mario Bros.</a> ,  <a href="http://tasvideos.org/2199S.html" target="_blank" rel="noopener">Duck Tales</a>  или  <a href="http://tasvideos.org/1673S.html" target="_blank" rel="noopener">Darkwing Duck</a> .</p><p>Достаточно зайти на tasvideos.org и посмотреть, что геймеры могут вытворять с игрой, вооружившись дизассемблером, хекс-редактором и эмулятором с замедлением времени. </p><p>Вот пример прохождения на скорость:<br><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/kAagEF1O0h4" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div></p><p>Возвращаясь к теме программирования, исходников движков я не нашел, зато нашел вот это - <a href="%20www.cc65.org">cc65</a>, а именно кросс-компилятор языка С под платформу 6502! То, что нужно для восьмибитного счастья :) </p><p>Все, что нужно скачать - это сам  <a href="ftp://ftp.musoftware.de/pub/uz/cc65/cc65-win32-2.12.0-1.zip">компилятор</a>  и <a href="ftp://ftp.musoftware.de/pub/uz/cc65/cc65-nes-2.12.0-1.zip">библиотеки для nes</a>, которые нужно будет прилинковать к объектному файлу после компиляции и трансляции.</p><p>Также не помешает скачать <a href="ftp://ftp.musoftware.de/pub/uz/cc65/cc65-doc-2.12.0-1.zip">мануал</a>.</p><p>Написал тормознутую сортировку для массива случайных чисел:<br><a href="http://www.everfall.com/paste/id.php?pvbqcv9urcfd" target="_blank" rel="noopener">код</a></p><p><a href="http://pics.livejournal.com/spiiin/pic/0000b71f/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0000b71f/s320x240" alt=""></a></p><p> …а игру написать с нуля, имея все спрайты, наверно месяц уйдет. эх, пойду спать, а то еще бакалаврскую завтра сдавать. </p><p> P.S. Еще есть  <a href="http://bobrost.com/nes/resources.php#devtools" target="_blank" rel="noopener">бейсик</a> . Жалко питон никто не портировал :)</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Нашел на винте скачанные когда-то доки и тулзы к приставке &lt;a href=&quot;http://ru.wikipedia.org/wiki/NES&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Nint
-      
-    
-    </summary>
-    
-    
-    
-      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
-    
-      <category term="asm" scheme="http://spiiin.github.io/tags/asm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Простенький куайн на си</title>
-    <link href="http://spiiin.github.io/blog/45994/"/>
-    <id>http://spiiin.github.io/blog/45994/</id>
-    <published>2009-06-10T09:22:00.000Z</published>
-    <updated>2020-09-15T15:19:27.909Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span>*c=<span class="string">"main()&#123;int i;char n[]=&#123;99,104,97,114,42,99,61,34,0&#125;;puts(n);puts(c);putchar(34);putchar(59);puts(c);&#125;"</span>;</span><br><span class="line">        main()&#123;<span class="keyword">int</span> i;<span class="keyword">char</span> n[]=&#123;<span class="number">99</span>,<span class="number">104</span>,<span class="number">97</span>,<span class="number">114</span>,<span class="number">42</span>,<span class="number">99</span>,<span class="number">61</span>,<span class="number">34</span>,<span class="number">0</span>&#125;;<span class="built_in">puts</span>(n);<span class="built_in">puts</span>(c);<span class="built_in">putchar</span>(<span class="number">34</span>);<span class="built_in">putchar</span>(<span class="number">59</span>);<span class="built_in">puts</span>(c);&#125;</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt;*c=&lt;span class=&quot;string&quot;&gt;&quot;
-      
-    
-    </summary>
-    
-    
-    
-      <category term="c++" scheme="http://spiiin.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python in imaginary world</title>
-    <link href="http://spiiin.github.io/blog/28461/"/>
-    <id>http://spiiin.github.io/blog/28461/</id>
-    <published>2009-06-01T13:08:00.000Z</published>
-    <updated>2020-09-15T17:18:45.105Z</updated>
-    
-    <content type="html"><![CDATA[<p>Запись из архива. </p><p>Играл в <code>James Bond Jr.</code> на NES :<br><a href="http://pics.livejournal.com/spiiin/pic/000027rh/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/000027rh/s320x240" alt=""></a></p><p>В этой игрушке в первой зоне сын известного спецагента Джеймса Бонда должен деактивировать 5 ракет главзлодея. Чтобы “выключить” ракету, необходимо решить головоломку - заданы исходное поле из разноцветных клеток и целевая позиция, в которую надо перевести поле, сдвигая любую строку или столбец. </p><p>В принципе, задача решается не очень сложно, но мне захотелось поупражняться в программировании, и поэтому, под катом, скрипт - помощник суперагента :)</p><p><a href="http://www.everfall.com/paste/id.php?wvfuemnvkvin" target="_blank" rel="noopener">Код</a></p><p>В коде использован  <a href="http://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%B8%D1%81%D0%BA_%D0%B2_%D1%88%D0%B8%D1%80%D0%B8%D0%BD%D1%83" target="_blank" rel="noopener">алгоритм поиска в ширину</a>.</p><p>Работает так : </p><ul><li>Задача представляется в виде графа, в котором вершины - состояния поля, а ребра - допустимые переходы от одного состояния к другому (в коде допустимые фукнции переходов хранятся в массиве <strong>fun</strong> ) .</li><li>Имеются 2 списка -  <strong>open</strong> , в котором хранятся вершины, которые предстоит просмотреть и  <strong>closed</strong> , в котором хранятся уже просмотренные вершины.</li><li>Помимо собственно вершины в элементах списков <strong>open</strong> и <strong>closed</strong> также хранится вершина, из которой был совершен переход в данное состояние. Это делается для того, чтобы по окончании поиска можно было восстановить последовательность переходов (функция  <strong>extract</strong> ).</li><li>Изначально в  <strong>open</strong>  кладется стартовое состояние поля. Далее циклически совершается раскрытие вершины. Оно заключается в добавлении к списку открытых вершин всех вершин, в которые можно перейти из данной и перемещении раскрываемой вершины в список  <strong>closed</strong> . Раскрытые вершины добавляются в конец списка  <strong>open</strong> , что обеспечивает обход графа в ширину. Цикл завершается, если текущая раскрываемая вершина является целевой или если заканчиваются раскрываемые вершины (это означает, что перейти в конечное состояние из стартового невозможно).</li><li>Когда целевая вершина найдена, необходимо пройтись по списку <strong>closed</strong> и восстановить путь от цели к исходной вершине, пользуясь указателями, которые были добавлены при раскрытии. Я для удобства сделал не только извлечение пути из списка, но и вывод ответа в форме “какую линию и в какую сторону двигать”. Для еще большего удобства можно сделать перевод в набор кнопок, которые нужно нажимать на геймпаде для получения результата :)</li></ul><p>Описание алгоритма  <a href="http://www.intuit.ru/department/algorithms/gaa/4/" target="_blank" rel="noopener">здесь</a>  и  <a href="http://pmg.org.ru/ai/stout.htm" target="_blank" rel="noopener">здесь</a> .</p><p>Первую версию функции поиска делал извращенно-рекурсивной, с передачей open- и closed- списков, как параметров, но быстро офигел от количества потребляемой памяти и переписал код с использованием итераций.</p><p>Вторая версия тормозила про проверке, входит ли элемент в списки open или close, пришлось еще дополнительно сделать хэш-таблицу  <strong>open-hash</strong>  для быстрой проверки вхождения. </p><p><strong>upd</strong>  Пока тестировал решение для 4-го варианта, после 500000 просмотренных вершин понял, что слепой поиск не рулит, и сделал примитивную оценочную функцию  <strong>rate</strong> , которая примерно показывает, сколько еще шагов осталось до конца работы (считается разница между текущей позицией и целевой), и раз в 500 вершин проводит сортировку списка входных вершин по данной оценке.</p><p>Таким образом, время решения значительно улучшается, и Джеймс Бонд должен успеет обезвредить вражеские ракеты за отведенные ему 45 минут =) Ну и да, скрипт теперь реализует не поиск в ширину, а какой-то из частных случаев <a href="http://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC_%D0%BF%D0%BE%D0%B8%D1%81%D0%BA%D0%B0_A*" target="_blank" rel="noopener">А-алгоритма</a>, у которого эвристическая функция состоит только из прогноза оставшегося пути и не учитывает пройденного расстояния, но это в данной ситуации неважно, главное, быстрее получить ответ.</p><hr><p>И, собственно, решения:<br><a href="http://pics.livejournal.com/spiiin/pic/00003e0w/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/00003e0w/s320x240" alt=""></a> </p><p>====== 1 ======<br>source:[1, 2, 3, 4, 4, 1, 2, 3, 3, 4, 1, 2, 2, 3, 4, 1]<br>target:[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]<br>[‘left’ , 1] #означает - сдвиг 1-й строки влево. отсчет строк и столбцов ведется с нуля<br>[‘left’ , 2]<br>[‘left’ , 2]<br>[‘right’ , 3]<br><a href="http://pics.livejournal.com/spiiin/pic/00004w04/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/00004w04/s320x240" alt=""></a><br>====== 2 ======<br>source:[1,1,1,1, 1,2,3,1, 1,3,2,1, 1,1,1,1]<br>target:[1,1,1,1, 1,3,3,1, 1,2,2,1, 1,1,1,1]<br>[‘left’ , 1]<br>[‘up’ , 1]<br>[‘right’, 1]<br>[‘down’ , 1]<br><a href="http://pics.livejournal.com/spiiin/pic/00005cg3/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/00005cg3/s320x240" alt=""></a><br>====== 3 ======<br>source:[1,2,1,3, 3,2,1,2, 1,1,3,1, 1,2,1,3]<br>target:[3,1,2,3, 2,1,1,1, 1,1,1,2, 3,2,1,3]<br>[‘right’, 0]<br>[‘right’, 2]<br>[‘down’ , 3]<br>[‘up’ , 0]<br>[‘left’ , 1]<br><a href="http://pics.livejournal.com/spiiin/pic/00006g9d/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/00006g9d/s320x240" alt=""></a><br>====== 4 ======<br>source:[1,2,2,1, 3,4,4,3, 3,4,4,3, 2,4,4,2]<br>target:[4,3,4,2, 3,1,2,4, 4,2,4,3, 2,4,3,1]<br>only difs:<br>[‘left’ , 2]<br>[‘up’ , 3]<br>[‘right’, 1]<br>[‘down’ , 2]<br>[‘right’, 0]<br>[‘down’ , 1]<br>[‘right’, 0]<br>[‘left’ , 2]<br>[‘left’ , 2]<br><a href="http://pics.livejournal.com/spiiin/pic/00007c3f/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/00007c3f/s320x240" alt=""></a><br>====== 5 ======<br>source:[1,1,2,2, 1,1,2,2, 3,3,4,4, 3,3,4,4]<br>target:[1,1,2,2, 1,3,4,2, 3,3,4,4, 1,3,4,2]<br>[‘left’, 1]<br>[‘up’ , 0]<br>[‘left’, 1]<br>[‘left’, 1]<br>[‘up’ , 3]<br>[‘left’, 1]<br><a href="http://pics.livejournal.com/spiiin/pic/00008d4x/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/00008d4x/s320x240" alt=""></a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Запись из архива. &lt;/p&gt;
-&lt;p&gt;Играл в &lt;code&gt;James Bond Jr.&lt;/code&gt; на NES :&lt;br&gt;&lt;a href=&quot;http://pics.livejournal.com/spiiin/pic/000027rh/&quot; targ
-      
-    
-    </summary>
-    
-    
-    
-      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
-    
-      <category term="python" scheme="http://spiiin.github.io/tags/python/"/>
-    
-      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>About [0x1BC2]</title>
-    <link href="http://spiiin.github.io/blog/1/"/>
-    <id>http://spiiin.github.io/blog/1/</id>
-    <published>1998-12-31T21:00:00.000Z</published>
-    <updated>2020-09-15T15:32:31.224Z</updated>
-    
-    <content type="html"><![CDATA[<p>This is the blog and personal page of <code>Aleksandr Boyko</code>.<br>Mostly about programming stuff</p><p>I’ve worked at <code>Gaijin Entertaiment</code> on PC and mobile games, engine and related tools. Mostly worked as general developer on mobile games.<br>Now I am working at <code>MyTona</code> in Saint Peterburg as lead developer. I really enjoy to make games and play it.</p><p>I am doing optimization, middleware for games, visual effects and porting engines at different platforms.</p><p>Also, my hobbies are: </p><ul><li>Travelling</li><li>Juggling</li><li>NES games researching</li></ul><p>My pet project:<br><a href="https://github.com/spiiin/CadEditor" target="_blank" rel="noopener">CadEditor</a> - universal level editor for more than 100 old console games</p><p>You can contact me:<br><code>sanya.boyko at gmail.com</code><br><a href="https://github.com/spiiin" target="_blank" rel="noopener">https://github.com/spiiin</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;This is the blog and personal page of &lt;code&gt;Aleksandr Boyko&lt;/code&gt;.&lt;br&gt;Mostly about programming stuff&lt;/p&gt;
-&lt;p&gt;I’ve worked at &lt;code&gt;Gaijin 
-      
-    
-    </summary>
-    
-    
-    
-      <category term="meta" scheme="http://spiiin.github.io/tags/meta/"/>
+      <category term="log" scheme="http://spiiin.github.io/tags/log/"/>
     
   </entry>
   
