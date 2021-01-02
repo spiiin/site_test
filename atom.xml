@@ -123,13 +123,171 @@
   </entry>
   
   <entry>
-    <title>Игра в сегу по сети.</title>
-    <link href="http://spiiin.github.io/blog/8741/"/>
-    <id>http://spiiin.github.io/blog/8741/</id>
-    <published>2014-12-22T04:49:00.000Z</published>
-    <updated>2020-12-25T12:32:29.095Z</updated>
+    <title>CadEditor v5.0 Changelog</title>
+    <link href="http://spiiin.github.io/blog/1634/"/>
+    <id>http://spiiin.github.io/blog/1634/</id>
+    <published>2018-05-09T07:54:00.000Z</published>
+    <updated>2021-01-02T16:38:46.179Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/m6OeJYWAJ6c" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Обновления редактора <a href="https://github.com/spiiin/cadeditor" target="_blank" rel="noopener">CadEditor</a> за год с <a href="https://spiiin.livejournal.com/108403.html" target="_blank" rel="noopener">версии 4.1</a>  </p><p>Почти для всех игр описан способ построения блоков из данных ROM-файла вместо картинок. Фактически, реализована наконец идея создания универсального редактора блоков, когда новые форматы могут быть добавлены с помощью файлов настроек, без изменения кода редактора.  </p><p>Почти для всех поддерживаемых игр добавлены конфиги блоков для всех основных уровней. Большая часть работы сделана другими пользователями. Хотя для добавления новых игр нет документации, большое количество примеров позволило пользователям добавлять подобные игры комбинированием готовых примеров.  </p><p>Написано несколько <a href="https://spiiin.github.io/CadEditor/">статей</a>, описывающих примеры работы с редактором, большинство - с видеопримерами. Создана <a href="https://spiiin.github.io/CadEditor/cadeditor-supported-games.html">нотация</a> для документирования того, как описаны уровни во всех поддерживаемых играх. Добавлено большое исследование устройства <a href="https://spiiin.livejournal.com/124652.html" target="_blank" rel="noopener">спецэффектов в NES-играх</a>.  </p><p>Добавлено редактирование игры со сжатием для NES (Felix the Cat), пока с примером ручного пережатия отредактированных данных с помощью <a href="https://github.com/spiiin/JupyterCadEditor/blob/master/CadEditor-Felix-decompress.ipynb" target="_blank" rel="noopener">скрипта на Python</a>.  </p><p>Проект <a href="https://github.com/spiiin/JupyterCadEditor" target="_blank" rel="noopener">JupyterCadEditor</a> (использование CadEditord в качестве библиотеки для Python в ноутбуках Jupyter) вынесен в отдельный репозиторий. Добавлены скрипты, позволяющие по конфигу игры для одного региона находить такие же данные для версии игры другого региона, что позволяет легко добавлять поддержку игр для разных регионов.  </p><p>Упрощён и улучшен рендер панелей и редакторов, убраны лишние масштабирования и “замыливание” при отрисовке.  </p><p>Добавлен плагин <a href="https://www.patreon.com/posts/september-2-2017-14324437" target="_blank" rel="noopener">экспорта карты в формат TMX</a>, для последующего использования её в редакторе <a href="https://www.mapeditor.org/" target="_blank" rel="noopener">Tiled</a>. Улучшены плагины экпорта блоков и экранов в картинки и бинарные файлы.  </p><p>Добавлено множество lua-скриптов для упрощения исследования игр и добавления их в редактор. Переписаны с Python на Lua скрипты автоматического поиска блоков различных форматов в видеопамяти - теперь они позволяют находить блоки прямо во время прохождения игры, без необходимости делать дампы памяти вручную.   </p><p>Добавлены lua-скрипты для эмулятора Mesen, позволяющие исследовать <a href="https://spiiin.livejournal.com/121112.html" target="_blank" rel="noopener">спецэффекты</a> в NES-играх, а также расширяющие возможности эмулятора в отладке.  </p><p>Добавлены утилиты для проверки целостности конфигов при обновлении версии редактора и исследования функций конфига без запуска самого редактора.  </p><p>Добавлен плагин, позволяющий пережимать данные и запаковывать их в ROM - <a href="https://www.youtube.com/watch?v=NfIWeDwu68w" target="_blank" rel="noopener">компрессор</a> для игры Contra Hard Corps.  </p><p>Плагин для запуска пользовательских скриптов из редактора и примеры его использования (экспорт скриншотов, экспорт блоков из игры для использования в <a href="https://www.youtube.com/watch?v=GR18emXxAi0" target="_blank" rel="noopener">демо-проектах</a>)  </p><p>Проект перешагнул первую <a href="https://github.com/spiiin/CadEditor/commit/f29ebd2437ae2f44950b1f5fb43a74b1230fc5fc" target="_blank" rel="noopener">тысячу</a> коммитов, а также переведён на .NET Framework 4.0. Редактор содержит более 1500 конфигов блоков и экранов различных уровней для 128 игр. Большая часть этих конфигов добавлена пользователями редактора, так что проект частично стал продуктом сообщества ромхакеров.  </p><p>Возможно, в следующих итерациях в редактор будут добавлены возможности универсального описания редактора объектов для уже добавленных игр, это такая же большая задача, как и создание универсального редактора блоков, но и её возможно решить.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Обновления
+      
+    
+    </summary>
+    
+    
+    
+      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
+    
+      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
+    
+      <category term="lua" scheme="http://spiiin.github.io/tags/lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Castlevania HD Pack</title>
+    <link href="http://spiiin.github.io/blog/45580/"/>
+    <id>http://spiiin.github.io/blog/45580/</id>
+    <published>2018-05-04T19:27:00.000Z</published>
+    <updated>2021-01-02T16:40:23.570Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Очень здоровская затея в современных эмуляторах - вытащить всю графику, улучшить её качество, и включить в эмуляторе использование этой улучшенной графики.  </p><p><a href="http://www.romhacking.net/forum/index.php?topic=26114" target="_blank" rel="noopener">Улучшенный пак</a> графики и музыки для первой Castlevania под эмулятор Mesen.  </p><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/D9SQei4eIqY" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><p>Записал прохождение, с помощью самописного скрипта для <a href="https://github.com/spiiin/CadEditor/tree/master/Stuff/nes_lua/mesen_savemovies" target="_blank" rel="noopener">перезаписи прохождений</a>, надеюсь автор эмулятора наконец добавит нормальную реализацию перезаписи в ближайших обновлениях.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Очень здор
+      
+    
+    </summary>
+    
+    
+    
+      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
+    
+      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
+    
+      <category term="lua" scheme="http://spiiin.github.io/tags/lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Шейдеры для NES игр</title>
+    <link href="http://spiiin.github.io/blog/16778/"/>
+    <id>http://spiiin.github.io/blog/16778/</id>
+    <published>2018-04-21T11:57:00.000Z</published>
+    <updated>2021-01-02T16:42:40.945Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Продолжаю изучать возможности lua-скриптов в эмуляторе Mesen. </p><p>Функции <a href="https://www.mesen.ca/docs/apireference/drawing.html#getscreenbuffer" target="_blank" rel="noopener">getScreenBuffer/setScreenBuffer</a> позволяют каждый кадр (или чаще) модифицировать содержимое экранного буфера. Так можно добавлять простые шейдеры постэффектов (да и сложные тоже). </p><p><a href="https://github.com/spiiin/CadEditor/blob/master/Stuff/nes_lua/mesen_modifyScreen.lua" target="_blank" rel="noopener">Скрипт</a> с эффектами красного экрана, мерцания, черезстрочного вывода и построчного “двоения экрана”. </p><p>Возможны также и более сложные эффекты (размытие движения, дождик, выделение контуров и т.п.), правда, не сильно удобно писать такое на Lua.</p><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/04KOJmRYwko" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Продолжаю 
+      
+    
+    </summary>
+    
+    
+    
+      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
+    
+      <category term="lua" scheme="http://spiiin.github.io/tags/lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ещё о криптокартинах</title>
+    <link href="http://spiiin.github.io/blog/34124/"/>
+    <id>http://spiiin.github.io/blog/34124/</id>
+    <published>2018-03-27T19:45:00.000Z</published>
+    <updated>2021-01-02T16:44:14.783Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Несколько месяцев назад я <a href="https://spiiin.dreamwidth.org/113215.html" target="_blank" rel="noopener">писал</a> о художнице, шифрующей в картинках приватные ключи от кошельков с биткоинами. Она делала многоуровневые загадки, обсуждение которых в итоге перенесла на закрытый форум, чтобы не решившие первые этапы задачи не могли пользоваться результатами других. А вот <a href="https://andybauch.com/" target="_blank" rel="noopener">Andy Bauch</a> поступил проще - сделал несколько картин с отдельными задачками и <a href="https://newmoney.andybauch.com/" target="_blank" rel="noopener">призами</a>. Картинки выложено из кубиков Лего.  </p><p>На хабре уже разобрали несколько решений (<a href="https://habrahabr.ru/post/352014/" target="_blank" rel="noopener">раз</a>, <a href="https://habrahabr.ru/post/351950/" target="_blank" rel="noopener">два</a>), кто-то даже успел решить пару задач. До меня, к сожалению, поздновато, дошло, так бы с удовольствием поучаствовал в решении.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Несколько 
+      
+    
+    </summary>
+    
+    
+    
+      <category term="крипто" scheme="http://spiiin.github.io/tags/%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE/"/>
+    
+      <category term="картинки" scheme="http://spiiin.github.io/tags/%D0%BA%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Into the breach</title>
+    <link href="http://spiiin.github.io/blog/65303/"/>
+    <id>http://spiiin.github.io/blog/65303/</id>
+    <published>2018-03-20T19:44:00.000Z</published>
+    <updated>2021-01-02T16:45:11.786Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Очень, очень интересная тактика. Давненько не встречал такого, чтобы над каждым ходом необходимо было думать, иногда одного неправильного действия достаточно для проигрыша всей глобальной партии.</p><p>Разработчики добились этого за счёт того, что всегда огневой мощи отряда игрока не хватает для обезвреживания всех врагов, поэтому их чаще надо не уничтожать, а переставлять по полю так, чтобы они промахивались, а ещё лучше били друг друга. При этом враги угрожают не юнитам игрока, а беззащитным зданиям, которые приходится прикрывать юнитами, так как потеря нескольких зданий сразу ведёт к поражению не только в битве, но и во всей игре.</p><p>Интересно, что помимо основных 2 уровней планирования - тактического в битвах и стратегического на глобальной карте, присутствует ещё уровень метапланирования действий между играми - возможно пожертвовать целой игрой, ради того, чтобы получить достижение за игру и за очки достижений открыть более мощный отряд юнитов для следующей партии. Подобный ход, в совокупности с генерируемыми островами добавляет игре реиграбельности на десяток прохождений.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Очень, оче
+      
+    
+    </summary>
+    
+    
+    
+      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TMNT - Tournament Fighters [NES] Lua-скрипт для выполнения суперударов</title>
+    <link href="http://spiiin.github.io/blog/29889/"/>
+    <id>http://spiiin.github.io/blog/29889/</id>
+    <published>2018-03-16T18:58:00.000Z</published>
+    <updated>2021-01-02T16:46:34.475Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="https://github.com/spiiin/CadEditor/blob/master/Stuff/nes_lua/tmnt4_moves.lua" target="_blank" rel="noopener">Скрипт</a>, позволяющий выполнять суперудары нажатием одной кнопки в лучшем файтинге на NES - TMNT: Tournament Fighters.</p><p>Упрощает игру с клавиатуры. Кроме обычных суперударов можно записывать и более сложные комбинации, доступные только профессиональным игрокам, например, обманный трюк Рафаэлем - активиция (но не выполнение) “сверла” зажатием кнопки назад, затем быстрый разбег, прыжок с ударом ногой, и выполнение сверла в прыжке с разбега.</p><p>Сложность движения в том, что разбег и прыжок должны быть выполнены очень быстро, пока игра всё ещё считает суперудар активированным. <a href="http://pscd.ru/codes/nescodes/tnescodes/6568-teenage-mutant-ninja-turtles-tournament-fighters-prohozhdenie-faq.html" target="_blank" rel="noopener">Детальное объяснение</a> игровой механики.</p><p>Видео:<br><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/t6A4h_GfsYI" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;a href=&quot;h
+      
+    
+    </summary>
+    
+    
+    
+      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
+    
+      <category term="lua" scheme="http://spiiin.github.io/tags/lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Супер Марио в супер сломо</title>
+    <link href="http://spiiin.github.io/blog/17738/"/>
+    <id>http://spiiin.github.io/blog/17738/</id>
+    <published>2018-03-11T13:51:00.000Z</published>
+    <updated>2021-01-02T16:47:28.856Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/3BJU2drrtCM" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
@@ -142,258 +300,20 @@
     
     
     
-      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
-    
-      <category term="sega" scheme="http://spiiin.github.io/tags/sega/"/>
-    
-      <category term="hardware" scheme="http://spiiin.github.io/tags/hardware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Battletoads heavy glitches</title>
-    <link href="http://spiiin.github.io/blog/57614/"/>
-    <id>http://spiiin.github.io/blog/57614/</id>
-    <published>2013-01-08T15:21:00.000Z</published>
-    <updated>2020-09-15T17:02:24.441Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/bOweqz4cDlA" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><p>Ну и весь канал у них там такой</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;style&gt;.embed
-      
-    
-    </summary>
-    
-    
-    
       <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
-    
-      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Множественные личности в сети.</title>
-    <link href="http://spiiin.github.io/blog/54990/"/>
-    <id>http://spiiin.github.io/blog/54990/</id>
-    <published>2012-12-26T18:27:00.000Z</published>
-    <updated>2020-12-26T01:46:52.001Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Иногда хочется “размножить” свой аккаунт в соцсетях, разделиться на несколько виртуалов, каждый со своими интересами, чтобы бороться с политикой построения профиля пользователя и показа заранее подготовленного интересного ему контента.  Такую политику сейчас проводит почти любой крупный сайт. Но если с тематическими это удобно - можно выбрать книги, фильмы или музыку, которая скорее всего понравится, то на общих мешает. </p><p>На ютубе, к примеру, в рекомендованных видео часто висят ролики одной темы - либо то, что чаще всего смотрится за всё время, либо то, что чаще всего смотрелось в последний период. Если же хочется смотреть что-то другое, но по одной из интересующих тем, приходится пользоваться общим поиском. Проблема где-то в алгоритмах выдачи, которые объединяют информацию в кластеры определенной тематики и определяют близость ее пользователю.</p><p> Если же есть несколько аккаунтов (скорее всего, получилось бы даже автоматически выстроить такие аккаунты для пользователя), можно сопоставлять их с разными кластерами информации. </p><p> Например, предложить возможность выбрать, какие видео сейчас смотреть, про котиков или про язык программирования с++ (выяснить, рабочая или домашняя личность сейчас активна). Другой полезной возможностью, стала бы опция “расширения кругозора”, которая позволила бы выбирать кластеры похожей или противоположной тематики вручную. </p><p> Если пользователь смотрит футбольные матчи, возможно заинтересуется и хоккеем. Либо не заинтересуется, можно на основании этого выделить категории пользователей, которым интересна наиболее широкая или, наоборот, наиболее узкая тематика. Еще один ощутимый плюс - можно дружить с выбранными субличностями пользователя. Например, с той, что пишет про программирование, но не с той, что постит фоточки с поездок на природу, или наоборот. Но для реализации такого подхода пришлось бы явно сообщать пользователям, какую именно информацию о них собрали, а это никому не понравится. написано под впечатлением от этой статьи <a href="http://blogerator.ru/page/za-stenoj-filtrov-chto-internet-skryvaet-ot-nas" target="_blank" rel="noopener">http://blogerator.ru/page/za-stenoj-filtrov-chto-internet-skryvaet-ot-nas</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Иногда хоч
-      
-    
-    </summary>
-    
-    
-    
-      <category term="dev" scheme="http://spiiin.github.io/tags/dev/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Джон Лилли. Человек и Дельфин.</title>
-    <link href="http://spiiin.github.io/blog/14110/"/>
-    <id>http://spiiin.github.io/blog/14110/</id>
-    <published>2012-12-06T20:43:00.000Z</published>
-    <updated>2020-12-25T14:30:58.429Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Дочитал сабж. Читается легко, как художественное произведение, в отличие от его же “Программирование и метапрограммирование человеческого мозга”, которую вообще без психоделиков трудно понять. Представил, что было бы, если запросить денег на строительство в Балаклаве бассейна-лаборатории для изучения общения с дельфинами. Мне они почему-то даже в море не попадались на глаза =\</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Дочитал са
-      
-    
-    </summary>
-    
-    
-    
-      <category term="книги" scheme="http://spiiin.github.io/tags/%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>безумные товары</title>
-    <link href="http://spiiin.github.io/blog/58449/"/>
-    <id>http://spiiin.github.io/blog/58449/</id>
-    <published>2012-12-02T21:50:00.000Z</published>
-    <updated>2020-12-26T02:01:14.979Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="http://www.vat19.com/" target="_blank" rel="noopener">http://www.vat19.com/</a>  чувствую, часть моей следующей зарплаты уйдет на товары с этого сайта</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;a href=&quot;h
-      
-    
-    </summary>
-    
-    
-    
-      <category term="fun" scheme="http://spiiin.github.io/tags/fun/"/>
     
       <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
     
   </entry>
   
   <entry>
-    <title>Скриптинг в эмуляторах.</title>
-    <link href="http://spiiin.github.io/blog/28787/"/>
-    <id>http://spiiin.github.io/blog/28787/</id>
-    <published>2012-11-25T20:56:00.000Z</published>
-    <updated>2020-12-26T02:01:42.641Z</updated>
+    <title>Криптовалюты. За и против.</title>
+    <link href="http://spiiin.github.io/blog/15418/"/>
+    <id>http://spiiin.github.io/blog/15418/</id>
+    <published>2018-03-06T08:11:00.000Z</published>
+    <updated>2021-01-02T16:50:55.506Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Давно в голове крутилась такая идея - взять эмулятор одной из старых консолей с поддержкой скриптов, добавить в его систему парсинга команд специальный опкод, по которому будет срабатывать передача управления в скрипт. Дальше вместо стандартного процесса хака делать следующее - дизассемблированную функцию переписать на скриптовом языке и стереть её из ROM, заменив тело на опкод вызова скриптовой функции (для этого хватит пары байт), оставшееся место использовать для своих нужд. Из скрипта есть доступ к любым функциям эмулятора (а если и нет, можно прокинуть нехватающие).</p><p>Так можно переписать все основные системы игры - управление, интеллект врагов, форматы описания уровней, тексты etc. Всё необходимое для модификации. На выходе получится практически чистый ROM с частью технических неинтересных для модификации функций в нём, и движок игры в читабельном виде на языке высокого уровня.</p><p>Сложность переписывания кода на скриптовом языке намного меньше, чем переписывания алгоритма на ассемблере, но главные плюсы в том, что снимаются ограничения на размеры данных и кода, которых всегда не хватает, а также в том, что можно удобно тестировать переписанный код, модифицируя его без перезапуска игры и работать над скриптом совместно.<br>Так еще никто не делал :)</p><p>Решил попробовать реализовать такое для FCEUltra, так как у него <a href="http://sourceforge.net/projects/fceultra/files/Source%20Code/2.1.5%20src/fceux-2.1.5.src.tar.bz2/download" target="_blank" rel="noopener">открытые исходники</a> и есть <a href="http://www.fceux.com/web/help/fceux.html?LuaScripting.html" target="_blank" rel="noopener">поддержка lua-скриптов</a>, используемых для читерства и тассинга. Ее можно расширить и для программирования.  </p><p>В конце функции эмуляции выполнения команд процессора X6502_Run можно дописать что-то вроде:  </p><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">   #ifdef _S9XLUA_H</span><br><span class="line">   <span class="keyword">if</span> (b1 == <span class="number">0x3A</span>)                //байт <span class="number">0x3A</span> назначен опкодом выполнения lua-функции</span><br><span class="line">   &#123;</span><br><span class="line">       uint8 x;                   //чтение номера вызываемой функции</span><br><span class="line">       x=RdMem(_PC);            </span><br><span class="line">       _PC++;</span><br><span class="line">       CallLuaInjectedFuncion(x);//вызов lua-функции</span><br><span class="line">   &#125;</span><br><span class="line">   #endif</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">void CallLuaInjectedFuncion(int function_index)</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">if</span> (L)</span><br><span class="line"> &#123;</span><br><span class="line">  lua_getfield(L, LUA_GLOBALSINDEX, <span class="string">"inject_handler"</span>); //положить на стек таблицу</span><br><span class="line">  <span class="keyword">if</span> (lua_isfunction(L,<span class="number">-1</span>))</span><br><span class="line">  &#123;</span><br><span class="line">    lua_pushinteger(L, function_index);                //взять из таблицы функцию номером function_index</span><br><span class="line">    int ret = lua_pcall(L,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);                      //вызвать функцию</span><br><span class="line">    <span class="keyword">if</span> (ret)</span><br><span class="line">      HandleCallbackError(L);                          //стандартная для fceu обработка ошибок</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Еще очень удобно добавить в lua возможность выполнить нативный код, чтобы свободно смешивать уже написанную игровую логику на ассемблере со скриптовым кодом:  </p><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">void X6502_CallFunc(uint16 funcAddr)</span><br><span class="line">&#123;</span><br><span class="line"> uint16 oldPC;                          </span><br><span class="line"> int   callLevel;                    </span><br><span class="line"> uint8 b1;</span><br><span class="line"> </span><br><span class="line"> callLevel = <span class="number">1</span>;</span><br><span class="line"> oldPC = _PC;                               //запомнить счетчик команд</span><br><span class="line"> _PC = funcAddr;                            //и переставить его на адрес функции</span><br><span class="line"> <span class="keyword">while</span> (<span class="literal">true</span>)                               </span><br><span class="line"> &#123;</span><br><span class="line">   b1=RdMem(_PC);</span><br><span class="line">   <span class="keyword">if</span> ((b1 == <span class="number">0x60</span>) &amp;&amp; (<span class="comment">--callLevel == 0))  //если следующая команда RET и исполнение наверху стека вызовов, то прекратить выполнение</span></span><br><span class="line">     <span class="keyword">break</span>;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span> (b1 == <span class="number">0x20</span>)                     //если следующая команда JSR, то увеличить глубину вызовов</span><br><span class="line">  callLevel++;</span><br><span class="line">   X6502_Run(<span class="number">1</span>);                            //исполнить следующую команду</span><br><span class="line"> &#125;</span><br><span class="line"> _PC = oldPC;                               //вернуть состояние счетчика команд</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Дальше для теста переписал небольшую часть логики прыжков Черного Плаща под новую версию эмулятора. Получился такой скрипт:<br><a href="https://gist.github.com/4145710" target="_blank" rel="noopener">https://gist.github.com/4145710</a><br>Ничего интересного он не делает, только демонстрирует потенциал для ромхакинга.  </p><p>Целиком эмулятор, ром и скрипт выложил в теме тут <a href="http://www.emu-land.net/forum/index.php/topic,64174.0.html" target="_blank" rel="noopener">http://www.emu-land.net/forum/index.php/topic,64174.0.html</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Давно в го
-      
-    
-    </summary>
-    
-    
-    
-      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
-    
-      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Adventure Island 2 [NES] - Алгоритм выбор пути</title>
-    <link href="http://spiiin.github.io/blog/17062/"/>
-    <id>http://spiiin.github.io/blog/17062/</id>
-    <published>2012-10-01T20:32:00.000Z</published>
-    <updated>2020-12-26T02:02:29.368Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Еще одна оставшаяся нерешенной задачка из мира старых игр - алгоритм выбора пути между уровнями в Adventure Island 2. </p><p>В третьей части выбор следующей зоны зависел от того, обычным путём был закончен уровень или нахождением тайного выхода, а вот во второй главгерой мог шарится по острову по дороге к боссу довольно долго или добежать почти сразу.</p><p>Единственное, что было известно - что алгоритм выбора зависел от выбора яйца с бонусом в конце каждого уровня - так как в 3-м яйце чаще всего была спрятана жизнь, то игрок выбирал его и получал одинаковый маршрут. Поиск в интернете показал, что точного алгоритма выбора не знал никто, так что надо было выяснить его, вооружившись отладчиком.</p><p><strong>Поиск</strong> дал немного полезной информации - на сайте у <a href="http://cah4e3.shedevr.org.ru/cheatsbase.php" target="_blank" rel="noopener">cah4e3’а</a> нашёлся код на выбор уровня и <a href="http://ru.wikipedia.org/wiki/Game_Genie" target="_blank" rel="noopener">game-genie</a> код для перевода игры в дебаг режим. Из него доступны - выбор любой зоны, мира, бессмертие, тест звуков и предметов. </p><p>По номерам уровня можно расчерчить <strong>карту всех участков</strong> и составить планы уровней.</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">00-0F - горы (обычные, снежные, вулканы)</span><br><span class="line">10-17 - джунгли(обычные и снежные)</span><br><span class="line">18-1F - озера</span><br><span class="line">20-2F - пещеры(обычные, темные и заснеженные)</span><br><span class="line">30-3A - леса(обычные, закатные, морозные)</span><br><span class="line">3B - логово последнего босса</span><br><span class="line">3C-3F - леса</span><br><span class="line">40-41 - ночные джунгли</span><br><span class="line">42-43 - пики гор</span><br><span class="line">44-47 - горные озёра</span><br><span class="line">48-49 - ледяные пещеры</span><br><span class="line">4A-4B - пустыня</span><br><span class="line">4C-4D - облака</span><br><span class="line">4E - логово 2-го босса</span><br><span class="line">4F - вулканы</span><br><span class="line">50-57 - боссы</span><br></pre></td></tr></table></figure><p><strong>Визуальным поиском</strong> по оперативной памяти номеров уровней в комнате бонусов можно найти, что все они располагаются в диапазоне 3E0-3FF - “мапа” уровня вперемежку с пустыми байтами. Если поменять эти байты и исследовать поведение игры, то выяснится: - Пройденная зона отмечается байтом F0, причем иногда в мапе уровня изначально присутствуют такие байты, что наводит на мысль о существовании коридоров, через которые можно ускоряться. - Если проиграть боссу, то он перемещается в свободную зону. Но, если свободных зон уже не осталось, остается в той же. Босс движется по тому же алгоритму, что и игрок. - Обычно из каждого уровня можно перейти в один из двух возможных, но бывают и исключения. Тут стоит прекратить гадание и поставить в отладчике точку остановки на запись в диапазоне памяти 3E0-3FF. 4. Остановка срабатывает по адресу: <em>F682: LDA #$F0, STA $03E0,X</em> В X текущая координата, относительно мапы уровней. Ячейка памяти, из которой считывается это смещение - D1.</p><p><strong>Дизассемблированная процедура выбора:</strong> <a href="https://gist.github.com/3814486" target="_blank" rel="noopener">https://gist.github.com/3814486</a></p><p>Описание алгоритма: Берём номер яйца с бонусом в конце уровня, пытаемся перейти последовательно по одному из 8 вариантов, соотвествующих этому яйцу и прописанных в таблице переходов в ROM, по порядку (доступные смещения переходов +1,+7,+8,+9, -1,-7,-8,-9, то есть сместиться можно либо в соседний участок на острове, либо в один из дальних). Если не выходит (участок пустой или пройденный), то пытаемся хотя бы сменить уровень на тот, что уже был пройден и повторить процедуру поиска следующего уровня сначала. Если с 4х раз не получилось, берем последний доступный уровень с конца мапы. Если же все уровни пройдены, остаемся в том же.</p><p><strong>Мапы всех островов.</strong> </p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. FF FF FF FF FF FF FF FF FF FF FF 36 41 FF FF FF FF 00 20 F0 40 FF FF FF 15 37 F0 18 2A FF FF FF (начало - 15, конец - 41)</span><br><span class="line">2. FF 4E 1A 2C FF FF FF FF FF 01 23 31 FF FF FF FF FF FF FF FF 19 FF FF FF FF FF 14 30 FF FF FF FF (начало - 14, конец - 4E)</span><br><span class="line">3. FF FF FF 4A 4B FF FF FF FF FF 33 FF FF 02 03 FF FF FF FF 10 13 FF FF FF FF FF FF 21 3D FF FF FF (начало - 3D, конец - 4A)</span><br><span class="line">4. FF FF 48 FF FF FF FF FF FF 1E 43 17 FF FF FF FF 27 FF FF FF 3F FF FF FF FF 3E 08 09 FF FF FF FF (начало - 08, конец - 48)</span><br><span class="line">5. 2E 46 45 2B FF FF FF FF 22 07 06 11 FF FF FF FF 32 FF FF 1C FF FF FF FF FF 24 FF FF FF FF FF FF (начало - 24, конец - 46)</span><br><span class="line">6. 4D FF FF FF FF FF FF FF 2D FF FF FF 35 FF FF FF 3A 05 FF FF 1D FF FF FF 25 16 4C 04 FF FF FF FF (начало - 35, конец - 4D)</span><br><span class="line">7. 4F FF FF FF FF FF FF FF 0E 0A FF FF FF FF FF FF 29 34 26 FF 0B FF FF FF 12 FF FF 3C FF FF FF FF (начало - 0B, конец - 4F)</span><br><span class="line">8. FF 0C 0D 44 FF FF FF FF 2F 3B 1F 39 FF FF FF FF FF 0F 47 38 1B 49 FF FF FF FF FF 28 FF 42 FF FF (начало - 42, конец - 3B)</span><br></pre></td></tr></table></figure><p><strong>Реверс алгоритма выбора пути и сравнение путей на питоне:</strong> <a href="https://gist.github.com/3814503" target="_blank" rel="noopener">https://gist.github.com/3814503</a> </p><p><strong>Самые короткие и самые длинные дороги через острова:</strong> номер означает участок, через который проходит игрок, а в скобках стоит номер яйца, необходимого для перемещения к следующему участку. </p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">**FERN ISLAND** * остров содержит бонус-сокращалку, можно не сражаться с боссом</span><br><span class="line">КОРОТКИЕ ПУТИ: 15 -&gt;(0)-&gt; 0 -&gt;(0)-&gt; 20 -&gt;(0)-&gt; 36 -&gt;(0)-&gt; 41 15 -&gt;(3)-&gt; 37 -&gt;(4)-&gt; 20 -&gt;(0)-&gt; 36 -&gt;(0)-&gt; 41</span><br><span class="line">ДЛИННЫЕ ПУТЬ: 15 -&gt;(0)-&gt; 0 -&gt;(0)-&gt; 20 -&gt;(0)-&gt; 36 -&gt;(2)-&gt; 40 -&gt;(2)-&gt; 18 -&gt;(0)-&gt; 2A -&gt;(0)-&gt; 37 -&gt;(0)-&gt; 41 </span><br><span class="line"></span><br><span class="line">**LAKE ISLAND**</span><br><span class="line">КОРОТКИЕ ПУТИ: 0X14 -&gt;(0)-&gt; 30 -&gt;(0)-&gt; 19 -&gt;(0)-&gt; 31 -&gt;(1)-&gt; 1A -&gt;(1)-&gt; 4E 0X14 -&gt;(0)-&gt; 30 -&gt;(0)-&gt; 19 -&gt;(0)-&gt; 31 -&gt;(2)-&gt; 23 -&gt;(1)-&gt; 4E</span><br><span class="line">ДЛИННЫЙ ПУТЬ: 0X14 -&gt;(0)-&gt; 30 -&gt;(0)-&gt; 19 -&gt;(0)-&gt; 31 -&gt;(0)-&gt; 2C -&gt;(0)-&gt; 1A -&gt;(3)-&gt; 1 -&gt;(4)-&gt; 23 -&gt;(0)-&gt; 4E </span><br><span class="line"></span><br><span class="line"> **DESERT ISLAND** * остров содержит бонус-сокращалку, можно не сражаться с боссом</span><br><span class="line"> КОРОТКИЕ ПУТИ: 0X3D -&gt;(1)-&gt; 10 -&gt;(0)-&gt; 33 -&gt;(0)-&gt; 4A</span><br><span class="line"> ДЛИННЫЙ ПУТЬ: 0X3D -&gt;(0)-&gt; 13 -&gt;(0)-&gt; 2 -&gt;(4)-&gt; 3 -&gt;(0)-&gt; 21 -&gt;(0)-&gt; 10 -&gt;(0)-&gt; 33 -&gt;(0)-&gt; 4A </span><br><span class="line"> </span><br><span class="line"> **ICE ISLAND**</span><br><span class="line"> КОРОТКИЕ ПУТИ: 0X8 -&gt;(0)-&gt; 9 -&gt;(0)-&gt; 3F -&gt;(0)-&gt; 17 -&gt;(0)-&gt; 48 0X8 -&gt;(1)-&gt; 3E -&gt;(0)-&gt; 27 -&gt;(0)-&gt; 1E -&gt;(0)-&gt; 48</span><br><span class="line"> ДЛИННЫЙ ПУТЬ: 0X8 -&gt;(0)-&gt; 9 -&gt;(0)-&gt; 3F -&gt;(0)-&gt; 17 -&gt;(2)-&gt; 43 -&gt;(2)-&gt; 1E -&gt;(2)-&gt; 27 -&gt;(0)-&gt; 3E -&gt;(0)-&gt; 48 </span><br><span class="line"> </span><br><span class="line"> **CAVE ISLAND** * остров содержит бонус-сокращалку, можно не сражаться с боссом</span><br><span class="line"> КОРОТКИЕ ПУТИ: 0X24 -&gt;(0)-&gt; 32 -&gt;(0)-&gt; 22 -&gt;(7)-&gt; 46 0X24 -&gt;(0)-&gt; 32 -&gt;(4)-&gt; 7 -&gt;(0)-&gt; 46</span><br><span class="line"> ДЛИННЫЙ ПУТЬ: 0X24 -&gt;(0)-&gt; 32 -&gt;(0)-&gt; 22 -&gt;(0)-&gt; 2E -&gt;(2)-&gt; 7 -&gt;(4)-&gt; 6 -&gt;(0)-&gt; 45 -&gt;(0)-&gt; 2B -&gt;(0)-&gt; 11 -&gt;(0)-&gt; 1C -&gt;(0)-&gt; 46 </span><br><span class="line"> </span><br><span class="line"> **CLOUD ISLAND** </span><br><span class="line"> КОРОТКИЕ ПУТИ: 0X35 -&gt;(0)-&gt; 1D -&gt;(0)-&gt; 4 -&gt;(0)-&gt; 4C -&gt;(0)-&gt; 5 -&gt;(0)-&gt; 2D -&gt;(0)-&gt; 4D</span><br><span class="line"> ДЛИННЫЙ ПУТЬ: 0X35 -&gt;(0)-&gt; 1D -&gt;(0)-&gt; 4 -&gt;(0)-&gt; 4C -&gt;(0)-&gt; 5 -&gt;(0)-&gt; 2D -&gt;(3)-&gt; 3A -&gt;(0)-&gt; 16 -&gt;(0)-&gt; 25 -&gt;(0)-&gt; 4D </span><br><span class="line"> </span><br><span class="line"> **VOLCANO ISLAND**</span><br><span class="line"> КОРОТКИЕ ПУТИ: 0XB -&gt;(0)-&gt; 3C -&gt;(0)-&gt; 26 -&gt;(0)-&gt; A -&gt;(0)-&gt; 4F</span><br><span class="line"> ДЛИННЫЙ ПУТЬ: 0XB -&gt;(0)-&gt; 3C -&gt;(0)-&gt; 26 -&gt;(0)-&gt; A -&gt;(2)-&gt; E -&gt;(3)-&gt; 29 -&gt;(0)-&gt; 34 -&gt;(0)-&gt; 12 -&gt;(0)-&gt; 4F </span><br><span class="line"> </span><br><span class="line"> **DINOSAUR ISLAND** </span><br><span class="line"> КОРОТКИЕ ПУТИ: </span><br><span class="line"> 0X42 -&gt;(1)-&gt; 1B -&gt;(0)-&gt; 39 -&gt;(1)-&gt; D -&gt;(3)-&gt; 3B 0X42 -&gt;(1)-&gt; 1B -&gt;(0)-&gt; 39 -&gt;(2)-&gt; 1F -&gt;(2)-&gt; 3B</span><br><span class="line"> 0X42 -&gt;(1)-&gt; 1B -&gt;(0)-&gt; 39 -&gt;(3)-&gt; 47 -&gt;(1)-&gt; 3B 0X42 -&gt;(1)-&gt; 1B -&gt;(2)-&gt; 38 -&gt;(1)-&gt; 1F -&gt;(2)-&gt; 3B</span><br><span class="line"> 0X42 -&gt;(1)-&gt; 1B -&gt;(2)-&gt; 38 -&gt;(2)-&gt; 47 -&gt;(1)-&gt; 3B 0X42 -&gt;(1)-&gt; 1B -&gt;(3)-&gt; 28 -&gt;(1)-&gt; 47 -&gt;(1)-&gt; 3B</span><br><span class="line"></span><br><span class="line"> ДЛИННЫЙ ПУТЬ: 0X42 -&gt;(0)-&gt; 49 -&gt;(0)-&gt; 1B -&gt;(0)-&gt; 39 -&gt;(0)-&gt; 44 -&gt;(0)-&gt; D -&gt;(0)-&gt; C -&gt;(0)-&gt; 1F -&gt;(4)-&gt; 47 -&gt;(4)-&gt; 28 -&gt;(0)-&gt; 38 -&gt;(0)-&gt; F -&gt;(1)-&gt; 2F -&gt;(0)-&gt; 3B</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Еще одна о
-      
-    
-    </summary>
-    
-    
-    
-      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
-    
-      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Prince of Persia [NES] Passing the guard without a sword</title>
-    <link href="http://spiiin.github.io/blog/23504/"/>
-    <id>http://spiiin.github.io/blog/23504/</id>
-    <published>2012-09-19T23:19:00.000Z</published>
-    <updated>2020-12-25T15:14:21.160Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="https://www.youtube.com/watch?v=DtR7bKY1-DI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=DtR7bKY1-DI</a></p><p>Глич, позволяющий обмануть стражника и не бежать через весь уровень за мечом. При скольжении за границы экрана координата стражника перезаписывается и он притягивается всё левее к границе, а затем делается прыжок через дверь, на который охранник просто не успевает среагировать. Способ вполне применим и в реальном мире.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;a href=&quot;h
-      
-    
-    </summary>
-    
-    
-    
-      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
-    
-      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Переезд++</title>
-    <link href="http://spiiin.github.io/blog/61836/"/>
-    <id>http://spiiin.github.io/blog/61836/</id>
-    <published>2012-09-01T18:45:00.000Z</published>
-    <updated>2020-12-26T02:10:38.264Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Когда покидаешь жильё, вспоминается всё несделанное в нём. Где-то не успел залезть на крышу и посмотреть оттуда на звёзды, где-то хотел повесить плакат, но не повесил, где-то так и не сходил поиграть в баскет на расположенную рядом площадку. Думал, успею, а за полгода так и не собрался ни разу. Надо приучить себя к мысли, что возможно, уезжать придётся не когда-либо, а прямо сейчас, чтобы самое важное делать сразу и постоянно. Такая упрощенная версия memento mori.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Когда поки
-      
-    
-    </summary>
-    
-    
-    
-      <category term="log" scheme="http://spiiin.github.io/tags/log/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chip and Dale Rescue Rangers 2 Hacks</title>
-    <link href="http://spiiin.github.io/blog/26860/"/>
-    <id>http://spiiin.github.io/blog/26860/</id>
-    <published>2012-06-21T21:22:00.000Z</published>
-    <updated>2020-12-25T15:14:41.228Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="https://www.youtube.com/watch?v=qA8L9sHaoPM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=qA8L9sHaoPM</a><br>Видео битв с боссами из двух хаков Чипа и Дейла 2. Первый - хак Lomax’а, переделаны арены боссов, кроме двух последних:  <a href="http://lomaxdomain.jimdo.com/app/download/5962670281/4fe39e54/49ac3b2e71b0a18dddbe448635fbc47a069a4953/HARDCORE_Chip+%27n+Dale+Rescue+Rangers+2+%28U%29+%5B%21%5D_lomax.zip?t=1330459196" target="_blank" rel="noopener">Скачать</a> </p><p><a href="https://www.youtube.com/watch?v=vxPYwXshsRo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=vxPYwXshsRo</a><br>Второй - хак Roket’а, сделанный на основе предыдущего хака, хака с переводом на русский язык и моего реверса формата врагов. Переделаны арены боссов, кроме двух последних, и изменены враги на уровнях:  <a href="http://www.emu-land.net/forum/index.php?action=dlattach;topic=60286.0;attach=46176" target="_blank" rel="noopener">Скачать</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;a href=&quot;h
-      
-    
-    </summary>
-    
-    
-    
-      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
-    
-      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ссылки на ролики по обучению жонглированию тремя мячами на youtube</title>
-    <link href="http://spiiin.github.io/blog/22465/"/>
-    <id>http://spiiin.github.io/blog/22465/</id>
-    <published>2012-05-04T20:54:00.000Z</published>
-    <updated>2020-12-25T15:04:45.860Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><strong><code>misterme</code></strong> (simple-medium) <em>туториалы для начинающих, много видео с фестивалей</em><br><a href="http://www.youtube.com/user/eMretsiM" target="_blank" rel="noopener">http://www.youtube.com/user/eMretsiM</a> 531 mills mess<br><a href="http://www.youtube.com/watch?v=oli5Oq6WLRs" target="_blank" rel="noopener">http://www.youtube.com/watch?v=oli5Oq6WLRs</a><br><a href="http://www.youtube.com/watch?v=DB3pMlHUgTo" target="_blank" rel="noopener">http://www.youtube.com/watch?v=DB3pMlHUgTo</a> siteswap 423 (tennis with fakes, alt yoyo, takeouts with unside, fake mills mess-2, fake mess, fake double box, 423 flow, follow var., rev. takeouts, rev. inside takeouts, rev. follow, clawed columns, 423col with chops on 2s) </p><p><strong><code>JugglingForCake</code></strong> (simple-medium-advanced) <em>(прикольный пацан, интересные вариации бокса)</em><br><a href="http://www.youtube.com/user/JugglingForCake" target="_blank" rel="noopener">http://www.youtube.com/user/JugglingForCake</a><br><a href="http://www.youtube.com/watch?v=xjF1kBzbuDU" target="_blank" rel="noopener">http://www.youtube.com/watch?v=xjF1kBzbuDU</a> - 53 dual shower tricks</p><p><strong><code>thegnome54</code></strong> (medium-advanced) <em>Хорошие, годные трюки. Много туториалов (в которых 5 секунд показываются трик и несколько минут разговоров :)).</em><br><a href="http://www.youtube.com/user/thegnome54" target="_blank" rel="noopener">http://www.youtube.com/user/thegnome54</a> Nelson’s Nemesis<br><a href="http://www.youtube.com/watch?v=cD0z-VXsF\_g" target="_blank" rel="noopener">http://www.youtube.com/watch?v=cD0z-VXsF\_g</a> Fairly Obscure Juggling Patterns<br><a href="http://www.youtube.com/watch?v=djPKTAqnQN4" target="_blank" rel="noopener">http://www.youtube.com/watch?v=djPKTAqnQN4</a> Good yoyo variation<br><a href="http://www.youtube.com/watch?v=givZw\_96EAA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=givZw\_96EAA</a> Reversed factory<br><a href="http://www.youtube.com/watch?v=8hVNRRPnNns" target="_blank" rel="noopener">http://www.youtube.com/watch?v=8hVNRRPnNns</a> Disappearing Ball Trick: Juggling Tutorial 36<br><a href="http://www.youtube.com/watch?v=A74mhNDTpTI" target="_blank" rel="noopener">http://www.youtube.com/watch?v=A74mhNDTpTI</a> shower tossouts unweawe statue of liberty Inside Elbow Stall 441 mills mess Windshield Wipers Symmetrical Georgian Shuffle Georgian Shuffle The Truffle Shuffle Head Orbit<br><a href="http://www.youtube.com/watch?v=mr6BkpohPwU" target="_blank" rel="noopener">http://www.youtube.com/watch?v=mr6BkpohPwU</a> The Contortionist(за спиной)<br>The Sandbox Shuffle Triazzle Weave</p><p><strong><code>Steve Hoggan</code></strong> (simple-medium) Очень много трюков разного уровня.<br><a href="http://www.youtube.com/user/JugglingTricks" target="_blank" rel="noopener">http://www.youtube.com/user/JugglingTricks</a> Georgian Shuffle and Scuffle<br><a href="http://www.youtube.com/watch?v=HgiMI46j0WY" target="_blank" rel="noopener">http://www.youtube.com/watch?v=HgiMI46j0WY</a> Many Factories<br><a href="http://www.youtube.com/watch?v=U6wti1TvDpc" target="_blank" rel="noopener">http://www.youtube.com/watch?v=U6wti1TvDpc</a> 423 trics<br><a href="http://www.youtube.com/watch?v=wsH22nQz0-Q" target="_blank" rel="noopener">http://www.youtube.com/watch?v=wsH22nQz0-Q</a> 6 mess variations<br><a href="http://www.youtube.com/watch?v=qRvepXfoyZ0" target="_blank" rel="noopener">http://www.youtube.com/watch?v=qRvepXfoyZ0</a> basic siteswap<br><a href="http://www.youtube.com/watch?v=9N9X9adP75" target="_blank" rel="noopener">http://www.youtube.com/watch?v=9N9X9adP75</a> Kraken + variations<br><a href="http://www.youtube.com/watch?v=K8rw8gxM2CA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=K8rw8gxM2CA</a> <a href="http://www.youtube.com/user/thegoheads" target="_blank" rel="noopener">http://www.youtube.com/user/thegoheads</a> (57 423)<br><a href="http://www.youtube.com/watch?v=x7pM0LJE-1Q" target="_blank" rel="noopener">http://www.youtube.com/watch?v=x7pM0LJE-1Q</a> (101 mess)<br><a href="http://www.youtube.com/watch?v=4W7UL052zvI" target="_blank" rel="noopener">http://www.youtube.com/watch?v=4W7UL052zvI</a> </p><p><strong><code>3balljongliertricks</code></strong> (simple, medium) <em>Много простых разных триков. есть несколько интересных вариантов смешивания трюков из контактного жонглирования с обычным. Вариации Factory.</em><br><a href="http://www.youtube.com/user/3balljongliertricks" target="_blank" rel="noopener">http://www.youtube.com/user/3balljongliertricks</a> 3 ball juggling butterfly 3<br><a href="http://www.youtube.com/watch?v=M61CsXgMoqY" target="_blank" rel="noopener">http://www.youtube.com/watch?v=M61CsXgMoqY</a> 3 ball juggling japanese factory<br><a href="http://www.youtube.com/watch?v=KoftHD9bdMU" target="_blank" rel="noopener">http://www.youtube.com/watch?v=KoftHD9bdMU</a> 3 ball juggling fast factory<br><a href="http://www.youtube.com/watch?v=HvQ5EKV6ijE" target="_blank" rel="noopener">http://www.youtube.com/watch?v=HvQ5EKV6ijE</a> 3 ball juggling factory x arm catch (easy) 3 ball juggling factory up+down x arms 3 ball juggling factory reverse alternate 3 ball juggling factory reverse 3 ball juggling box with reverse factory 3 ball juggling box variation 2 3 ball juggling box fake with butterfly<br><a href="http://www.youtube.com/watch?v=CToQFzedNiA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=CToQFzedNiA</a> 3 ball juggling box fake<br><a href="http://www.youtube.com/watch?v=CvWaSZurqCQ" target="_blank" rel="noopener">http://www.youtube.com/watch?v=CvWaSZurqCQ</a> </p><p><strong><code>robert441</code></strong> (advanced) Немного видео с наборами оригинальных триков и комбинациями, интересные варианты бросков из-за спины и ногами. иногда остается ощущение, что трюке делаются в каком-то рваном ритме, хотя пластика движений есть.<br><a href="http://www.youtube.com/user/robert441" target="_blank" rel="noopener">http://www.youtube.com/user/robert441</a> new tricks<br><a href="http://www.youtube.com/watch?v=Aw7QUGfZHrg" target="_blank" rel="noopener">http://www.youtube.com/watch?v=Aw7QUGfZHrg</a> new tricks 2<br><a href="http://www.youtube.com/watch?v=uU4t8BqrUCM" target="_blank" rel="noopener">http://www.youtube.com/watch?v=uU4t8BqrUCM</a> 3 ball freestyle<br><a href="http://www.youtube.com/watch?v=zShBO-X3T4Q" target="_blank" rel="noopener">http://www.youtube.com/watch?v=zShBO-X3T4Q</a> 3 ball freestyle winner</p><p><strong><code>Tasbusa Murakami</code></strong> (crazy) Очень (очень!) быстрый. Большинство триков нотацией описывать дольше, чем он переходит от одного к другому. Самые сумасшедшие вариации бокса.<br><a href="http://www.youtube.com/user/Mura345" target="_blank" rel="noopener">http://www.youtube.com/user/Mura345</a> Inline3<br><a href="http://www.youtube.com/watch?v=\_E48OPcrpA4" target="_blank" rel="noopener">http://www.youtube.com/watch?v=\_E48OPcrpA4</a> Patterns 4<br><a href="http://www.youtube.com/watch?v=ahWmnKLB1mU" target="_blank" rel="noopener">http://www.youtube.com/watch?v=ahWmnKLB1mU</a> Patterns 3<br><a href="http://www.youtube.com/watch?v=bpTtQSKQO0c" target="_blank" rel="noopener">http://www.youtube.com/watch?v=bpTtQSKQO0c</a> Patterns 2<br><a href="http://www.youtube.com/watch?v=PFiUK57oS90" target="_blank" rel="noopener">http://www.youtube.com/watch?v=PFiUK57oS90</a> Patterns<br><a href="http://www.youtube.com/watch?v=Bn3cN6oRPCo" target="_blank" rel="noopener">http://www.youtube.com/watch?v=Bn3cN6oRPCo</a> 3ball switched box<br><a href="http://www.youtube.com/watch?v=\_wFKUqT1fnw" target="_blank" rel="noopener">http://www.youtube.com/watch?v=\_wFKUqT1fnw</a></p><p><strong><code>Michael Karas</code></strong> (advanced) <em>автор sandbox shuffle</em><br><a href="http://www.youtube.com/user/MichaelAKaras" target="_blank" rel="noopener">http://www.youtube.com/user/MichaelAKaras</a> ‘Tetris’ Video Game Juggling<br><a href="http://www.youtube.com/watch?v=PQ\_wbc3Z5C8" target="_blank" rel="noopener">http://www.youtube.com/watch?v=PQ\_wbc3Z5C8</a> JuggleMania - Balls<br><a href="http://www.youtube.com/watch?v=F\_PjGQfh" target="_blank" rel="noopener">http://www.youtube.com/watch?v=F\_PjGQfh</a></p><p><strong><code>Ori Roth</code></strong> (advanced-medium) <em>Автор Orka’s Mess, много видео не по жонглированию.</em><br><a href="http://www.youtube.com/user/Aiyegbeni/videos" target="_blank" rel="noopener">http://www.youtube.com/user/Aiyegbeni/videos</a><br><a href="http://www.youtube.com/watch?v=6ToBK5l0KJA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=6ToBK5l0KJA</a> Ori Roth 3 Ball Contest<br><a href="http://www.youtube.com/watch?v=xbW43PDhmWU" target="_blank" rel="noopener">http://www.youtube.com/watch?v=xbW43PDhmWU</a> 3 balls routine from 2004</p><p><strong><code>Idiosensory</code></strong> (advanced, some medium) <em>Редкие, сложные и интересные трюки. Некоторые скопированы, оставляет ссылки на других жонглеров.</em><br><a href="http://www.youtube.com/user/Idiosensory" target="_blank" rel="noopener">http://www.youtube.com/user/Idiosensory</a><br><a href="http://www.youtube.com/watch?v=7xG2sbPYt1w&amp;feature=endscreen&amp;NR=1" target="_blank" rel="noopener">http://www.youtube.com/watch?v=7xG2sbPYt1w&amp;feature=endscreen&amp;NR=1</a> More 3b - tricks by asf360, mura, Luke’s Shuffle and reverse Mill’s Mess<br><a href="http://www.youtube.com/watch?v=LsbxhawBYQQ" target="_blank" rel="noopener">http://www.youtube.com/watch?v=LsbxhawBYQQ</a> More 3 ball Jan 2012<br><a href="http://www.youtube.com/watch?v=2rDkpjqYf1I" target="_blank" rel="noopener">http://www.youtube.com/watch?v=2rDkpjqYf1I</a> More 3b - tricks by asf360, mura, Luke’s Shuffle and reverse Mill’s Mess<br><a href="http://www.youtube.com/watch?v=RJUsiBDvV9E" target="_blank" rel="noopener">http://www.youtube.com/watch?v=RJUsiBDvV9E</a> More 3 ball - 4 more patterns from Jugglefest 2011<br><a href="http://www.youtube.com/watch?v=DkCYhO6xsxQ" target="_blank" rel="noopener">http://www.youtube.com/watch?v=DkCYhO6xsxQ</a> Kraken, Mr. E’s Extended, 531 Mills Mess, Shuffler’s Tennis<br><a href="http://www.youtube.com/watch?v=xHecfyCrbGY" target="_blank" rel="noopener">http://www.youtube.com/watch?v=xHecfyCrbGY</a> New pattern for your juggling enjoyment<br><a href="http://www.youtube.com/watch?v=EJfLU2j\_\_WQ" target="_blank" rel="noopener">http://www.youtube.com/watch?v=EJfLU2j\_\_WQ</a> Shuffler’s Mess, Z-Box, and some leg drop nonsense<br><a href="http://www.youtube.com/watch?v=EeDUB-t2N88" target="_blank" rel="noopener">http://www.youtube.com/watch?v=EeDUB-t2N88</a> Nelson’s Nemesis (Multiplex Ruben’s) and some other pattern<br><a href="http://www.youtube.com/watch?v=vCC26n6dk8A" target="_blank" rel="noopener">http://www.youtube.com/watch?v=vCC26n6dk8A</a> Boston Yo-Yo variation and Rubenstein’s Drop variation<br><a href="http://www.youtube.com/watch?v=jJA\_nd8q6QA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=jJA\_nd8q6QA</a> Isley’s Magic and Maka’s Mess 2 new patterns<br><a href="http://www.youtube.com/watch?v=v\_1XKOiddtg" target="_blank" rel="noopener">http://www.youtube.com/watch?v=v\_1XKOiddtg</a> Yo-Yo, Puppet master, Extended, and Boston Shuffle<br><a href="http://www.youtube.com/watch?v=tv7FAimH\_qY" target="_blank" rel="noopener">http://www.youtube.com/watch?v=tv7FAimH\_qY</a> Burke’s Barrage and Take-Outs, plus Reverse Burke’s Barrage<br><a href="http://www.youtube.com/watch?v=CotaBkynP-U" target="_blank" rel="noopener">http://www.youtube.com/watch?v=CotaBkynP-U</a> Shary and Orka’s Crossup<br><a href="http://www.youtube.com/watch?v=lndE5NkyTso" target="_blank" rel="noopener">http://www.youtube.com/watch?v=lndE5NkyTso</a> Over the Top and Takeout Slams<br><a href="http://www.youtube.com/watch?v=j1D8\_RpGa1g" target="_blank" rel="noopener">http://www.youtube.com/watch?v=j1D8\_RpGa1g</a> Sandbox Shuffle 2 variations<br><a href="http://www.youtube.com/watch?v=7xG2sbPYt1w" target="_blank" rel="noopener">http://www.youtube.com/watch?v=7xG2sbPYt1w</a> 3 Multiplex patterns - Full Georgian, Singapore Shuffle, King of Hearts<br><a href="http://www.youtube.com/watch?v=qTZvWMbOVlc" target="_blank" rel="noopener">http://www.youtube.com/watch?v=qTZvWMbOVlc</a> Kato’s Crux and Hands of Time<br><a href="http://www.youtube.com/watch?v=Ywk6DUyAIUU" target="_blank" rel="noopener">http://www.youtube.com/watch?v=Ywk6DUyAIUU</a> Mangham’s Mangle + 3 new variations and Mangham’s Mess<br><a href="http://www.youtube.com/watch?v=8C6VjYyqxAg" target="_blank" rel="noopener">http://www.youtube.com/watch?v=8C6VjYyqxAg</a> 2 new patterns - Al’s Slide and Down Under<br><a href="http://www.youtube.com/watch?v=-T4T9f0WSVA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=-T4T9f0WSVA</a> Tomas variation<br><a href="http://www.youtube.com/watch?v=IB7Hc3GYb5Q" target="_blank" rel="noopener">http://www.youtube.com/watch?v=IB7Hc3GYb5Q</a> Olas Variations<br><a href="http://www.youtube.com/watch?v=r8BJk0VB1ms" target="_blank" rel="noopener">http://www.youtube.com/watch?v=r8BJk0VB1ms</a> Mountains<br><a href="http://www.youtube.com/watch?v=6X4FMWuc-OI" target="_blank" rel="noopener">http://www.youtube.com/watch?v=6X4FMWuc-OI</a> Orka’s Mess and Extended Variation</p><p><strong><code>Chris Hodge</code></strong> (advanced) <em>Безбашенная скорость.</em><br><a href="http://www.youtube.com/user/penguinjuggling" target="_blank" rel="noopener">http://www.youtube.com/user/penguinjuggling</a> Upsidedown Box (variations at the end)<br><a href="http://www.youtube.com/watch?v=KbLngWbhwwM&amp;feature=related" target="_blank" rel="noopener">http://www.youtube.com/watch?v=KbLngWbhwwM&amp;feature=related</a> Tricks Pack (box variations, за спиной variations)<br><a href="http://www.youtube.com/watch?v=SrnlZD713Ig&amp;list=UUxobR9IQjolS1xTsDpXO78w" target="_blank" rel="noopener">http://www.youtube.com/watch?v=SrnlZD713Ig&amp;list=UUxobR9IQjolS1xTsDpXO78w</a></p><p><strong><code>JeremeK</code></strong> (simple) <em>необычные, но не очень впечатляющие трики</em><br><a href="http://www.youtube.com/user/JeremeK" target="_blank" rel="noopener">http://www.youtube.com/user/JeremeK</a> 5. Mike’s mess (reverse chops)<br><a href="http://www.youtube.com/watch?v=GeY\_Z\_AyxY8&amp;list=PL1401730C27F7FE98&amp;index=1" target="_blank" rel="noopener">http://www.youtube.com/watch?v=GeY\_Z\_AyxY8&amp;list=PL1401730C27F7FE98&amp;index=1</a> 6. Kennington’s Catastrophe<br><a href="http://www.youtube.com/watch?v=Od4IJmyRiFw&amp;feature=bf\_next&amp;list=PL1401730C27F7FE98" target="_blank" rel="noopener">http://www.youtube.com/watch?v=Od4IJmyRiFw&amp;feature=bf\_next&amp;list=PL1401730C27F7FE98</a> 7. Slow Shuffle, Shuffle, Luke’s Shuffle<br><a href="http://www.youtube.com/watch?v=FrhWTb\_RQf4&amp;feature=BFa&amp;list=PL1401730C27F7FE98&amp;lf=bf\_next" target="_blank" rel="noopener">http://www.youtube.com/watch?v=FrhWTb\_RQf4&amp;feature=BFa&amp;list=PL1401730C27F7FE98&amp;lf=bf\_next</a> 8. Juggling Trick: Reverse Chops, Burke’s Barrage, Take Outs<br><a href="http://www.youtube.com/watch?v=HhpllX0OeH4&amp;feature=bf\_next&amp;list=PL1401730C27F7FE98&amp;lf=bf\_next" target="_blank" rel="noopener">http://www.youtube.com/watch?v=HhpllX0OeH4&amp;feature=bf\_next&amp;list=PL1401730C27F7FE98&amp;lf=bf\_next</a> 9. Juggling Tutorial: Kennington’s Killer<br><a href="http://www.youtube.com/watch?v=d2FIMdF6hkY&amp;feature=BFa&amp;list=PL1401730C27F7FE98&amp;lf=bf\_next10" target="_blank" rel="noopener">http://www.youtube.com/watch?v=d2FIMdF6hkY&amp;feature=BFa&amp;list=PL1401730C27F7FE98&amp;lf=bf\_next10</a>. Georgian Shuffle + variations<br><a href="http://www.youtube.com/watch?v=Da0uX5TgfCk" target="_blank" rel="noopener">http://www.youtube.com/watch?v=Da0uX5TgfCk</a></p><p><strong><code>ashomsky</code></strong> (simple, medium) <em>туториалы по жонглированию с замедлением</em><br><a href="http://www.youtube.com/user/ashomsky" target="_blank" rel="noopener">http://www.youtube.com/user/ashomsky</a><br><a href="http://www.youtube.com/playlist?list=PLA5FFB7557D47CBB1&amp;feature=plcp" target="_blank" rel="noopener">http://www.youtube.com/playlist?list=PLA5FFB7557D47CBB1&amp;feature=plcp</a> 2. Mill’s Mess cross cascade<br><a href="http://www.youtube.com/watch?v=EZHq34QzO14&amp;list=PLA5FFB7557D47CBB1&amp;index=8" target="_blank" rel="noopener">http://www.youtube.com/watch?v=EZHq34QzO14&amp;list=PLA5FFB7557D47CBB1&amp;index=8</a> 3. Mill’s Mess in box<br><a href="http://www.youtube.com/watch?v=FoLY7q7kKXc&amp;list=PLA5FFB7557D47CBB1&amp;index=44" target="_blank" rel="noopener">http://www.youtube.com/watch?v=FoLY7q7kKXc&amp;list=PLA5FFB7557D47CBB1&amp;index=44</a>. 531<br><a href="http://www.youtube.com/watch?v=hGyknci3jIc" target="_blank" rel="noopener">http://www.youtube.com/watch?v=hGyknci3jIc</a></p><p><strong><code>jugglingstore1</code></strong> (simple) <em>школа жонглирования, Слава Ларионов, самые простые базовые сайтсвопы и трюки.</em><br>(441, boston mess, chops, claws, columns shuffle switch, fake mess, fake columns, false shower, flash, follow, halfshower, mills mess, popcorn, shower, snake, takein, takeouts, waterfall, yoyo, factory, tennis, penguins, box)</p><p><strong><code>Luke Burrage</code></strong> (medium-advanced) <em>автор Burke’s Burrage, “сценический” жонглёр, организует ежегодное голование за лучшего жонглера и вообще много всего делает</em><br><a href="http://www.youtube.com/user/lukeburrage" target="_blank" rel="noopener">http://www.youtube.com/user/lukeburrage</a><br><a href="http://www.youtube.com/watch?v=3CuJFLJbb5U" target="_blank" rel="noopener">http://www.youtube.com/watch?v=3CuJFLJbb5U</a> 3 ball Basics</p><p><strong><code>Matt Mangham</code></strong> (simple). <em>автор сайта kingkaskade, трюка Mangham’s Mangle.</em><br><a href="http://www.youtube.com/watch?v=uGmQCPPEeHw" target="_blank" rel="noopener">http://www.youtube.com/watch?v=uGmQCPPEeHw</a> 40 tricks</p><p><strong><code>draitube</code></strong> (simple-medium) <em>много хороших простых туториалов</em><br><a href="http://www.youtube.com/user/draitube" target="_blank" rel="noopener">http://www.youtube.com/user/draitube</a> box variations box, nbox, luke shuffle 441 mills mess<br><a href="http://www.youtube.com/watch?v=W7PzT-EtpdA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=W7PzT-EtpdA</a> clowed 423<br><a href="http://www.youtube.com/watch?v=nSO8GKKFzLE" target="_blank" rel="noopener">http://www.youtube.com/watch?v=nSO8GKKFzLE</a> </p><p><strong><em>Crazy Level:</em></strong></p><p><strong><code>reubenharry</code></strong><br><a href="http://juggling.tv/users/347/reubenharry" target="_blank" rel="noopener">http://juggling.tv/users/347/reubenharry</a> Создаёт иллюзию хаоса движений и рисует мячиками какие-то гипнотические рисунки.<br><a href="http://www.youtube.com/user/reubenharry/videos" target="_blank" rel="noopener">http://www.youtube.com/user/reubenharry/videos</a></p><p><strong><code>Yury Yamamura</code></strong><br><a href="http://www.youtube.com/user/JugglerYuri" target="_blank" rel="noopener">http://www.youtube.com/user/JugglerYuri</a> Много необычных техник, броски за спиной, головой, под ногами. </p><p><strong><code>Peter Kingsland</code></strong><br><a href="http://www.youtube.com/user/pumpkineater23" target="_blank" rel="noopener">http://www.youtube.com/user/pumpkineater23</a> обалденный ритм, может жонглировать вообще без мячей.</p><p><strong><code>asf360</code></strong><br><a href="http://www.youtube.com/user/asf360" target="_blank" rel="noopener">http://www.youtube.com/user/asf360</a></p><p><strong><code>Выступления:</code></strong><br><a href="http://www.youtube.com/watch?v=6eWn0dRHwIQ" target="_blank" rel="noopener">http://www.youtube.com/watch?v=6eWn0dRHwIQ</a> Luke Burrage juggler amazing<br><a href="http://www.youtube.com/watch?v=2kU8gCyWwtc" target="_blank" rel="noopener">http://www.youtube.com/watch?v=2kU8gCyWwtc</a> Много базовых триков<br><a href="http://www.youtube.com/watch?v=MVecAJpLcSE" target="_blank" rel="noopener">http://www.youtube.com/watch?v=MVecAJpLcSE</a> Kyle Johnson 3 ball Routine<br><a href="http://www.youtube.com/watch?v=gNEHV6UmkSg" target="_blank" rel="noopener">http://www.youtube.com/watch?v=gNEHV6UmkSg</a> Masaki Hirano juggling video (в основном контактное, типа такого <a href="http://www.youtube.com/watch?v=zPkxWqLgZ0Y" target="_blank" rel="noopener">http://www.youtube.com/watch?v=zPkxWqLgZ0Y</a>)<br><a href="http://www.youtube.com/watch?v=g95sJ5wCfUY" target="_blank" rel="noopener">http://www.youtube.com/watch?v=g95sJ5wCfUY</a> 3 ball good tricks<br><a href="http://www.youtube.com/watch?v=Qv6-hQDj4ts" target="_blank" rel="noopener">http://www.youtube.com/watch?v=Qv6-hQDj4ts</a> Falco Scheffler to Teach Four Days of Workshops at WJF 6 <a href="http://www.youtube.com/watch?v=riqkA3HKHB8" target="_blank" rel="noopener">http://www.youtube.com/watch?v=riqkA3HKHB8</a> Falco Scheffler Falcore-Juggling<br><a href="http://www.youtube.com/watch?v=d\_kS4i2TnrE" target="_blank" rel="noopener">http://www.youtube.com/watch?v=d\_kS4i2TnrE</a> Krtch что-то концептуальное.<br><a href="http://www.youtube.com/watch?v=H8f8drk5Urw" target="_blank" rel="noopener">http://www.youtube.com/watch?v=H8f8drk5Urw</a> Крис Блисс Amazing Juggling Finale<br><a href="http://www.youtube.com/watch?v=Taaqytd6kX4" target="_blank" rel="noopener">http://www.youtube.com/watch?v=Taaqytd6kX4</a> Steve Mills: Master 3 ball Juggling Routine. Выступление для детей от автора Mill’s mess :)<br><a href="http://www.youtube.com/watch?v=hv9v4wWugMA" target="_blank" rel="noopener">http://www.youtube.com/watch?v=hv9v4wWugMA</a> Japanese Jugglers<br><a href="http://www.youtube.com/watch?v=q9JZuA9JlVQ" target="_blank" rel="noopener">http://www.youtube.com/watch?v=q9JZuA9JlVQ</a> Japanese Jugglers 2 <a href="http://www.youtube.com/watch?v=eYNXu\_aPIAc" target="_blank" rel="noopener">http://www.youtube.com/watch?v=eYNXu\_aPIAc</a> Japanese Jugglers 3 - Tokyo<br><a href="http://www.youtube.com/watch?v=FdKGp\_aZ8pE" target="_blank" rel="noopener">http://www.youtube.com/watch?v=FdKGp\_aZ8pE</a> Japanese Juggler TOP 11 Result<br><a href="http://www.youtube.com/watch?v=9ga6JMMj0YY" target="_blank" rel="noopener">http://www.youtube.com/watch?v=9ga6JMMj0YY</a> HIGAMI<br><a href="http://www.youtube.com/watch?v=lSGelJB9YwE" target="_blank" rel="noopener">http://www.youtube.com/watch?v=lSGelJB9YwE</a> HIGAMI 2<br><a href="http://www.youtube.com/watch?v=WpLiDY7VMzI" target="_blank" rel="noopener">http://www.youtube.com/watch?v=WpLiDY7VMzI</a> Komei Aoki. По этому имени еще можно много отыскать выступлений :)</p><p><strong><code>сайты:</code></strong><br>kingscascade.com<br>juggling.tv<br>jugglers.ru<br>www.toddstrong.com/balljuggling.php </p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><strong><code>ЗА</code></strong></p><p><code>Не существует ни одной идеальной национальной валюты для международных рассчётов</code>. Доллар не идеален и не вечен. От бреттон-вудской системы отказались именно из-за недостатков обмена доллара на золото и обратно. После этого все старательно делают вид, что проблемы нет (ямайская система). Из альтернатив - возврат к золоту или разделение стран по на несколько групп с доминированием различных валют/систем, причём группы должны быть полностью изолированы друг от друга, иначе вновь возникает вопрос об общей системе обмена между разными группами.  </p><p><code>Техническая неэффективность</code>. В плюсах потому, что является катализатором для развития системы, для того, чтобы программисты могли совершенствовать код. Можно с уверенностью сказать, что над биткоином и инфраструктурой вокруг него сейчас работают лучшие специалисты по криптографиии в мире, хакеры, в изначальном смысле этого слова, люди которые вникают в то, как устроены технические системы, которые придумали компьютеры и интернет и подарили их обществу.  </p><p><code>Считается, что блокчейн очень неэффективен в плане энергозатрат</code>, однако, не учитывается его относительная ценность и возможности по оптимизации. Никто ещё не измерял, намного ли полезнее тратить энергию видеокарт на видеоигры, новогодние гирлянды или всемирную систему хранения единиц ценности. Существует ли баланс между тем, насколько полезно иметь распределённую систему ответа на вопрос, кому принадлежит какая-либо ценность, и стоимостью поддержания работы такой системы? Очевидно, что следующие поколения криптовалют будут эффективнее того, что есть сейчас (а сейчас существуют только самые примитивные системы). Ещё один важный момент - если часть майнеров выключит свои фермы, система не станет работать хуже. Чем дешевле будет стоить криптовалюта, тем сильнее стимул обрабатывать экономнее в плане затрат энергии.  </p><p><code>Скорость реакции на изменения</code>. Очень подозрительный сработавший в нескольких странах феномен - население начинает больше доверять криптовалюте, чем своей национальной, в случае наступления пиздеца в экономике. Пока это лишь теория “гипербиткоинизации”, которой предстоит быть проверенной на практике более богатыми странами. Но, что может произойти с фиатными валютами в международных событиях за несколько десятилетий, вполне может произойти с криптовалютой за год - резкие скачки курса, международные договоры и запреты, распространение во многих странах. Если сейчас почти никто не принимает криптовалюты в качестве оплаты за товары - не значит, что так будет всегда, всё может измениться за несколько месяцев. Возможно, в будущем будет нормальным побыть богатым несколько часов. В обратную сторону это тоже может сработать.  </p><p><code>Устойчивость к санкциям, запретам и попыткам конфискации</code>. Данный плюс очевиден только для тех, кто сталкивался с тем, что у него что-то отбирали или запрещали использовать какую-либо систему. Те, кто не сталкивался с подобным, почему-то думают, что такое случается только со злобными нарушителями правил, и никогда не коснётся их самих. Пока государства не захватят контроль над кодом криптовалют и не зашьют туда необходимость соблюдение своих законов (спойлер - никогда), криптовалюты останутся “серой зоной” для тех, кому она нужна (это не только те, кто финансируют терроризм, покупают наркотики, отмывают деньги и распространяют детскую порнографию).  </p><p><strong><code>ПРОТИВ</code></strong></p><p><code>Сложность понимания</code>. Криптовалюты вводят много новых понятий, большая часть из которых являются неинтуитивными для непрофессоанала. Как так, все мои транзакции от первой до последней можно увидеть в блокчейне в любой момент, но я при этом могу оставаться анонимным? Почему я не могу однозначно посмотреть, сколько всего у меня есть денег, а все монеты (точнее UTXO) в моём кошельке размазаны по всем блокчейну? Почему если я провтыкал свой приватный ключ, то никто во всём мире (даже Самый Главный Президент, Суд и Крутой Друг-Компьютерщик) не может приказать вернуть мне мои деньги, если я потерял свой ключ?  </p><p><code>Анонимность</code> Её нет. При нынешней ситуации, соблюдать анонимность практически невозможно - одна мелкая ошибка (возможно, даже не лично ваша) может привести к потере анонимности большой группы пользователей. Уже сейчас есть тенденции на полный запрет анонимости в точках ввода/вывода валюты в фиат (KYС). Технически, соблюдая все правила безопасности, можно оставаться анонимным, но это требует множества усилий. Кроме того, человечество ещё не привыкло к анонимный личностям, и считает их чем-то мистическим. Для примера, сложно представить себе анонимного Сатоши Накамото, который существовал как личность в интернете (публиковал сообщения на форумах, коммитил код в репозитории), но не существует конкретного человека с таким именем, которому принадлежит самое большое количество биткоинов в мире.  </p><p><code>Безопасность</code>. Правило “Потерял ключ - потерял все связанные с ним деньги” имеет очевидный минус. Как часто обычно пользователи теряют пароли к своим компьютерам, аккаунтам в социальных сетях, онлайн-банкингам и подобным сервисам? Они явно не готовы к тому, чтобы терять право пользоваться своим аккаунтом навсегда, даже если аккаунт не имеет никакой стоимости. Что же делать в случаях, когда “аккаунт” - это напрямую деньги пользователя (возможно, все его сбережения). В настоящее время контроль над приватным ключом находится либо у пользователя (выше описанная ситуация с возможностью забыть ключ и потерять все связанные с ним деньги), либо у владельца сервиса, предоставляющего кошелёк. Тогда ключ может потерять (или украсть) владелец сервиса и пострадают сразу все пользователи сервиса одновременно. Оба варианты плохие, решение, возможно, в какой-либо форме совместного контроля, с передачей права на восстановление ключа независимой случайной группе лиц, размер группы варьируется от суммы спорных средств - снова же, встаёт вопрос о том, готов ли пользователь доверять право решения споров коллективному анонимному мнению (по сути, суд, в идеальном случае - как раз такое средство решения спорных вопросов сейчас).  </p><p><code>Революционность</code>. Сейчас криптовалюты существуют параллельно фиатным валютам, причем их курс медленно, но верно растёт (когда начинает расти быстро - я думаю, все это замечают). Происходит это не из-за пирамидности, как кажется тем, кто слышал про пирамиды, а из базовых определений инфлятора и дефлятора - биткоинов всегда будет существовать 21 миллион, а денежная масса M0 рублей, долларов и других валют постоянно становится больше. Очевидно, что при неизменном уровне спроса и предложения один биткоин будет стоить со временем дороже и дороже. Такая позиция не будет утраивать ни одно государство, которое хочет контролировать оборот денег на своей территории (то есть, вообще ни одно государство), поэтому законы против криптовалют будут становиться всё строже и строже. Пока мир находится на стадии, “обложим криптовалюты налогом, а там видно будет”, но при развитии ситуации криптовалюты начнут создавать угрозу фиатным валютам - тогда должно будет остаться что-то одно. Кроме того, если немного разобраться в идеологии шифропанков, то станет понятно, что причина, по которой создавались биткоины - не нажиться на них создателям, а попытка изменить общество.  </p><p><code>Незафиксированная децентрализация</code>. Децентрализация криптовалют заявлена, но нигде не зафиксирована. Нет никаких правил относительно запрета объединения большой группы пользователей в одном регионе или с одной целью. Устойчивость системы может зависеть от того, удастся ли захватить кому-либо контроль над большей её половиной или же контроль будет равномерно распределяться между несколькими относительно равными группировками. Майнинг пулы естественным образом объединяют майнеров в крупные группировки, пока что пулы не занимались продавливанием своих решений в ущерб интересам других пулов (ну, или просто я не знаю таких примеров), но сеть не защищена от разделения из-за умышленных действий крупных пулов.  </p><p><strong><code>На всякий случай, сразу ответы &quot;для чайников&quot; на вопрос - как заработать на криптовалютах?</code></strong> </p><p>Купить каких-нибудь криптомонет через ICO (вроде, это не запрещено ещё). Забудьте о них на год-два и продайте. Если проект, выпускащий ICO станет успешным, заработаете. Иначе - потеряете деньги.</p><p>Найдите работу с оплатой криптовалютой, и продавайте зарплату. Примеры проектов - steemit, gems, можно найти специализированные биржи фриланса.</p><p>Изучить технологии блокчейна и писать программы для работы с криптовалютами, в ближайшие годы программисты, умеющие это, будут цениться.</p><p><strong><code>Как не стоит пытаться заработать на криптовалютах (возможно, но намного сложнее, чем кажется)</code></strong>  </p><ul><li>Майнинг и тем более покупка виртуальных ресурсов для майнинга.</li><li>Игра на биржах и арбитраж.  </li><li>Купить биткоинов на все имеющиеся деньги.  </li><li>Продажа тренингов “как заработать миллион на биткоинах”.  </li></ul><p>(всё спорно, конечно)</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
@@ -406,18 +326,44 @@
     
     
     
-      <category term="juggling" scheme="http://spiiin.github.io/tags/juggling/"/>
+      <category term="крипто" scheme="http://spiiin.github.io/tags/%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE/"/>
     
   </entry>
   
   <entry>
-    <title>Исходники Prince of Persia</title>
-    <link href="http://spiiin.github.io/blog/33002/"/>
-    <id>http://spiiin.github.io/blog/33002/</id>
-    <published>2012-04-25T09:50:00.000Z</published>
-    <updated>2020-12-25T15:13:41.213Z</updated>
+    <title>Сколько стоит сделать приложение типа WhatsApp</title>
+    <link href="http://spiiin.github.io/blog/49834/"/>
+    <id>http://spiiin.github.io/blog/49834/</id>
+    <published>2018-03-06T00:59:00.000Z</published>
+    <updated>2021-01-02T16:51:43.498Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="https://github.com/jmechner/Prince-of-Persia-Apple-II" target="_blank" rel="noopener">https://github.com/jmechner/Prince-of-Persia-Apple-II</a><br>Кто еще не знает - автор Принца Персии нашёл исходники и выложил их. Написаны на асме 6502. Как будет время, сделаю по ним реверс NES-версии, язык то один и тот же.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Несколько ссылок, чтобы не потерялись.<br><a href="https://djangostars.com/blog/how-much-does-it-cost-to-build-a-messaging-app-like-whatsapp/" target="_blank" rel="noopener">https://djangostars.com/blog/how-much-does-it-cost-to-build-a-messaging-app-like-whatsapp/</a><br><a href="https://yalantis.com/blog/cost-of-mobile-messaging-app-development-types-kpis-landscape-recommended-approach-and-cost-of-development/" target="_blank" rel="noopener">https://yalantis.com/blog/cost-of-mobile-messaging-app-development-types-kpis-landscape-recommended-approach-and-cost-of-development/</a><br><a href="https://yalantis.com/blog/cost-of-mobile-messaging-app-development-types-kpis-landscape-recommended-approach-and-cost-of-development/" target="_blank" rel="noopener">https://erminesoft.com/how-much-does-it-cost-to-develop-a-chat-app-like-whatsapp/</a>  </p><p>Статьи говорят:<br>40-150К $ и 4-6 месяцев времени с командой в 5-6 человек.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Несколько 
+      
+    
+    </summary>
+    
+    
+    
+      <category term="dev" scheme="http://spiiin.github.io/tags/dev/"/>
+    
+      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Про распростренение мемов</title>
+    <link href="http://spiiin.github.io/blog/7552/"/>
+    <id>http://spiiin.github.io/blog/7552/</id>
+    <published>2018-03-01T10:58:00.000Z</published>
+    <updated>2021-01-02T16:52:09.825Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="https://medium.com/@sergey_57776/%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD-%D1%81%D0%BF%D0%BE%D1%81%D0%BE%D0%B1-%D0%B7%D0%B0%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D1%8C-%D0%B2%D1%8B%D1%80%D0%BE%D0%B4%D0%BA%D0%BE%D0%B2-655d46a3a891" target="_blank" rel="noopener">https://medium.com/@sergey_57776/%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D0%BD-%D1%81%D0%BF%D0%BE%D1%81%D0%BE%D0%B1-%D0%B7%D0%B0%D1%80%D0%B0%D0%B6%D0%B0%D1%82%D1%8C-%D0%B2%D1%8B%D1%80%D0%BE%D0%B4%D0%BA%D0%BE%D0%B2-655d46a3a891</a> Если без воды - люди лучше заражаются идеями, если к носителям одних идей подсаживать носителей других в меньшей пропорции, и не давать не заражённым изолироваться.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
@@ -430,74 +376,26 @@
     
     
     
-      <category term="asm" scheme="http://spiiin.github.io/tags/asm/"/>
+      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
     
-      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
+      <category term="меметика" scheme="http://spiiin.github.io/tags/%D0%BC%D0%B5%D0%BC%D0%B5%D1%82%D0%B8%D0%BA%D0%B0/"/>
     
   </entry>
   
   <entry>
-    <title>Сказки электронного города. Городский шаманизм.</title>
-    <link href="http://spiiin.github.io/blog/649/"/>
-    <id>http://spiiin.github.io/blog/649/</id>
-    <published>2012-04-22T17:44:00.000Z</published>
-    <updated>2020-12-25T14:29:12.750Z</updated>
+    <title>Устройство спецэффектов на NES. Эффекты горизонтального скролла.</title>
+    <link href="http://spiiin.github.io/blog/26104/"/>
+    <id>http://spiiin.github.io/blog/26104/</id>
+    <published>2018-02-21T22:34:00.000Z</published>
+    <updated>2021-01-02T16:53:50.675Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Четвертый день идет дождь. При этом все равно душно. Только вино, может помочь не расплавиться от жары. В крупном городе проще всего оставаться _таким как все_. Если в небольших городах достаточно небольших странностей, чтобы на тебя искоса смотрели, то здесь можно изрисовать лицо краской и ходить по супермаркету с джембе, всё равно подошедший сзади человек без удивления поинтересуется, кто крайний в очереди, а продавщица устало спросит, есть ли карточка и нужен ли пакетик. Можно развлекаться как угодно, изображать один аспект “обычной” жизни города - кататься целый день в метро с электронной книжкой, кривляясь в камеры или ужинать в 11 утра в кафешках. Необычности не хватит, чтобы разбудить хоть кого-то, слишком громко город поёт свою колыбельную. Люди боятся города и сидят по своим квартирам или офисам, собираясь вместе только в больших муравейниках где-нибудь под землей или наоборот, пытаются подняться на несколько метров над хаосом. Интернет добавляет новые дороги, но старые оказываются заброшенными. И от этого какими-то более страшными. На них остаются только потоки людей, выделить из которых отдельные личности становится невозможно, да и не нужно никому. Слова и идеи в виде реклам и лозунгов направляются не на личности, а на потоки. Первая реакция чужака - попытаться отбиться от давления города, начав двигаться быстрее общего движения, научиться терять как можно меньше времени на ненужные переходы и открывать свои. Город реагирует просто - время исчезает. Можно ехать полтора часа между парой станций метро, хотя для других пассажиров пройдет всего несколько минут. Нужно или постоянно двигаться по новым маршрутам и самому занимать свободное время, которое пожирает город, любыми активными занятия, забирать себе каждую секунду. Либо переключать сознание на более низкие уровни и жить в сети - играть в игры, общаться и любить. С присутствующим закономерным риском оставить сознание там надолго [спиться]. Или подходить к перформансерам, которые находятся в самой обитаемой части города и просить их объяснить, как у них выходит оставаться свободными. Ну это еще надо уметь узнать, у кого спрашивать.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><code>TODO: восстановить гифки</code></p><p>В качестве примера для изучения спецэффектов на NES можно взять <a href="https://imgur.com/a/XJmb7" target="_blank" rel="noopener">эту коллекцию</a>.<br>Орудие для изучения - эмулятор <a href="https://spiiin.dreamwidth.org/115637.html" target="_blank" rel="noopener">Mesen</a> и скрипт <a href="https://github.com/spiiin/CadEditor/blob/master/Stuff/nes_lua/mesen_logParallax.lua" target="_blank" rel="noopener">mesen_logParallax.lua</a>.  </p><p>Он позволяет посмотреть, в каких играх используются эффекты горизонтального скролла, а в какие - что-то другое (анимации фона записью в видеопамять, смена видеобанков или что-либо ещё).  </p><p><a href="https://spiiin.dreamwidth.org/file/7131.png" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/7131.png" alt="" title="battletoads_tunnel"></a>  </p><p>Под катом будет объяснение того, что такое эффекты горизонтального скролла, какие именно они бывают и много гифок с примерами. Вас предупреждали!  </p><p>Итак, самое простое и не очень понятное объяснение: эффекты горизонтального скролла - группа спецэффектов, которая получается за счёт того, что видеопроцессор NES умеет сдвигать позицию скролла в ходе рисования кадра. В начале кадра для видеопроцессора можно установить горизонтальную и вертикальное позицию левого верхнего угла заготовленной картинки, которую он будет отрисовывать. Далее он начинает рисовать кадр строку за строкой - вот <a href="https://www.youtube.com/watch?v=3BJU2drrtCM" target="_blank" rel="noopener">интересный пример</a> этого процесса, снятый в супер сломо.  </p><p>Прямо в ходе рисования можно подправить позицию горизонтального скролла (но не вертикального!), чтобы оставшаяся часть экрана сдвинулась горизонтально относительно предыдущей - это и есть эффект горизонтального скролла. С теорией всё, дальше примеры того, что именно можно получить таким способом.  </p><p><strong>Отрисовка GUI снизу или сверху экрана</strong>Простейший и понятнейший пример - <em>Super Mario Bros</em>.<br><a href="https://spiiin.dreamwidth.org/file/7890.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/7890.gif" alt=""></a><br>Здесь очевидно, что часть экрана над зелёной полосой не скроллится совсем, в отличие от нижней. Трюки, которые используются для того, чтобы точно попасть в период, пока видеопроцессор отрисовывает конкретную строку, очень хитрые, и заслуживают отдельной статьи. Отмечу только то, что если в игре для отображения GUI используется чёрная панель - скорее всего в период отрисовки чёрных строк игра вообще выключает рендеринг, чтобы сделать что-то сложное, что возможно только при выключенном рендеринге.  </p><p><strong>Параллакс</strong>Эффект параллакса позволяет отобразить то, что для наблюдателя находящиеся дальше объекты движутся медленнее, чем более близкие. В более новых играх специально для реализации этого существует возможность рисовать на нескольких слоях, независимых друг от друга, но на NES их нет, поэтому разработчики эмулировали слои за счёт горизонтального скроллинга частей картинки. Важное ограничение таких слоёв - чтобы они никогда не пересекались по вертикали между собой, что можно проверить в скрипте (без разделяющей слои линии они игроку намного менее заметно, что слои полностью раздельные).  </p><p>Простейший пример - бегущий на фоне заката кот-ниндзя из <em>Kyatto Ninden Teyandee.</em><br><a href="https://spiiin.dreamwidth.org/file/8574.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/8574.gif" alt=""></a>  </p><p>Здесь, также как и в Марио, достаточно всего одного разделения экрана на подвижную и неподвижную часть (ну и второе разделение зону GUI, которое встречается почти в каждой игре, про него отдельно упоминать не буду).  </p><p>Более красивый и сложный пример - красная планета в <em>Bucky O’Hare:</em><br><a href="https://spiiin.dreamwidth.org/file/9282.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/9282.gif" alt=""></a>  </p><p>Здесь к статичному небу добавлен слой дальних облаков в небе и более близких гор. Без разделительных линий кажется, что существует ещё слой ландшафта между горами и слоем игрока за счёт того, что он однородный и глаз не может определить движется ли этот слой или нет. Есть много игр с примерами параллакса такого типа - <em>Joe &amp; Mac - Caveman Ninja, Totally Rad, Metal Fighter, Vice - Project Doom</em> и другие.  </p><p>Однако стоит помнить, что если вы видите эффект пересечения слоёв на одной горизонтали (параллакс <a href="https://www.youtube.com/watch?v=dWHPNnrTmKs&amp;feature=youtu.be&amp;t=24m23s" target="_blank" rel="noopener">за окошками</a> в другом уровне <em>Bucky O’Hare</em>) или вообще вертикальный параллакс (на стенках колодца 2 уровня <em>Battletoads</em>, стартовая заставка <em>Megaman 2</em>), помните - горизонтальный скролл невозможно изменить посреди строки - в этих играх используются другие эффекты.  </p><p>Отдельный интересный случай параллакса с движущимся дальним фоном - уровни с поездами, примеров много, пусть будет <em>Spartan X2:</em><br><a href="https://spiiin.dreamwidth.org/file/9973.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/9973.gif" alt=""></a>  </p><p>Параллакс также заметен, если камера находится внутри овального объекта или пещеры. В таком случае нижняя и верхняя часть будут ближе к камере, чем дальняя стена. Лучший пример - турбо-туннель в <em>Battletoads:</em><br><a href="https://spiiin.dreamwidth.org/file/10357.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/10357.gif" alt=""></a><br>Последняя пара примеров, посвящённая параллаксу, относится к случаю, когда отображаемая плоскость сильно наклонена по отношению к камере, в этом случае будет хорошо заметна разная скорость движения частей плоскости, и необходимо много слоёв для её отображения.  </p><p>Посмотрите на количество слоёв пола в <em>TMNT4: Tournament Fighters</em>:<br><a href="https://spiiin.dreamwidth.org/file/10959.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/10959.gif" alt=""></a><br>Либо на море в <em>TMNT3: Manhatten Project:</em>  </p><p><a href="https://spiiin.dreamwidth.org/file/11460.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/11460.gif" alt=""></a>  </p><p><strong>Отображение движения частей сцены</strong>  </p><p>Данный эффект применяется как для отображения крупных частей сцены (босс в <em>Tiny Toon Adventures</em>, другие игры с движением только горизонтальных платформ):  </p><p><a href="https://spiiin.dreamwidth.org/file/11980.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/11980.gif" alt=""></a><br>Так и для относительно мелких частей сцены, вплоть до отдельных строк (участки дороги при повороте в <em>Super Spy Hunter</em>):<br><a href="https://spiiin.dreamwidth.org/file/12494.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/12494.gif" alt=""></a>  </p><p>Участком сцены также может быть крупный объект, который изначально выглядит спрайтом, а не фоном , но является слишком крупным для спрайта, потому что спрайты имеют ограничение на размер, общее количество, а также количество в одной строке. Например, шар у босса зелёной планеты в <em>Bucky O’ Hare</em> (эта игра вообще очень богата на разные эффекты) рисуется фоном, но двигается отдельно от пола:<br><a href="https://spiiin.dreamwidth.org/file/13217.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/13217.gif" alt=""></a><br>Тут отдельно хочется упомянуть игру <em>Chip &amp; Dale Rescue Rangers 2</em> и больших боссов в ней. Они рисуются в фоне, но параллакса в игре нет. Геймдизайнеры решили проблему раздельного движения боссов и пола гениально - перед движением босса всегда потухает свет и пола не видно. Особенно эффектно это сделано на боссе Ведьма:<br><a href="https://spiiin.dreamwidth.org/file/13793.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/13793.gif" alt=""></a>  </p><p>Часто эффекты раздельного движения слоёв сцены применяются для эффектного появления текста или заставок. Сразу два эффекта на старте <em>Jurassic Park</em>:<br><a href="https://spiiin.dreamwidth.org/file/14535.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/14535.gif" alt=""></a>  </p><p> или просто красивого совмещения частей сцены:<br> <a href="https://spiiin.dreamwidth.org/file/14865.gif" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/14865.gif" alt=""></a><br> На этом у меня пока всё ^_^.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Четвертый 
-      
-    
-    </summary>
-    
-    
-    
-      <category term="tales" scheme="http://spiiin.github.io/tags/tales/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>inout</title>
-    <link href="http://spiiin.github.io/blog/10414/"/>
-    <id>http://spiiin.github.io/blog/10414/</id>
-    <published>2012-04-12T17:01:00.000Z</published>
-    <updated>2020-12-25T15:05:40.645Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Многие занятия хорошо классифицируются по схеме “имеет внешнее проявление” или “имеет внутреннее проявление”. Например, шахматы, каким бы образом ни были расставлены по доске, останутся для непосвященного просто 32 фигурками, хотя знатоки могут найти в позиции красоту убегающих вдаль путей. А жонглирование останется перформансом, направленным на то, чтобы показать или создать эффект, хотя и несет в себе некоторый бекграунд. Нотация трюков не особенно важна, названия условны и можно обойтись вообще без них, смысл от этого не изменится. “Внутренняя” часть может существовать, но она остается тайной. Также, как человек ощущает тайные связи при наблюдении за движением большого количества муравьёв - вроде бы кроме внешней картины хаоса нет ничего, но движения отдельных мурашек объединяется мозгом в общий завораживающий вихрь. Люди часто склонны к одному типу занятий. Реальный пример - 3D-моделлер может легко начать писать музыку или стихи, но у него начинаются большие трудности, когда он пытается научиться правильно писать шейдеры для своих моделей. То есть шейдеры-то выходят красивые, но он не в состоянии объяснить, зачем у него в коде вектор сначала умножается на 2, в потом на 0.5. Он просто не видит внутреннего проявления программы, оно не важно, потому что не создаёт никакого внешнего эффекта. Но вот как раз в написании игр или демосцене присутствует стык этих двух категорий - имеется как явное внешнее проявление, красивая обертка, которая притягивает многих, так и скрытая за ним бездна внутренних связей, необходимых для того, чтобы результат существовал. Такая вот айтишная маргинальщина.</p><p><a href="https://www.youtube.com/watch?v=IFXIGHOElrE" target="_blank" rel="noopener">https://www.youtube.com/watch?v=IFXIGHOElrE</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Многие зан
-      
-    
-    </summary>
-    
-    
-    
-      <category term="asm" scheme="http://spiiin.github.io/tags/asm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chip and Dale Hack</title>
-    <link href="http://spiiin.github.io/blog/48271/"/>
-    <id>http://spiiin.github.io/blog/48271/</id>
-    <published>2012-03-18T05:53:00.000Z</published>
-    <updated>2020-12-25T15:13:25.963Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Начало <a href="http://spiiin.livejournal.com/51087.html" target="_blank" rel="noopener">тут</a>.</p><p>ROM для теста Chip ‘n Dale Rescue Rangers (U) [!].nes</p><p><strong>ЧАСТЬ 2. Устройство уровней.</strong></p><p>Вместо просмотра дампов памяти можно открыть ROM картриджа и попробовать найти в нём описания блоков для уровня. Делать это проще всего методом коррапта, основного инструмента начинающих ромхакеров - случайным образом менять значения байт и смотреть, что сломалось в игре.</p><p>Описания уровней идут начиная с 16 байта, сразу после заголовка NES. Экраны рисуются “строками” из блоков по 8 элементов, занимают 40 байт и расположены в памяти последовательно с нумерацией снизу вверх слева направо. Элементы являются индексами массива блоков размером 16x16 (то есть 2x2 игровых объекта).</p><p>Описания объектов хранятся отдельно и сами состоят из 4х байт, кодирующих номера тайлов в видеопамяти, и дополнительного байта, который кодирует старшие биты цвета для выбора из палитры (по 2 бита на каждый тайл). При скролле из игры каждый шаг игрока отрисовываются следующие 2 больших блока, а раз в 4 шага происходит скролл, как раз когда готов вертикальный столбец из 8 блоков. Всего в игре 278 экранов и несколько дополнительных (бонусный, глобальная карта, полет в космос между стадиями).</p><p>Чтобы было понятнее, тайл видеопамяти /объект уровня/строительный блок уровня: <img src="http://pics.livejournal.com/spiiin/pic/0002ge1s" alt="block0">/<img src="http://pics.livejournal.com/spiiin/pic/0002h0rf" alt="">/<img src="http://pics.livejournal.com/spiiin/pic/0002kgzb" alt=""> </p><p>Дальше надо разобраться с алгоритмом вытаскивания старших бит цветов. Это место уже нашлось в ходе реверса функции горизонтального скроллинга - в отрисовке большого блока есть выборка 4х байт, для каждого из маленьких блоков по одному.</p><p>Начало таблицы маппится на адрес $BEE0 в памяти.</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ROM:DFA3 LDY byte_2</span><br><span class="line">ROM:DFA5 LDA $E04F,Y</span><br><span class="line">ROM:DFA8 STA byte_3</span><br><span class="line">ROM:DFAA LDA (0),Y</span><br><span class="line">ROM:DFAC TAX</span><br><span class="line">ROM:DFAD LDA $BEE0,X ;базовый адрес старших байт цвета в памяти + смещение блока</span><br></pre></td></tr></table></figure><p>Палитру уровня можно взять из fceud (Tools-&gt;PPU viewer) и написать функцию замены цветов тайла по палитре, чтобы подмешать полученные цвета в уровень.<br>Результат: <a href="http://pics.livejournal.com/spiiin/pic/0002p5xk/" target="_blank" rel="noopener"><img src="http://pics.livejournal.com/spiiin/pic/0002p5xk/s320x240" alt=""></a><br><a href="http://pics.livejournal.com/spiiin/gallery/0002xkeg" target="_blank" rel="noopener">остальные картинки</a></p><p><strong>ЧАСТЬ 3. Описание объектов</strong></p><p>$70 - счетчик активных предметов (враги, предметы в ящиках, скрытые бонусы и специальные объекты типа яблок или сундуков). </p><p>Ставим брейкпоинт на первое чтение при запуске уровня и останавливаемся на считывании кода врага.</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ROM:80BD LDY byte_70</span><br><span class="line">ROM:80BF JSR make_enemy_coord</span><br><span class="line">ROM:80C2 BNE loc_80CB</span><br><span class="line">ROM:80C4 JSR make_enemy</span><br><span class="line">ROM:80C7 INC byte_70</span><br><span class="line">ROM:80C9 BNE loc_80BD</span><br></pre></td></tr></table></figure><p><strong>Начала описаний объектов в ROM:</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">уровень 0 - 10388-103D3</span><br><span class="line">уровень А - 10456</span><br><span class="line">уровень B - 105A1</span><br><span class="line">уровень C - 106D1-10709</span><br><span class="line">уровень D - 10890-108F0</span><br><span class="line">уровень E - 10A1D-10A66</span><br><span class="line">уровень F - 10B0E-10B36</span><br><span class="line">уровень G - 10C88-10СDA</span><br><span class="line">уровень H - 10DB3-10DE7</span><br><span class="line">уровень I - 10EA1-10ECD</span><br><span class="line">уровень J - 10FED-11033</span><br><span class="line">ИСКЛЮЧЕНИЯ (порядок описания отличный от того, как он идет в игре).</span><br><span class="line">Уровень 0 - Сначала идет комната с боссом, потом комната с сыром для рокки.</span><br><span class="line">Уровень D - Босс расписан перед уровнем, а не после. Не хватает одного байта описания координат, из-за долго которого ломался мой парсер. Из-за этого &quot;проебайта&quot; у босса за спиной не рисуется заводной ключик :)</span><br><span class="line">уровень E - Кусок сначала из 4х последних экранов, потом продолжение &#x3D;\</span><br></pre></td></tr></table></figure><p><strong>ТИПЫ ВРАГОВ</strong> </p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">00 - механическая собака</span><br><span class="line">01 - механический мышь</span><br><span class="line">02 - пчела</span><br><span class="line">03 - гусеница</span><br><span class="line">04 - белка-летяга вправо</span><br><span class="line">05 - белка-летяга влево</span><br><span class="line">06 - &quot;кидальщик 3 штучек и убегальщик&quot;:)</span><br><span class="line">07 - хамелеон</span><br><span class="line">08 - муха</span><br><span class="line">09 - яблоко</span><br><span class="line">0A - скрытая звезда</span><br><span class="line">0B - цветок</span><br><span class="line">0C - звезда</span><br><span class="line">0D - желудь</span><br><span class="line">0E - светящийся желудь</span><br><span class="line">0F - светящаяся звезда</span><br><span class="line"></span><br><span class="line">10 - ящик с баночкой</span><br><span class="line">11 - ящик с сыром для Рокки</span><br><span class="line">12 - ящик со светящейся звездой</span><br><span class="line">13 - ящик со светящимся желудем</span><br><span class="line">14 - ящик с вжиком</span><br><span class="line">15 - ящик с вжиком (другие тайлы вжика)</span><br><span class="line">16 - бомба (тайлы уровня B)</span><br><span class="line">17 - ящик с лодкой</span><br><span class="line">18 - ящик с молотком</span><br><span class="line">19 - бомба (тайлы уровня E)</span><br><span class="line">1A - скрытая святящаяся звезда</span><br><span class="line">1B - неоткрывающийся ящик</span><br><span class="line">1C - козлик с коврами</span><br><span class="line">1D - птица-качок</span><br><span class="line">1E - прыгающий ящик</span><br><span class="line">1F - кенгуру с ракеткой</span><br><span class="line"></span><br><span class="line">20 - птица с железным шаром</span><br><span class="line">21 - игрушечная боевая юла</span><br><span class="line">22 - клоун</span><br><span class="line">23 - куколка бабочки</span><br><span class="line">24 - жук в засаде</span><br><span class="line">25 - рогатый жук</span><br><span class="line">26 - крокодил в шляпе</span><br><span class="line">27 - прыгающий крокодил в шляпе</span><br><span class="line">28 - носорог-качок</span><br><span class="line">29 - краб</span><br><span class="line">2A - пеликан</span><br><span class="line">2B - стрелок с присосками</span><br><span class="line">2C - искра длинный</span><br><span class="line">2D - искра средний</span><br><span class="line">2E - искра короткий</span><br><span class="line">2F - огонь под кастрюлей. безвреден.</span><br><span class="line"></span><br><span class="line">30 - падающий насвозь металлический шар</span><br><span class="line">31 - выдвижная платформа</span><br><span class="line">32 - вентиль для блокировки потока</span><br><span class="line">33 - катящийся металлический шар</span><br><span class="line">34 - катящийся металлический шар</span><br><span class="line">35 - резалка</span><br><span class="line">36 - выключатель резалки</span><br><span class="line">37 - падающие стены</span><br><span class="line">38 - быстрый катящийся металлический шар</span><br><span class="line">39 - &quot;спихивалка&quot; с игровых автоматов</span><br><span class="line">3A - топор</span><br><span class="line">3B - выключатель падающих шаров</span><br><span class="line">3C - катящийся металлический шар</span><br><span class="line">3D - вентилятор влево</span><br><span class="line">3E - вентилятор вправо</span><br><span class="line">3F - движущийся кусок?</span><br><span class="line"></span><br><span class="line">40 - босс 1 (голова)</span><br><span class="line">41 - босс 1 (левая рука)</span><br><span class="line">42 - босс 1 (правая рука)</span><br><span class="line">43 - босс 2 (сова)</span><br><span class="line">44 - босс 3 (летающая ракета)</span><br><span class="line">45 - босс 4 (сердце и метатель)</span><br><span class="line">46 - босс 4 (заводной ключ)</span><br><span class="line">47 - босс 4 (шины)</span><br><span class="line">48 - катящийся металлический шар</span><br><span class="line">49 - босс 6 (кролик в автомате)</span><br><span class="line">4A - босс 5 (сом)</span><br><span class="line">4B - босс 7 (сороконожка)</span><br><span class="line">4C - босс 7 (часть сороконожки)</span><br><span class="line">4D - босс 7 (часть сороконожки)</span><br><span class="line">4E - босс 7 (часть сороконожки)</span><br><span class="line">4F - босс 7 (часть сороконожки)</span><br><span class="line"></span><br><span class="line">50 - босс 8 (толстопуз, рука с сигарой)</span><br><span class="line">51 - босс 8 (толстопуз, морда)</span><br><span class="line">52 - гнилая доска</span><br><span class="line">53 - красный шарик</span><br><span class="line">FF - невидимый непроходимый блок, конец зоны</span><br></pre></td></tr></table></figure><p>Вот и всё :)</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Начало &lt;a 
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;code&gt;TODO
       
     
     </summary>
@@ -507,6 +405,114 @@
       <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
     
       <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
+    
+      <category term="lua" scheme="http://spiiin.github.io/tags/lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mesen - лучший эмулятор NES для отладки</title>
+    <link href="http://spiiin.github.io/blog/15290/"/>
+    <id>http://spiiin.github.io/blog/15290/</id>
+    <published>2018-02-21T22:12:00.000Z</published>
+    <updated>2021-01-02T16:55:18.683Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Нашёл эмулятор NES, который лучше, чем FCEUX, подходит для отладки - <a href="https://www.mesen.ca/" target="_blank" rel="noopener">Mesen</a>.</p><p>Это проект одного человека, однако уже сейчас он выглядит лучше многих других эмуляторов и поддерживает некоторые очень нужные для отладки фичи. Во-первых - из коробки понимает отладочную информацию, генерируемую популярными ассемблерами asm6 и ca65, во-вторых (именно поэтому он удобнее для меня) - в него естественно интегрирована поддержка <a href="https://www.mesen.ca/docs/apireference/" target="_blank" rel="noopener">Lua</a>. В отличие от Lua для Fceux, здесь из неё можно получить намного больше информации о состоянии эмулятора (не только CPU и память, но также внутреннее состояние PPU и ALU). Бонусом также идёт удобное окно редактирования скрипта, поддержка выполнения одновременно нескольких скриптов и невозможность завесить эмулятор простой опечаткой в коде.  </p><p>За счёт этого можно наглядно посмотреть устройство спецэффектов в реальных играх. Например, <a href="https://github.com/spiiin/CadEditor/blob/master/Stuff/nes_lua/mesen_logParallax.lua" target="_blank" rel="noopener">небольшой скрипт</a> для того, чтобы отрисовывать линию в тех строчках кадра, где PPU меняет позицию горизонтального скролла (это одна из немногих возможностей для создания эффектов графики видеопроцессора консоли). За счёт этого видны “слои”, на которые делится картинка:  </p><p><a href="https://spiiin.dreamwidth.org/file/7131.png" target="_blank" rel="noopener"><img src="https://spiiin.dreamwidth.org/file/200x200/7131.png" alt="" title="battletoads_tunnel"></a><br>Верхний первый слой здесь используется для отображения интерфейса, второй и четвёртый слой отображают передний план, а третий слой - стены пещеры. Следующим постом выложу набор гифок, который показывает эффекты, достигаемые сменой позиции горизонтального скроллинга в разных играх.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Нашёл эмул
+      
+    
+    </summary>
+    
+    
+    
+      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
+    
+      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
+    
+      <category term="lua" scheme="http://spiiin.github.io/tags/lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>6502 ассемблер онлайн</title>
+    <link href="http://spiiin.github.io/blog/54034/"/>
+    <id>http://spiiin.github.io/blog/54034/</id>
+    <published>2018-02-20T12:11:00.000Z</published>
+    <updated>2021-01-02T16:55:44.233Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="http://xray.rail.net.ru/programs/nes/index.php" target="_blank" rel="noopener">6502 ассемблер онлайн</a><br>А также <a href="http://skilldrick.github.io/easy6502/" target="_blank" rel="noopener">мини-эмулятор и обучающие примеры</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;a href=&quot;h
+      
+    
+    </summary>
+    
+    
+    
+      <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
+    
+      <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
+    
+      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>The CRPG Book Project</title>
+    <link href="http://spiiin.github.io/blog/7485/"/>
+    <id>http://spiiin.github.io/blog/7485/</id>
+    <published>2018-02-14T20:36:00.000Z</published>
+    <updated>2021-01-02T16:31:20.833Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="https://crpgbook.wordpress.com/" target="_blank" rel="noopener">https://crpgbook.wordpress.com/</a><br>Катастрофически большая, подробная и интересная книга о компьютерных ролевых играх всех времён. Маст-рид для геймеров, и увлекающихся разработчиков игр тоже.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;a href=&quot;h
+      
+    
+    </summary>
+    
+    
+    
+      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
+    
+      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Сапёр в Windows 10</title>
+    <link href="http://spiiin.github.io/blog/17905/"/>
+    <id>http://spiiin.github.io/blog/17905/</id>
+    <published>2018-01-13T14:47:00.000Z</published>
+    <updated>2021-01-02T16:56:01.098Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Захотелось поностальгировать и поиграть в Сапёра.<br>Собственно, <a href="https://www.microsoft.com/sv-se/store/p/microsoft-minesweeper/9wzdncrfhwcn?rtc=1" target="_blank" rel="noopener">вот он</a> для новой винды. 99 мегабайт, попытка залогиниться в Windows Live при первом запуске, туториал, возможность расшарить результаты в соцсетях, скины, реклама (!)…  </p><p>Поставлю-ка лучше на виртуальную машину образ Windows 98, ну его нафиг.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;Захотелось
+      
+    
+    </summary>
+    
+    
+    
+      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
     
   </entry>
   
