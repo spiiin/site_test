@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2021-01-08T16:14:15.423Z</updated>
+  <updated>2021-01-13T21:25:32.022Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Райан Гордон</title>
+    <link href="http://spiiin.github.io/blog/413676133/"/>
+    <id>http://spiiin.github.io/blog/413676133/</id>
+    <published>2021-01-13T21:09:08.000Z</published>
+    <updated>2021-01-13T21:25:32.022Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><style>.embed-container {    position: relative;    padding-bottom: 56.25%;    height: 0;    overflow: hidden;    max-width: 100%;  }  .embed-container iframe, .embed-container object, .embed-container embed {    position: absolute;    top: 0;    left: 0;    width: 100%;    height: 100%;  }  </style><div class="embed-container"><iframe src="https://www.youtube.com/embed/MeMPCSqQ-34" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div><p><a href="https://en.wikipedia.org/wiki/Ryan_C._Gordon" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Ryan_C._Gordon</a></p><p>Хакер, инди-разработчик, фрилансер.</p><p>Портирует “стафф” на линукс и макось. Среди “стаффа” - игры из серий:</p><ul><li>Unreal Tournament</li><li>Serious Sam</li><li>Civilization</li><li>Spider-Man</li><li>Quake</li><li>Left 4 Dead<br>и многие другие, а также приложения Second Life и Google Earth.<br>Проще перечислить, что он не портировал.</li></ul><p><a href="http://icculus.org/" target="_blank" rel="noopener">http://icculus.org/</a> - его сайт с open-source версиями нескольких из старых крупных проектов.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;style&gt;.embed
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Люди" scheme="http://spiiin.github.io/tags/%D0%9B%D1%8E%D0%B4%D0%B8/"/>
+    
+  </entry>
   
   <entry>
     <title>ECS для казуальных игр</title>
@@ -497,32 +521,6 @@
       <category term="nes" scheme="http://spiiin.github.io/tags/nes/"/>
     
       <category term="hack" scheme="http://spiiin.github.io/tags/hack/"/>
-    
-      <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The CRPG Book Project</title>
-    <link href="http://spiiin.github.io/blog/7485/"/>
-    <id>http://spiiin.github.io/blog/7485/</id>
-    <published>2018-02-14T20:36:00.000Z</published>
-    <updated>2021-01-02T16:31:20.833Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p><a href="https://crpgbook.wordpress.com/" target="_blank" rel="noopener">https://crpgbook.wordpress.com/</a><br>Катастрофически большая, подробная и интересная книга о компьютерных ролевых играх всех времён. Маст-рид для геймеров, и увлекающихся разработчиков игр тоже.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text&amp;#x2F;css&quot; href=&quot;https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css&quot;&gt;&lt;p&gt;&lt;a href=&quot;h
-      
-    
-    </summary>
-    
-    
-    
-      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
     
       <category term="link" scheme="http://spiiin.github.io/tags/link/"/>
     
