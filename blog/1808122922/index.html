@@ -73,14 +73,15 @@ ga('send', 'pageview');</script><meta name="generator" content="Hexo 4.2.1"><lin
 </blockquote>
 <p>Для выполнения точных замеров нужно конечно сгенерировать множество входных данных и исследовать скорость на них, но мне было достаточно того, чтобы добиться измеримых “на глаз” показателей скорости.</p>
 <p>Ещё одна из возможностей Nim - <strong>перенос выполнения кода полностью на момент компиляции</strong>, но воспользоваться ей сходу не получилось, так что она тоже находится за рамками первой программы после изучения языка.</p>
-<p><code>**update**</code><br>Третьим заходом всё-таки выполнил решение в полностью в compile-time:<br><a href="https://gist.github.com/spiiin/501a0225f2d09328c74b59a6e9de8f54" target="_blank" rel="noopener">Compile-time версия решения</a><br><div class='spoiler collapsed'>
+<p><code>**update**</code><br>Третьим заходом всё-таки выполнил решение в полностью в compile-time:<br><a href="https://gist.github.com/spiiin/501a0225f2d09328c74b59a6e9de8f54" target="_blank" rel="noopener">Compile-time версия решения</a></p>
+<div class='spoiler collapsed'>
     <div class='spoiler-title'>
         gist
     </div>
     <div class='spoiler-content'>
         <script src="//gist.github.com/501a0225f2d09328c74b59a6e9de8f54.js?file=james_bond_compile_time.nim"></script>
     </div>
-</div></p>
+</div>
 <p>Основные изменения - изменить <code>let</code> на <code>const</code> в определениях переменных (последовательно в функции решения и ещё 2 зависимых от него определениях глобальных переменных):<br><figure class="highlight nim"><table><tr><td class="code"><pre><span class="line"><span class="comment">#let answer = solve().reconstructPath() //run-time</span></span><br><span class="line"><span class="keyword">const</span> answer = solve().reconstructPath() //compile-time</span><br></pre></td></tr></table></figure></p>
 <p>Дополнительно оказалось, что функция <code>shuffle</code> из библиотеки <code>random</code> не умеет работать в compile-time - это проблема библиотеки, но решение нашлось достаточно <a href="https://github.com/nim-lang/Nim/issues/12028" target="_blank" rel="noopener">быстро</a> - переписанная для использования в compile-time версия:<br><figure class="highlight nim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> rng <span class="meta">&#123;.compileTime.&#125;</span> = initRand(<span class="number">0x1337DEADBEEF</span>)</span><br><span class="line">  </span><br><span class="line"><span class="keyword">proc</span> compileTimeShuffle[T](x: <span class="keyword">var</span> openArray[T]) =</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> countdown(x.high, <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">let</span> j = rng.rand(i)</span><br><span class="line">    swap(x[i], x[j])</span><br></pre></td></tr></table></figure></p>
 <p>Компилятор выполняет вычисления медленнее, чем скомпилированная программа, и собирает программу за минуту-полторы, вдобавок просит добавить ему ключ, позволяющий продлить ему время на вычисления:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nim c --maxLoopIterationsVM:100000000 nim_james_bond_compile_time.nim</span><br></pre></td></tr></table></figure></p>
