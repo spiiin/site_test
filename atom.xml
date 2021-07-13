@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://spiiin.github.io/"/>
-  <updated>2021-07-09T17:59:42.295Z</updated>
+  <updated>2021-07-13T16:09:10.348Z</updated>
   <id>http://spiiin.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Как разобраться в большой кодовой базе</title>
+    <link href="http://spiiin.github.io/blog/1160101424/"/>
+    <id>http://spiiin.github.io/blog/1160101424/</id>
+    <published>2021-07-13T14:42:08.000Z</published>
+    <updated>2021-07-13T16:09:10.348Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Как читать и изучать код в больших кодовых базах.<br><a id="more"></a></p><p><a href="https://solid-angle.blogspot.com/2015/08/tips-for-navigating-large-game-code.html" target="_blank" rel="noopener">Tips for Navigating Large Game Code Bases</a> - как начать, если устроился разработчиком игр.</p><ul><li>разобраться, как собрать проект и запустить игру</li><li>спросить, есть ли инструкция, документация, или туториалы</li><li>узнать, нет ли простой демки, показывающей возможности движка</li><li>найти часть кода, которая связана с первой задачей<br>(поиск связанных слов по всему коду, отладчик, спросить тим-лида или кого-нибудь)</li><li>воспользоваться редактором игры или тулзами</li><li>почитать историю коммитов</li><li>поискать, какие средства есть для решения задачи в движке, не решать с нуля</li><li>найти и изучить документ, описывающий Coding Style</li><li>разобраться с процессом добавления своего кода в репозиторий</li></ul><p>Позже:</p><ul><li>попробовать найти основной игровой цикл</li><li>изучить иерархию базовых игровых классов</li><li>изучить основные используемые в работе классы и модули</li><li>понять принцип разделения движка и игры на подсистемы/модули/etc</li><li>изучить пайплайн добавления ассетов</li><li>разобраться с используемыми скриптовыми языками</li><li>попробовать разобрать рендер игровой сцены</li><li>изучить используемые средства профилирования</li><li>изучить способы сборки игры под различные платформы</li></ul><p><a href="https://aras-p.info/texts/files/2018Academy%20-%20About%20Code.pdf" target="_blank" rel="noopener">Random Things About Code</a><br>Раздел <code>Navigating large codebases</code></p><p>Смириться с тем, что большие кодовые базы:</p><ul><li>содежат много legacy кода</li><li>плохо документированы</li><li>содержат места, про которые никто не знает как/зачем/почему они были добавлены<br>(но большая часть кода всё же была добавлена с определенной целью, и выбросить/переделать - часто плохая идея)</li></ul><p>Если что-то выглядит странно/непонятно/неправильно:</p><ul><li>30% что есть причина (неочевидная) почему сделано так</li><li>30% что когда-то БЫЛА причина</li><li>30% что причины нет, и код просто кривой</li><li>10% что Ктулху Рльех Фтагн</li></ul><p><a href="https://aras-p.info/blog/2013/07/07/reviewing-all-the-code/" target="_blank" rel="noopener">Reviewing ALL THE CODE</a> - как следить за всем, что происходит в кодовой базе, Aras Pranckevičius (Unity)<br>Средства, упрощающие изучение всех изменений в кодовой базе</p><p>Что изучать:<br><code>Unity</code><br><code>Unreal Engine</code><br><code>Godot</code><br><code>Doom 3</code><br><code>Cocos2d-x</code></p><p>Возможно:<br><code>MonoGame</code><br><code>CryEngine</code><br><code>Unigine</code><br><code>Defold</code><br><code>GameMaker</code></p><p>Код в Doom 3<br><a href="https://kotaku.com/the-exceptional-beauty-of-doom-3s-source-code-5975610" target="_blank" rel="noopener">The Exceptional Beauty of Doom 3’s Source Code</a><br><a href="https://fabiensanglard.net/doom3/index.php" target="_blank" rel="noopener">Doom 3 source code review</a></p><p>Про пайплайны:<br><a href="https://hookrace.net/blog/hana-cpp-development/" target="_blank" rel="noopener">HANA C++ Development Environment and Processes</a> - не относится к играм, но есть ссылки на пару интересных тулзов для работы с тяжёлой кодовой базой.<br><a href="https://aras-p.info/texts/files/201410-TUM-HobbyEngineToGameEngine.pdf" target="_blank" rel="noopener">Hobby engine to game engine</a> - отличия в пайплайне небольших движков и больших, на примере Unity.</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Как читать и изучать код в больших кодовых базах.&lt;br&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="dev" scheme="http://spiiin.github.io/tags/dev/"/>
+    
+  </entry>
   
   <entry>
     <title>Выгорание и стресс</title>
@@ -461,27 +482,6 @@
     
     
       <category term="code" scheme="http://spiiin.github.io/tags/code/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Карта прохождения игр</title>
-    <link href="http://spiiin.github.io/blog/1563/"/>
-    <id>http://spiiin.github.io/blog/1563/</id>
-    <published>2020-08-04T19:11:37.000Z</published>
-    <updated>2020-09-01T18:10:28.493Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><p>Список игр на прохождение<br><a id="more"></a></p><h2 id="Current-list"><a href="#Current-list" class="headerlink" title="Current list"></a>Current list</h2><p><code>Captain Toad</code> - 90%<br><code>Age of Mythologies</code> - 50%<br><code>Gta 5</code> - 30%<br><code>The Witcher 2</code> - 5%</p><h2 id="Coop"><a href="#Coop" class="headerlink" title="Coop"></a>Coop</h2><p><code>The Stratchers</code> - 33%<br><code>Trine 4</code> - 30%<br><code>Minecraft</code> - 5%</p><h2 id="Todo"><a href="#Todo" class="headerlink" title="Todo"></a>Todo</h2><p><code>Yoshi&#39;s Crafted World</code><br><code>The Forest</code></p><h2 id="Completed"><a href="#Completed" class="headerlink" title="Completed"></a>Completed</h2><p><code>Mario+Rabbids</code><br><code>Witcher</code><br><code>Legend of Zelda: BotW</code><br><code>Warhammer 40k: Mechanicus</code></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Список игр на прохождение&lt;br&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="games" scheme="http://spiiin.github.io/tags/games/"/>
     
   </entry>
   
